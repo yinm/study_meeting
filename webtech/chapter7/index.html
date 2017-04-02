@@ -1,8 +1,8 @@
 <html>
 <head>
-  <link rel="stylesheet" href="./style.css">
   <link rel="stylesheet" href="./dist/talkie.min.css">
   <link rel="stylesheet" href="./dist/talkie-default.min.css">
+  <link rel="stylesheet" href="./style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/monokai_sublime.min.css">
 </head>
 <body>
@@ -58,7 +58,7 @@
 
 ### レスポンス
 * `201 Created`
-* `Location:`ヘッダに、新しいリソースのURI
+* `Location`ヘッダに、新しいリソースのURI
 
 </script>
 
@@ -96,7 +96,7 @@
 * ボディに、更新したいリソースの内容
 
 ### レスポンス
-* `200 OK`と、「ボディにリソースを更新した結果」
+* `200 OK`と「ボディにリソースを更新した結果」
 * または、`204 No Content`と「ボディを持たない」
 </script>
 
@@ -130,7 +130,7 @@
 * 削除したいリソースのURI
 
 ### レスポンス
-* `200 OK`と、「ボディにリソースを更新した結果」
+* `200 OK`と「ボディにリソースを更新した結果」
 * または、`204 No Content`と「ボディを持たない」
 </script>
 
@@ -148,14 +148,15 @@
 ### レスポンス
 * `Allow`ヘッダに、サポートしているメソッドの一覧を格納
 * OPTIONSの実装は、自前で行うことが多い
-* (リソースごとに対応するメソッドを返すように実装する)
+* (リソースごとに、対応するメソッドを返すように実装する)
 </script>
 
 <script layout type="text/x-markdown">
 ## 7.9 POSTでPUT/DELETEを代用する方法
 
 * HTMLのフォームで対応しているのは、`GET`と`POST`のみ
-* XMLHttpRequestを利用すると、他のメソッドも使えるようになるが、セキュリティの関係で使えない場合に何とかする手法が2つある
+* XMLHttpRequestを利用すると、他のメソッドも使えるようになる
+* しかし、セキュリティの関係などで使えない場合に、何とかする手法が2つある
 * `_method`パラメータ
 * `X-HTTP-Method-Override`ヘッダ
 </script>
@@ -189,7 +190,7 @@
 * 条件を表すヘッダを加えることで、利用できる
 * 条件を表すヘッダの種類 (一部)
   * ・`If-Modified-Since`ヘッダ
-  * ・`If-Unmoodified-Since`ヘッダ
+  * ・`If-Unmodified-Since`ヘッダ
   * [MDN](https://developer.mozilla.org/ja/docs/Web/HTTP/Headers)
 </script>
 
@@ -197,7 +198,7 @@
 ## 7.11 べき等性と安全性
 
 * 「べき等性」は、ある操作を何回行っても、結果が同じこと
-* 「安全性」は、捜査対象のリソースに副作用がないこと
+* 「安全性」は、操作対象のリソースに副作用がないこと
 * 「副作用」とは、リソースの状態に変化を与えること
 </script>
 
@@ -207,13 +208,13 @@
 |:---|:---
 |`GET`, `HEAD` |「べき等」かつ「安全」
 |`PUT`, `DELETE` |「べき等」だが、「安全ではない」
-|`POST` |「べき等ではない」し、「安全でもない」
+|`POST` |「べき等ではない」また、「安全でもない」
 </script>
 
 <script layout type="text/x-markdown">
 ## 7.12 メソッドの誤用
 * GETが安全でなくなる例
-* ほかのメソッドでできることをPOSTを誤用した例
+* ほかのメソッドでできることをPOSTで誤用した例
 * PUTがべき等でなくなる例
 * DELETEがべき等でなくなる例
 </script>
@@ -231,10 +232,10 @@ Host: example.jp
 </script>
 
 <script layout="code" invert type="text/x-markdown">
-## ほかのメソッドでできることをPOSTを誤用した例
+## ほかのメソッドでできることをPOSTで誤用した例
 
 * ◯ 他に適切なメソッドがある場合は、そのメソッドを使うべき
-* × XML-RPCやSOAPなどは、すべての関数呼び出しをPOSTで実現する
+* × 読込・更新・削除を、すべてPOSTで実現する
 
 ```http
 POST /rpc HTTP/1.1
