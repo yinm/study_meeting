@@ -1,0 +1,284 @@
+<html>
+<head>
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./dist/talkie.min.css">
+  <link rel="stylesheet" href="./dist/talkie-default.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/monokai_sublime.min.css">
+</head>
+<body>
+
+<script layout type="text/x-markdown">
+## 7.1 8つしかないメソッド
+よく使うのは、`TRACE`と`CONNECT`を除いた6つ
+
+* GET
+* POST
+* PUT
+* DELETE
+* HEAD
+* OPTION
+* TRACE
+* CONNECT
+</script>
+
+<script layout type="text/x-markdown">
+## 7.2 HTTPメソッドとCRUD
+
+|CRUD名 |HTTPメソッド
+|:---|:---
+|Create |`POST` / `PUT`
+|Read |`GET`
+|Update |`PUT`
+|Delete |`DELETE`
+</script>
+
+<script layout type="text/x-markdown">
+## 7.3 GET (リソースの取得)
+
+### リクエスト
+* 取得したいリソースのURI
+
+### レスポンス
+* リクエストのURIに対応するデータ
+</script>
+
+<script layout type="text/x-markdown">
+## 7.4 POST (リソースの作成、追加)
+
+* 子リソースの作成
+* リソースへのデータの追加
+* ほかのメソッドでは対応できない処理
+</script>
+
+<script layout type="text/x-markdown">
+## 子リソースの作成
+
+### リクエスト
+* ボディに、新しく作成するリソースの内容
+
+### レスポンス
+* `201 Created`
+* `Location:`ヘッダに、新しいリソースのURI
+
+</script>
+
+
+<script layout type="text/x-markdown">
+## リソースへのデータの追加
+
+### レスポンス
+* `200 OK`
+
+### その他の説明
+* POSTの挙動は、サーバー側の実装に依存する
+* (URIを見ただけでは、POSTの挙動はわからない)
+</script>
+
+<script layout type="text/x-markdown">
+## ほかのメソッドでは対応できない処理
+
+### その他の説明
+* GETのQueryStringが長すぎる場合などに使用
+* (この場合は、リクエストのボディにQueryStringを入れる)
+</script>
+
+<script layout type="text/x-markdown">
+## 7.5 PUT (リソースの更新、作成)
+
+* リソースの更新
+* リソースの作成
+</script>
+
+<script layout type="text/x-markdown">
+## リソースの更新
+
+### リクエスト
+* ボディに、更新したいリソースの内容
+
+### レスポンス
+* `200 OK`と、「ボディにリソースを更新した結果」
+* または、`204 No Content`と「ボディを持たない」
+</script>
+
+<script layout type="text/x-markdown">
+## リソースの作成
+
+### リクエスト
+* 存在しないURI (存在する場合は「更新」になる)
+* ボディにリソースの内容
+
+### レスポンス
+* `201 Created`
+* `Location`ヘッダは返す必要がない
+* (クライアントはリソースのURIを知っているため)
+</script>
+
+<script layout type="text/x-markdown">
+## POSTとPUTの使い分け
+
+### URIの決定権の違い
+* POST: サーバー
+* PUT:  クライアント
+
+### リソースの作成は、基本的にPOSTを使用する
+</script>
+
+<script layout type="text/x-markdown">
+## 7.6 DELETE (リソースの削除)
+
+### リクエスト
+* 削除したいリソースのURI
+
+### レスポンス
+* `200 OK`と、「ボディにリソースを更新した結果」
+* または、`204 No Content`と「ボディを持たない」
+</script>
+
+<script layout type="text/x-markdown">
+## 7.7 HEAD (リソースのヘッダの取得)
+
+### その他の説明
+* リソースのヘッダのみ取得できる (GETのヘッダのみ取得版)
+* ネットワークの帯域を節約しつつ、情報を取得できる
+</script>
+
+<script layout type="text/x-markdown">
+## 7.8 OPTIONS (リソースがサポートしているメソッドの取得)
+
+### レスポンス
+* `Allow`ヘッダに、サポートしているメソッドの一覧を格納
+* OPTIONSの実装は、自前で行うことが多い
+* (リソースごとに対応するメソッドを返すように実装する)
+</script>
+
+<script layout type="text/x-markdown">
+## 7.9 POSTでPUT/DELETEを代用する方法
+
+* HTMLのフォームで対応しているのは、`GET`と`POST`のみ
+* XMLHttpRequestを利用すると、他のメソッドも使えるようになるが、セキュリティの関係で使えない場合に何とかする手法が2つある
+* `_method`パラメータ
+* `X-HTTP-Method-Override`ヘッダ
+</script>
+
+<script layout type="text/x-markdown">
+## `_method`パラメータ
+
+### HTMLフォーム
+* 隠しパラメータに`_method`を用意、`value="メソッド名"`にする
+
+### レスポンス
+* `Content-Type: application/x-www-form-urlencoded`は、このフォーマットのメディアタイプ
+* ボディに、QueryStringと同じ仕様でエンコードされた、メソッド名が入る (`_method=PUT&body=...`)
+</script>
+
+<script layout type="text/x-markdown">
+## `X-HTTP-Method-Override`ヘッダ
+
+* `_method`では、POST内容がXMLなど、`application/x-www-form-urlencoded`以外の場合は利用できない
+* XMLなどの場合は、`X-HTTP-Method-Override`ヘッダを利用する
+
+### リクエスト
+* `X-HTTP-Method-Override: メソッド名`
+* サーバー側の実装がこのヘッダを見て、メソッドを判断する
+</script>
+
+<script layout type="text/x-markdown">
+## 7.10 条件付きリクエスト
+
+* サーバーがHTTPメソッドを実行するかどうかを選択できるリクエスト
+* 条件を表すヘッダを加えることで、利用できる
+* 条件を表すヘッダの種類 (一部)
+  * ・`If-Modified-Since`ヘッダ
+  * ・`If-Unmoodified-Since`ヘッダ
+  * [MDN](https://developer.mozilla.org/ja/docs/Web/HTTP/Headers)
+</script>
+
+<script layout type="text/x-markdown">
+## 7.11 べき等性と安全性
+
+* 「べき等性」は、ある操作を何回行っても、結果が同じこと
+* 「安全性」は、捜査対象のリソースに副作用がないこと
+* 「副作用」とは、リソースの状態に変化を与えること
+</script>
+
+<script layout type="text/x-markdown">
+
+|メソッド |性質
+|:---|:---
+|`GET`, `HEAD` |「べき等」かつ「安全」
+|`PUT`, `DELETE` |「べき等」だが、「安全ではない」
+|`POST` |「べき等ではない」し、「安全でもない」
+</script>
+
+<script layout type="text/x-markdown">
+## 7.12 メソッドの誤用
+* GETが安全でなくなる例
+* ほかのメソッドでできることをPOSTを誤用した例
+* PUTがべき等でなくなる例
+* DELETEがべき等でなくなる例
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+## GETが安全でなくなる例
+
+* ◯ GETの本来の利用方法は、リソース内容に変更を加えない
+* × GETで、リソース内容の変更を行う
+
+```http
+GET /resources/1/delete HTTP/1.1
+Host: example.jp
+```
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+## ほかのメソッドでできることをPOSTを誤用した例
+
+* ◯ 他に適切なメソッドがある場合は、そのメソッドを使うべき
+* × XML-RPCやSOAPなどは、すべての関数呼び出しをPOSTで実現する
+
+```http
+POST /rpc HTTP/1.1
+~ 略 ~
+<methodCall>
+  <methodName>getCount</methodName>
+~ 略 ~
+```
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+## PUTがべき等でなくなる例
+
+* ◯ PUTのリソース内容は、他に依存しない表現で書く
+* × 相対的な差分にすると、送信する度にリソース内容が更新されてしまう
+
+```http
+PUT /tomato HTTP/1.1
+Host: example.jp
+Content-Type: text/plain; charset=utf-8
+
++50
+```
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+## DELETEがべき等でなくなる例
+
+* ◯ 状況によって示す先が変化するリソースは、変更させない(もしくは、そのリソースのみに変更する)
+* × 状況によって示す先が変化するリソースの、示す先に対して変更を加える
+
+```
+エイリアスリソースで、示す先に対して変更ができてしまうサーバーの実装
+```
+</script>
+
+<script layout type="text/x-markdown">
+## 7.13 Webの成功理由はHTTPメソッドにあり
+* HTTPメソッドは、RESTの統一インターフェース規約に該当する
+* メソッド数は少ないが、それぞれの性質に合わせた利用で、様々な表現ができる
+</script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js"></script>
+<script src="./dist/talkie.min.js"></script>
+<script>Talkie();</script>
+</body>
+</html>
