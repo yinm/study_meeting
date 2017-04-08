@@ -1,0 +1,118 @@
+<html>
+<head>
+  <link rel="stylesheet" href="./dist/talkie.min.css">
+  <link rel="stylesheet" href="./dist/talkie-default.min.css">
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/monokai_sublime.min.css">
+</head>
+<body>
+
+<script layout type="text/x-markdown">
+## 8.1 ステータスコードの重要性
+クライアントの挙動を左右する重要な役割がある  
+そのため、仕様を正しく理解することが重要
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+## 8.2 ステータスラインのおさらい
+レスポンスメッセージの1行目にある  
+テキストフレーズは「人間用」のため、別のフレーズも入れられる
+
+```http
+HTTP/1.1 200 OK
+```
+
+</script>
+
+<script layout type="text/x-markdown">
+## 8.3 ステータスコードの分類と意味
+3桁の数字で表される  
+先頭の数字により、5つに分類
+
+* `1xx` : 処理中
+* `2xx` : 成功
+* `3xx` : リダイレクト
+* `4xx` : クライアントエラー
+* `5xx` : サーバーエラー
+</script>
+
+<script layout type="text/x-markdown">
+### ステータスコードを先頭の数字で分類する理由
+Webにおけるコンポーネント(クライアント・サーバー)を**疎結合**にするため  
+変更が発生した際にも、最低限の処理が行える
+
+* e.g.
+* `4xx`系の未知のステータスコードを受け取った場合でも、クライアントは`400`と同じ扱いにする
+</script>
+
+<script layout type="text/x-markdown">
+## 8.4 よく使われるステータスコード
+数字と意味を暗唱できるくらいになろう  
+ちなみに、ステータスコードは、IANAが管理している
+</script>
+
+
+<script layout type="text/x-markdown">
+## 2xx系
+
+* `200 OK` : リクエスト成功
+* `201 Created` : リソースの作成成功
+</script>
+
+<script layout type="text/x-markdown">
+## 3xx系
+
+* `301 Moved Permanently` - リソースの恒久的な移動
+* `303 See Other` - 別のURIの参照
+</script>
+
+<script layout type="text/x-markdown">
+## 4xx系
+レスポンスボディに、エラーの理由が入ることが多い
+
+* `400 Bad Request` - リクエストの間違い
+* `401 Unauthorized` - アクセス権不正
+* `404 Not Found` - リソースの不在
+</script>
+
+<script layout type="text/x-markdown">
+## 5xx系
+レスポンスボディに、エラーの理由が入ることが多い
+
+* `500 Internal Server Error` - サーバー内部エラー
+* `503 Service Unavailable` - サービス停止
+</script>
+
+<script layout type="text/x-markdown">
+## 8.5 ステータスコードとエラー処理
+ステータスコードはHTTP仕様が規定されているが、  
+ボディに入るメッセージは規定されていない
+
+そのため、  
+クライアントによって、メッセージを変える必要がある
+</script>
+
+<script layout type="text/x-markdown">
+## メッセージのフォーマットの決定方法 (2種類)
+* プロトコルに従ったフォーマットでエラーを返す
+* Acceptヘッダに応じたフォーマットでエラーを返す
+</script>
+
+<script layout type="text/x-markdown">
+## 8.6 ステータスコードの誤用
+e.g. エラーを`200 OK`で返すWeb API
+
+* ブラウザがレンダリングをしようとしてしまう
+* 検索エンジンのロボットがインデックス処理を行ってしまう
+</script>
+
+<script layout type="text/x-markdown">
+## 8.7 ステータスコードを意識して設計する
+ステータスコードの意味を理解した上で、正しく使うことが重要
+</script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js"></script>
+<script src="./dist/talkie.min.js"></script>
+<script>Talkie();</script>
+</body>
+</html>
