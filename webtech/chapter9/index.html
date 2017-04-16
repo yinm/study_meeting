@@ -200,30 +200,168 @@ e
 
 <script layout type="text/x-markdown">
 ## 9.8 認証
+* HTTP認証の種類 (3つ)
+* ・Basic認証
+* ・Digest認証
+* ・WSSE (WS-Security Extension)
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+* リソースにアクセス制御がかかっている場合の挙動
+* 1.`401 Unauthorized`と`WWW-Authenticate`が返ってくる
+* 2.`WWW-Authenticate`を解釈し、必要な認証情報がわかる
+
+リクエスト
+```http
+DELETE /test HTTP/1.1
+Host: example.jp
+```
+
+レスポンス
+```http
+HTTP/1.1 401 Unauthorized
+WWW-Authenticate: Basic realm="Example.jp"
+```
+</script>
+
+<script layout type="text/x-markdown">
+### URI空間
+* URI中のあるパス以下のことを指す
+* クライアントは同じURI空間に属するリソースには、同じ認証情報を送信できると仮定して良いことになっている
+* `WWW-Authenticate`ヘッダの`realm`の値は、URI空間の名前になる
 </script>
 
 
 <script layout type="text/x-markdown">
+### Basic認証
+* ユーザ名とパスワードによる認証方式
+* ユーザ名とパスワードをAuthorizationヘッダに入れて、リクエストごとに送信する
+* ユーザ名とパスワードはBase64エンコードする
+* → **セキュリティに懸念あり**
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+
+1回目のリクエスト
+```http
+DELETE /test HTTP/1.1
+Host: example.jp
+```
+
+レスポンス
+```http
+HTTP/1.1 401 Unauthorized
+WWW-Authenticate: Basic realm="Example.jp"
+```
+
+BASIC認証ありのリクエスト
+```http
+DELETE /test HTTP/1.1
+Host: example.jp
+Authorization: Basic dXNlcjpwYXNzd29yZA==
+```
+</script>
+
+<script layout type="text/x-markdown">
+### Digest認証
+* メッセージのハッシュ値を用いる認証方式
+* メリットは、パスワードを盗まれる危険性が低い (ハッシュ値のみ管理するため)
+* 注意点
+* ・メッセージ自体は平文で流れる (暗号化するのは、パスワードだけである)
+* ・クライアントの処理が煩雑なため、あまり普及していない
+</script>
+
+<script layout type="text/x-markdown">
+* Digest認証の処理の流れ
+* 1.チャレンジ
+* 2.ダイジェストの生成
+* 3.ダイジェストの送信
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+チャレンジのレスポンス
+```http
+HTTP/1.1 401 Unauthorized
+WWW-Authenticate: Digest realm="Example.jp", nonce="1ac421d9e0a4k7q982z966p903372922", qop="auth", opaque="92eb5ffee6ae2fec3ad71c777531578f"
+```
+
+* チャレンジとは、WWW-Authenticateヘッダの値のこと
+* 「nonce」は、ハッシュ値をセキュアにする目的で使う、ワンタイムパスのようなもの
+* 「qop」は、ダイジェストの作成方法に影響し、改ざんを検知できる対象を選択できる
+* 「opaque」は、同じURI空間へのリクエストでは共通してクライアントからサーバに送る ([Stack Exchangeの回答](https://goo.gl/qrIStF))
+</script>
+
+
+<script layout="code" invert type="text/x-markdown">
+ダイジェストの生成
+* (1).「ユーザ名:realm:パスワード」のMD5ハッシュ値を求める
+* (2).「メソッド:URIのパス」のMD5ハッシュ値を求める
+* (3).「(1)の値:nonce:nonceの送信回数:cnonce:qop:(2)の値」のMD5ハッシュ値を求める
+
+※ MD5 (Message Digest Algorithm)
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+ダイジェストの送信
+
+```http
+DELETE /test HTTP/1.1
+Host: example.jp
+Authorization: Digest username="yohei" realm="Example.jp", nonce="1ac421d9e0a4k7q982z966p903372922", uri="/test", qop="auth", nc=00000001, cnonce="900150983cd24fb0d6963f7d28e17f72", response="0fde218e18949a550985b3a034abcbd9", opaque="92eb5ffee6ae2fec3ad71c777531578f"
+```
+</script>
+
+<script layout type="text/x-markdown">
+### WSSE認証
+* WebAPIの認証に使われている
+* HTTP1.1の標準外の認証方式
+* 現在はOAuthの普及により、ほとんど使われていない
 </script>
 
 
 <script layout type="text/x-markdown">
+## OpenIDとOAuth
+* 今までの認証方式では対応できない課題を解決する仕様
+* e.g. シングルサインオン
+* e.g. 写真管理サービスに保存している写真を、別のサービスで印刷する
 </script>
+
+<script layout type="text/x-markdown">
+### OpenID - シンプルなシングルサインオン
+* e.g. Yahoo!のアカウントで、自作のWebサービスにログインできるようになる
+* OpenIDの登場人物 (2人)
+* ・Identity Provider(IdP): アカウントを提供する側 (Yahoo!など)
+* ・Service Provider(SP): IdPのアカウントを使う側 (自作Webサービスなど)
+* ・User: IdPのアカウント情報をSPに提供していいかなどを承認する
+</script>
+
+<script layout type="text/x-markdown">
+### OAuth - Webサービス間での認可の委譲
+* OAuthの登場人物 (2人)
+* ・Service Provider: 写真管理サービス
+* ・Consumer: 印刷サービス
+* ・User: Service ProviderがConsumerに認可情報を渡すことを許可する
+</script>
+
+<script layout type="text/x-markdown">
+## 9.9 キャッシュ
+</script>
+
+<script layout type="text/x-markdown">
+</script>
+<script layout type="text/x-markdown">
+</script>
+
 <script layout type="text/x-markdown">
 </script>
 <script layout type="text/x-markdown">
 </script>
 <script layout type="text/x-markdown">
 </script>
+
 <script layout type="text/x-markdown">
-</script>
-<script layout type="text/x-markdown">
-</script>
-<script layout type="text/x-markdown">
-</script>
-<script layout type="text/x-markdown">
-</script>
-<script layout type="text/x-markdown">
+## 参考
+* [PHPでお手軽ベーシック認証 (Basic認証) - EC studio](http://techblog.ecstudio.jp/tech-tips/basicauth.html)
 </script>
 
 
