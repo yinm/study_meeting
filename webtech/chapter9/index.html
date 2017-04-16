@@ -105,8 +105,7 @@ Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
 
 <script layout="code" invert type="text/x-markdown">
 ### Accept - 処理できるメディアタイプを伝える
-### (サーバーが答えられない場合)
-* `406 Not Acceptable`が、レスポンスとして返る
+* サーバーが答えられない場合は、`406 Not Acceptable`が、レスポンスとして返る
 
 リクエスト
 ```http
@@ -119,7 +118,6 @@ Accept: application/xml,application/msword;q=0.9
 ```http
 HTTP/1.1 406 Not Acceptable
 ```
-
 </script>
 
 
@@ -168,6 +166,8 @@ Content-Length: 5518
 ### チャンク転送 - ボディを分割して転送する
 * `Transfer-Encoding`ヘッダは、ファイルサイズが決まらなくても、レスポンスを返したい際に使うもの
 * チャンクとは、「データの一部のかたまり」のこと
+* 各チャンクの先頭には、チャンクサイズが16進数で入る
+* 最後には、必ず「長さ0のチャンクと空行」が入る
 
 ```http
 Transfer-Encoding: chunked
@@ -175,8 +175,6 @@ Transfer-Encoding: chunked
 </script>
 
 <script layout="code" invert type="text/x-markdown">
-* 各チャンクの先頭には、チャンクザイズが16進数で入る
-* 最後には、必ず「長さ0のチャンクと空行」が入る
 
 ```http
 POST /test HTTP/1.1
