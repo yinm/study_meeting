@@ -343,11 +343,97 @@ Authorization: Digest username="yohei" realm="Example.jp", nonce="1ac421d9e0a4k7
 
 <script layout type="text/x-markdown">
 ## 9.9 キャッシュ
+* サーバから取得したリソースをローカルストレージに蓄積し、再利用する手法
+* または、ローカルストレージにキャッシュしたデータそのもののこと
 </script>
 
 <script layout type="text/x-markdown">
+### キャッシュ用ヘッダ
+* リソースがキャッシュ可能か、有効期限がいつまでかを判断するためのヘッダ
+* 3種類ある
+* ・`Pragma`
+* ・`Expires`
+* ・`Cache-Control`
 </script>
+
+<script layout="code" invert type="text/x-markdown">
+### Pragma - キャッシュを抑制する
+* 公式に使用できる値は、`no-cache`のみ
+* リソースをキャッシュしてはいけないことを表す
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/xhtml+xml; charset=utf-8
+Pragma: no-cache
+```
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+### Expires - キャッシュの有効期限を示す
+* 期限内であれば、キャッシュを利用していいことをサーバが保証する
+* 最長で、約1年後の日付を入れることができる (仕様上)
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/xhtml+xml; charset=utf-8
+Expires: Thu, 11 May 2010 16:00:00 GMT
+
+キャッシュ可能なデータ
+```
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+### Cache-Control - 詳細なキャッシュ方法を指定する
+* PragmaとExpiresより複雑な指定を可能にするための、HTTP/1.1で追加された
+* PragmaとExpiresの機能を完全に代用できる
+
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+### Cache-Control - Pragmaの代用
+* Pragmaと同時に指定するのが良い (サポートされているブラウザの差異を埋めるため？)
+
+```http
+Pragma: no-cache
+Cache-Control: no-cache
+```
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+### Cache-Control - Expiresの代用
+* Cache-Controlでは、現在からの相対時間で有効期限を指定する
+* Expiresの方がよく使われているため、あまり使わない方がいいかも [Google Developers](https://developers.google.com/speed/docs/insights/LeverageBrowserCaching)
+
+```http
+Cache-Control: max-age: 86400
+```
+</script>
+
 <script layout type="text/x-markdown">
+### 条件付きGET
+* サーバ側にあるリソースが、キャッシュから変更されているかを検証する仕組み
+* リソースが、`Last-Modified`ヘッダ or `ETag`ヘッダを持っている時に利用できる
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+### If-Modified-Since - リソースの更新日時を条件にする
+
+```http
+GET /test HTTP/1.1
+Host: example.jp
+If-Modifined-Since: Thu, 11 May 2010 16:00:00 GMT
+```
+
+変更されていない場合のレスポンス (ボディは含まない)
+```http
+HTTP/1.1 304 Not Modified
+Content-Type: application/xhtml+xml; charset=utf-8
+Last-Modified: Thu, 11 May 2010 16:00:00 GMT
+```
+</script>
+
+
+<script layout="code" invert type="text/x-markdown">
 </script>
 
 <script layout type="text/x-markdown">
