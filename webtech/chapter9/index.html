@@ -1,0 +1,234 @@
+<html>
+<head>
+  <link rel="stylesheet" href="./dist/talkie.min.css">
+  <link rel="stylesheet" href="./dist/talkie-default.min.css">
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/monokai_sublime.min.css">
+</head>
+<body>
+
+<script layout type="text/x-markdown">
+## 9.1.HTTPヘッダの重要性
+* ヘッダは、ボディに対する付加的な情報を表現する
+* 実装者が設定しなければならないヘッダも多い
+</script>
+
+<script layout type="text/x-markdown">
+## 9.2 HTTPヘッダの生い立ち
+電子メールのメッセージ仕様のヘッダ形式から派生
+
+HTTPヘッダの特徴
+* ・メールの良い面も悪い面もどちらも受け継いでいる
+* ・同じ名前のヘッダでも、意味は再定義されている
+* ・双方向のやり取りをできるようにヘッダを追加している
+</script>
+
+<script layout type="text/x-markdown">
+## 9.3 日時
+* `Date`, `Expires`などが該当
+* HTTPでは、日時はすべて`GMT`で記述する
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+## 9.3 日時 (例)
+
+```http
+Date:Sun, 16 Apr 2017 07:54:46 GMT
+```
+
+</script>
+
+<script layout type="text/x-markdown">
+## 9.4 MIMEメディアタイプ
+* メッセージでやりとりするリソースの表現の種類を指定する
+* Mlutipurpose Internet Mail Extensionsからわかるように、元はメールの仕様
+* HTTPでは、`Content-Type`ヘッダなどが利用される
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+### Content-Type - メディアタイプを指定する
+
+```http
+Content-Type: application/xhtml+xml; charset=utf-8
+```
+
+* `application/xhtml+xml`がメディアタイプ
+* `/`を基準に、左側を「タイプ」、右側を「サブタイプ」
+* タイプは9つ定義されており、勝手に増やすことはできない
+* サブタイプは比較的自由に増やすことができる
+</script>
+
+
+<script layout type="text/x-markdown">
+### charsetパラメータ - 文字エンコーディングを指定する
+* バッドノウハウがある (デフォルトの文字エンコードが `ISO 8859-1`)
+* 回避するために、次のことをする
+* ・`text`タイプの場合は必ず、`charset`パラメータを指定する
+* ・`XML`文章の場合は、`application/xml` + `charset`パラメータを指定する
+</script>
+
+<script layout type="text/x-markdown">
+## 9.5 言語タグ
+* `Content-Language`ヘッダは、リソース表現の自然言語を指定する
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+## 9.5 言語タグ (例)
+
+```http
+Content-Language: ja-JP
+```
+
+</script>
+
+<script layout type="text/x-markdown">
+## 9.6 コンテントネゴシエーション
+* メディアタイプや言語タグなどを、クライアントと交渉して決める手法
+* クライアントが使用できる内容を、ヘッダで送信する
+* ヘッダの種類
+* ・Accept (メディアタイプ)
+* ・Accept-Charset (文字エンコーディング)
+* ・Accept-Language (自然言語)
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+### Accept - 処理できるメディアタイプを伝える
+
+```http
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+```
+
+* `q=`というパラメータを、`qvalue`と呼び、メディアタイプの優先順位を表す
+* qvalueは小数点以下3桁以内の0 ~ 1までの数値で、数値が大きい方が優先
+* qvalueを特に指定していない場合は、`q=1`として解釈
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+### Accept - 処理できるメディアタイプを伝える
+### (サーバーが答えられない場合)
+* `406 Not Acceptable`が、レスポンスとして返る
+
+リクエスト
+```http
+GET /test HTTP/1.1
+Host: example.jp
+Accept: application/xml,application/msword;q=0.9
+```
+
+レスポンス
+```http
+HTTP/1.1 406 Not Acceptable
+```
+
+</script>
+
+
+<script layout="code" invert type="text/x-markdown">
+### Accept-Charset - 処理できる文字エンコーディングを伝える
+ 
+```http
+Accept-Charset: Shift_JIS,utf-8;q=0.7,*;q=0.7
+```
+
+* 上記の例の場合の優先度
+* ・Shift-JIS (明示的に、`q=1`として定義したため)
+* ・ISO 8859-1 (デフォルトで、`q=1`のため)
+* ・utf-8 (`q=0.8`のため)
+* ・それ以外の文字 (`*;q=0.7`のため)
+
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+### Accept-Language - 処理できる言語を伝える
+
+```http
+Accept-Language: ja,en-us;q=0.7,en;q=0.3
+```
+
+* 上記の例の場合の優先度
+* ・ja (明示的に、`q=1`として定義したため)
+* ・en-us (`q=0.7`のため)
+* ・en (`q=0.3`のため)
+
+</script>
+
+<script layout type="text/x-markdown">
+## 9.7 Content-Lengthとチャンク転送
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+### Content-Length - ボディの長さを指定する
+
+```http
+Content-Length: 5518
+```
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+### チャンク転送 - ボディを分割して転送する
+* `Transfer-Encoding`ヘッダは、ファイルサイズが決まらなくても、レスポンスを返したい際に使うもの
+* チャンクとは、「データの一部のかたまり」のこと
+
+```http
+Transfer-Encoding: chunked
+```
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+* 各チャンクの先頭には、チャンクザイズが16進数で入る
+* 最後には、必ず「長さ0のチャンクと空行」が入る
+
+```http
+POST /test HTTP/1.1
+Host: example.jp
+Transfer-Encoding: chunked
+Content-Type: text/plain; charset=utf-8
+
+10
+The brown fox ju
+
+10
+mps quickly over
+
+e
+ the lazy dog.
+
+0
+(空行)
+```
+</script>
+
+<script layout type="text/x-markdown">
+## 9.8 認証
+</script>
+
+
+<script layout type="text/x-markdown">
+</script>
+
+
+<script layout type="text/x-markdown">
+</script>
+<script layout type="text/x-markdown">
+</script>
+<script layout type="text/x-markdown">
+</script>
+<script layout type="text/x-markdown">
+</script>
+<script layout type="text/x-markdown">
+</script>
+<script layout type="text/x-markdown">
+</script>
+<script layout type="text/x-markdown">
+</script>
+<script layout type="text/x-markdown">
+</script>
+<script layout type="text/x-markdown">
+</script>
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js"></script>
+<script src="./dist/talkie.min.js"></script>
+<script>Talkie();</script>
+</body>
+</html>
