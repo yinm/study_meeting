@@ -270,7 +270,7 @@ Authorization: Basic dXNlcjpwYXNzd29yZA==
 </script>
 
 <script layout type="text/x-markdown">
-* Digest認証の処理の流れ
+### Digest認証の処理の流れ
 * 1.チャレンジ
 * 2.ダイジェストの生成
 * 3.ダイジェストの送信
@@ -327,7 +327,7 @@ Authorization: Digest username="yohei" realm="Example.jp", nonce="1ac421d9e0a4k7
 <script layout type="text/x-markdown">
 ### OpenID - シンプルなシングルサインオン
 * e.g. Yahoo!のアカウントで、自作のWebサービスにログインできるようになる
-* OpenIDの登場人物 (2人)
+* OpenIDの登場人物 (3人)
 * ・Identity Provider(IdP): アカウントを提供する側 (Yahoo!など)
 * ・Service Provider(SP): IdPのアカウントを使う側 (自作Webサービスなど)
 * ・User: IdPのアカウント情報をSPに提供していいかなどを承認する
@@ -335,7 +335,7 @@ Authorization: Digest username="yohei" realm="Example.jp", nonce="1ac421d9e0a4k7
 
 <script layout type="text/x-markdown">
 ### OAuth - Webサービス間での認可の委譲
-* OAuthの登場人物 (2人)
+* OAuthの登場人物 (3人)
 * ・Service Provider: 写真管理サービス
 * ・Consumer: 印刷サービス
 * ・User: Service ProviderがConsumerに認可情報を渡すことを許可する
@@ -352,9 +352,65 @@ Authorization: Digest username="yohei" realm="Example.jp", nonce="1ac421d9e0a4k7
 
 <script layout type="text/x-markdown">
 </script>
+
 <script layout type="text/x-markdown">
+## 9.10 持続的接続
+* `Connection: Keep-alive`を使うことで、クライアントはレスポンスを待たずに、同じサーバにリクエストを送信できる
+* →「パイプライン化」(Pipelining)
+* 持続的接続が必要な背景には、レスポンスを返す度にTCPのコネクションを切断すると、パフォーマンスが劣化してしまうため
+* コネクションを切断するときは、`Connection: close`
 </script>
+
+<script layout="code" invert type="text/x-markdown">
+
+デフォルト
+```http
+GET /test HTTP/1.1
+Host: example.jp
+Connection: Keep-Alive
+```
+
+コネクション切断時
+```http
+GET /test HTTP/1.1
+Host: example.jp
+Connection: close
+```
+</script>
+
 <script layout type="text/x-markdown">
+## 9.11 そのほかのHTTPヘッダ
+HTTPの標準ではないが、よく使われているもの
+
+* Content-Disposition
+* Slug
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+### Content-Disposition - ファイル名を指定する
+* サーバーがクライアントに対して、リソースのファイル名を提示するために利用するレスポンスヘッダ
+* メール仕様から拝借した仕様のため、エンコーディング方式がややこしい
+
+```http
+Content-Disposition: attachment; filename="rest.txt"
+```
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+### Slug - ファイル名のヒントを指定する
+* AtomPubが追加した拡張HTTPヘッダ
+* クライアントがAtomのエントリをPOSTする際に、新しく作成するリソースのURIのヒントとなる文字列をサーバに提示できる
+
+```http
+Slug: %E3%83%86%E3%82%B9%E3%83%88
+```
+</script>
+
+<script layout type="text/x-markdown">
+## 9.12 HTTPヘッダを活用するために
+* HTTPヘッダはメソッド・ステータスコードと組み合わせて、HTTPの重要な機能を実現する
+* メールなど他の標準仕様を積極的に活用している特徴がある
+* → 他の仕様を理解しつつ、サーバやブラウザの実装を調査する能力が必要になる
 </script>
 
 <script layout type="text/x-markdown">
