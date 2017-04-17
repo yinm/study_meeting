@@ -415,16 +415,25 @@ Cache-Control: max-age: 86400
 * リソースが、`Last-Modified`ヘッダ or `ETag`ヘッダを持っている時に利用できる
 </script>
 
-<script layout="code" invert type="text/x-markdown">
-### If-Modified-Since - リソースの更新日時を条件にする
 
+<script layout type="text/x-markdown">
+### If-Modified-Since - リソースの更新日時を条件にする
+* `If-Modified-Since: ローカルキャッシュの更新日時`でリクエストを送る
+* `Last-Modified: リソースの更新日時`をレスポンスで返す
+* If-Modified-Sinceヘッダと、Last-Modifiedヘッダの差分があれば更新されていると判断する
+</script>
+
+
+<script layout="code" invert type="text/x-markdown">
+
+リクエスト
 ```http
 GET /test HTTP/1.1
 Host: example.jp
 If-Modifined-Since: Thu, 11 May 2010 16:00:00 GMT
 ```
 
-変更されていない場合のレスポンス (ボディは含まない)
+変更されていない場合のレスポンス
 ```http
 HTTP/1.1 304 Not Modified
 Content-Type: application/xhtml+xml; charset=utf-8
@@ -432,11 +441,35 @@ Last-Modified: Thu, 11 May 2010 16:00:00 GMT
 ```
 </script>
 
+<script layout type="text/x-markdown">
+### If-None-Match - リソースのETagを条件にする
+* 時計を持っていないサーバや、ミリ秒単位で変更される可能性があるリソースに利用できる
+* 記述方法は、`If-None-Match: ETagヘッダの値`
+* ETagの値がマッチしなければ、更新されていると判断する
+</script>
 
 <script layout="code" invert type="text/x-markdown">
+
+リクエスト
+```http
+GET /test2 HTTP/1.1
+Host: example.jp
+If-None-Match: ab3322028
+```
+
+変更されていない場合のレスポンス
+```http
+HTTP/1.1 304 Not Modified
+Content-Type: application/xhtml+xml; charset=utf-8
+ETag: ab3322028
+```
 </script>
 
 <script layout type="text/x-markdown">
+### If-Modified-SinceとIf-None-Matchの使い分け
+* ETagヘッダを利用できる場合は、If-None-Matchヘッダを使う
+* (正確な更新の有無を確認できるため)
+* Last-Modifiedヘッダしか使えない場合には、If-Modified-Sinceヘッダを使う
 </script>
 
 <script layout type="text/x-markdown">
