@@ -1,0 +1,111 @@
+<html>
+<head>
+  <link rel="stylesheet" href="./dist/talkie.min.css">
+  <link rel="stylesheet" href="./dist/talkie-default.min.css">
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/monokai_sublime.min.css">
+</head>
+<body>
+
+<script layout type="text/x-markdown">
+## 10.1 HTMLとは何か
+* HyperText Markup Languageの略
+* HTMLには、2種類のベースがある
+* ・ SGML: 初期のHTML主流。仕様が複雑なため使いづらい
+* ・ XML: XTML1.0以降のHTMLの主流。SGMLよりシンプル
+</script>
+
+<script layout type="text/x-markdown">
+## 10.2 メディアタイプ
+* SGMLベースの場合は、`text/html`
+* XMLベースの場合は、`application/xhtml+xml`
+* charsetは自由に決めれるが、`utf-8`にするのが無難
+</script>
+
+<script layout type="text/x-markdown">
+## 10.3 拡張子
+* 2種類の拡張子がある
+* ・ `.html`
+* ・ `.htm` (古いOSの制限によるもの)
+* 明示的にHTML表現を取得させたい場合は、`.html`を使う
+</script>
+
+<script layout type="text/x-markdown">
+## 10.4 XMLの基礎知識
+* `XMLの木構造`: XML文書の構造
+* `要素`: 文章構造を表現するもの
+* `属性`: 要素が複数持つことのできるもの
+* `実体参照と文字参照`: エスケープが必要な文字の表現方法
+* `コメント`: XML文章中にコメントを書ける`<!--コメント-->`
+* `XML宣言`: XMLのバージョンやエンコーディングの指定
+* `名前空間`: 複数のXMLフォーマットを組み合わせた時の名前衝突を防ぐ
+</script>
+
+<script layout type="text/x-markdown">
+## 10.5 HTMLの構成要素
+* HTMLの最も基本的な構成要素 (2つ)
+* ・ ヘッダ: 文書のメタデータ
+* ・ ボディ: 文書の内容そのもの
+</script>
+
+<script layout type="text/x-markdown">
+### 10.5 HTMLの構成要素 (ヘッダ)
+* `title`: 文書のタイトル
+* `link`: 他のリソースへのリンク
+* `script`: JSなどのクライアントサイドプログラム
+* `meta`: その他のメタデータ
+</script>
+
+<script layout type="text/x-markdown">
+### 10.5 HTMLの構成要素 (ボディ)
+* ボディに入る要素は、2種類に分かれる
+* ・ ブロックレベル要素
+* -> 文書の段落や見出しなど、ある程度大きなかたまりを表現
+* ・ インライン要素 (inline Element)
+* -> ブロックレベル要素の中に入り、画像の埋め込みなどを表現
+</script>
+
+<script layout type="text/x-markdown">
+### 10.5 HTMLの構成要素 (共通の属性)
+* HTMLのすべての要素は、`id属性`と`class属性`を持てる
+* ・ `id属性`: 文書内で一意なID
+* ・ `class属性`: 要素が属するクラスを表すメタデータの役割
+</script>
+
+<script layout type="text/x-markdown">
+## 10.6 リンク
+* `<a>要素`: 他のWebページにリンクする
+* `<link>要素`: HTMLヘッダでWebページ同士の関係を指定する
+* `<img>要素、<object>要素`: テキスト以外の埋め込み
+* `フォーム`: リンク先に対して、`GET`や`POST`を発行できる
+</script>
+
+<script layout type="text/x-markdown">
+## 10.7 リンク関係
+* どのリンクを辿り方を、機械的に判断できるようにする仕組み
+* ・ `rel属性`
+* ・ `microformats`: リンク関係表現の拡張
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+### 10.7 リンク関係 (rel属性)
+* リンク元のリソースと、リンク先のリソースの関係を表現
+* rel属性の値のことを、「リンク関係」(Link Relation)と言う
+
+```html
+<head>
+  <link rel="stylesheet" href="style.css">
+</head>
+```
+</script>
+
+<script layout type="text/x-markdown">
+### 10.8 ハイパーメディアフォーマットとしてのHTML
+* 「リンクを辿ることでアプリケーション状態が遷移する」
+</script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js"></script>
+<script src="./dist/talkie.min.js"></script>
+<script>Talkie();</script>
+</body>
+</html>
