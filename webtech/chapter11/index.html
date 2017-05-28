@@ -1,0 +1,228 @@
+<html>
+<head>
+  <link rel="stylesheet" href="./dist/talkie.min.css">
+  <link rel="stylesheet" href="./dist/talkie-default.min.css">
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/monokai_sublime.min.css">
+</head>
+<body>
+
+<script layout type="text/x-markdown">
+### 11.1 シンプルなセマンティックWeb
+</script>
+
+<script layout type="text/x-markdown">
+### microformatsとは
+* ・ HTMLの中でさらに意味のあるデータを表現するための技術
+* ・ semantic webを実現するために作成された
+* ・ RDFに比べ、記述がシンプル
+</script>
+
+<script layout type="text/x-markdown">
+### 11.2 セマンティック (意味論) とは
+</script>
+
+<script layout type="text/x-markdown">
+### 言語学 の場合
+* 言葉の持つ意味を扱うこと
+* e.g. 花
+* ・ 文字列・音声としては、「ハ」と「ナ」の組み合わせ
+* ・ 意味としては、「種子植物の生殖器官」 (こちらが意味論)
+</script>
+
+<script layout type="text/x-markdown">
+### プログラミング言語 の場合
+* プログラミング言語の持つ意味を確定させるための理論
+* e.g. コンパイラ
+* ・ プログラミング言語の持つ文法を解析し、マシン語に翻訳する作業
+* ・ そのためには、文法や構文がどのような意味を成すのか決まっている必要がある
+</script>
+
+<script layout type="text/x-markdown">
+### Web の場合
+* リソースが持つ意味を確定させるための理論
+* HTMLやXMLで書かれたリソースがどのような意味を持つかを<br>人間だけではなく、プログラムからも解釈できるようにする
+</script>
+
+<script layout type="text/x-markdown">
+### 11.3 RDFとmicroformats
+</script>
+
+<script layout type="text/x-markdown">
+### RDF
+* Tripleを使って、リソースの意味を記述できるフレームワーク
+* ・ 主語・述語・目的語の3組を使って、リソースにメタデータを与える
+* ・以下の欠点から、ほとんど普及しなかった
+- 記述が複雑になりがち
+- 統一的な記述がしづらい
+- 対象データとは独立したメタデータが必要
+</script>
+
+<script layout type="text/x-markdown">
+### microformats
+* RDFの欠点を解消した技術
+* ・ 記述がシンプル
+* ・ 仕様の策定が進められているため、統一的に書ける
+* ・ HTML文書に情報を追加するだけで実現できる
+</script>
+
+<script layout type="text/x-markdown">
+### 11.4 microformatsの標準化
+</script>
+
+<script layout type="text/x-markdown">
+* Technoratiのエンジニアを中心に、ボランティアで仕様策定
+</script>
+
+<script layout type="text/x-markdown">
+### 11.5 microformatsの分類
+</script>
+
+<script layout type="text/x-markdown">
+### microformatsの分類 (2つ)
+* elemental microformats
+* ・ リンク関係を使ってメタデータを表現するフォーマット
+* ・ elemental = 「単純」
+* ・ e.g. `rel-license`
+* compound microformats
+* ・ 主にclass属性を使って、階層構造のあるメタデータを表現するフォーマット
+* ・ compound = 「複合」
+* ・ e.g. `hCalendar`
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+### elemental microformats 
+* rel-licenseは、ライセンス情報を表現
+* リンク関係を表す要素で利用できる (`<a>`、`<link>`)
+
+```html
+このWebページの権利は<a rel="license" 
+href="http://creativecommons.org/licenses/by-sa/3.0/">
+Creative Commons by-sa 3.0</a>に従います。
+```
+
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+### elemental microformats
+* rel-nofollowは、検索エンジンのリンクの重み付けを無効にする
+* スパムリンクを防止などで利用
+
+```html
+面白いサイトがありました。
+<a href="http://spam.example.jp" rel="nofollow">スパムだよ</a>
+```
+
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+### compound microformats
+* hCalendarは、カレンダー情報・イベント情報を表現する
+* class属性で、階層構造を表現する
+* ・ `<ul>`で、1つのイベント
+* ・ `<li>`の各要素で、イベントの詳細情報
+* 時間表現は、`ISO 8601形式`で表現する
+* ・ プログラムが処理可能なようにするため
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+### compound microformats
+
+```html
+<ul class="vevent">
+  <li class="summary">
+    <a class="url" href="https://hoge/event-20170529.com">イベント名</a>
+  <li>
+  <li>日時: 2017年5月29日
+    <abbr class="dtstart" title="2017-05-29T13:00:00+09:00">13:00</abbr>
+    〜
+    <abbr class="dtend" title="2017-05-29T14:00:00+09:00">14:00</abbr>
+  </li>
+  <li>
+    <span class="location">いつもの場所</span>
+  </li>
+</ul>
+```
+
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+### compound microformats
+* hAtomは、Atomが持つメタデータをHTMLに埋め込む
+* ・ エントリの更新日時やパーマリンクを、プログラムから処理可能な形で埋め込む
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+### compound microformats
+
+```html
+<div class="hfeed">
+  <div class="hentry">
+    <h2 class="entry-title">
+      <a href="http://blog.example.jp/20100903/test" rel="bookmark">hAtomのテスト</a>
+    </h2>
+    <div class="entry-content">
+      <p>Atomを試用してみました。</p>
+    </div>
+    <p>
+      <abbr class="updated" title="2010-09-03T09:23:22+09:00">2010年9月3日9:23</abbr>
+    </p>
+  </div>
+</div>
+```
+
+</script>
+
+
+<script layout type="text/x-markdown">
+### 11.6 microformatsとRDFa
+</script>
+
+<script layout type="text/x-markdown">
+### microformatsの問題点
+* たまたま、microformats同じ値のclass属性などを持ったページがあると・・・？
+* -> プログラムが誤作動する
+* -> 同じ属性値のmicroformatsが使えない
+</script>
+
+<script layout type="text/x-markdown">
+### RDFaでの解決(と残る問題点)
+* microformatsの問題点を解決する
+* RDFaとは、`microformats` + `XMLの名前空間`
+* しかし、名前空間に起因する、2つの欠点がある
+* ・ プログラムから処理が複雑になる
+* ・ XHTMLでしか使用できない
+</script>
+
+<script layout type="text/x-markdown">
+### 11.7 microformatsの可能性
+</script>
+
+<script layout type="text/x-markdown">
+### hAtom/xFolkとLDRize/AutoPagerize
+* microformatsを使った、メジャーなアプリケーション
+</script>
+
+<script layout type="text/x-markdown">
+### 11.8 リソース表現としてのmicroformats
+</script>
+
+<script layout type="text/x-markdown">
+### 既存のページとは別に、<br>Web APIを提供するデメリット
+* WebサービスとWeb APIで提供する機能が異なってしまいがち
+* 開発規模の増大に伴うメンテナンス性の低下
+* Web APIに必要な技術の取得コスト
+</script>
+
+<script layout type="text/x-markdown">
+### microformatsのメリット
+* microformatsは、既存のWebページをそのままWeb APIとして提供できる
+* ・ 開発コストの削減
+* ・ 技術の取得コストが低い (HTMLの知識があれば取得が容易)
+</script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js"></script>
+<script src="./dist/talkie.min.js"></script>
+<script>Talkie();</script>
+</body>
+</html>
