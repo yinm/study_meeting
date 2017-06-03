@@ -12,9 +12,327 @@
 </script>
 
 <script layout type="text/x-markdown">
-###
-*
+### Atomとは
+* 汎用XMLフォーマット
+* `Atom Syndication Format`の略
+* 誕生の背景には、RSSの仕様が乱立による混乱を防ぐために、<br>標準フォーマットが必要とされたことがある
 </script>
+
+<script layout type="text/x-markdown">
+### 12.2 Atomのリソースモデル
+</script>
+
+<script layout type="text/x-markdown">
+### Atomの論理モデル (2つ)
+* 1.メンバリソース (Member Resource)
+* 2.コレクションリソース (Collection Resource)
+</script>
+
+<script layout type="text/x-markdown">
+### メンバリソース
+* Atomにおける最小のリソース単位
+* e.g. ブログの場合、1つ1つの記事がメンバーリソース
+* メンバリソースは、さらに2つに分類できる
+
+1.エントリリソース (Entry Resource)<br>
+2.メディアリソース (Media Resource)
+</script>
+
+<script layout type="text/x-markdown">
+### メンバリソース - エントリリソース
+* ブログ記事の本文やメタデータを、テキストやXMLで表現する
+* `<entry>`要素で表現する
+</script>
+
+<script layout type="text/x-markdown">
+### メンバリソース - メディアリソース
+* 画像や映像などテキストでは表現できないリソース
+* メタデータを、<br>「メディアリンクエントリ」という特別なエントリで表現
+</script>
+
+<script layout type="text/x-markdown">
+### コレクションリソース
+* 複数のメンバリソースを含むリソース
+* コレクションリソース自体は、階層化できない
+* `<feed>`要素で表現する
+</script>
+
+<script layout type="text/x-markdown">
+### メディアタイプ
+* Atomのメディアタイプは、`application/atom+xml`
+* entry や feed を明示したい場合は、`type`パラメータを使う
+</script>
+
+<script layout type="text/x-markdown">
+### 拡張子・名前空間
+* 拡張子は、`.atom`を使う
+* 名前空間は、`http://www.w3.org/2005/Atom`
+</script>
+
+
+<script layout type="text/x-markdown">
+### 12.3 エントリ - Atomの最小単位
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+### エントリの例
+* ルート要素は`<entry>`要素
+* その中にエントリのメタデータと内容がフラットに並ぶ
+* (`<entry>`要素の子要素の順番に意味はない)
+
+```atom
+<entry xmlns="http://www.w3.org/2005/Atom">
+  <id>tag:example.jp.2010-08-24:entry:1234</id>
+  <title>テスト日記</title>
+  <updated>2010-08-24T13:11:54Z</updated>
+  <link href="http://example.jp/1234"/>
+  <content>テストです。</content>
+</entry>
+```
+</script>
+
+<script layout type="text/x-markdown">
+### メタデータ
+* エントリが持つメタデータは複数ある
+* そのうち、次のメタデータは必須である
+
+ID (`<id>`)<br>
+タイトル (`<title>`)<br>
+著者 (`<author>`)<br>
+更新日時 (`<updated>`)<br>
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+### ID
+* `<id>`要素の内容は、エントリを一意に示すURI形式のID
+* tagスキーム(RFC4151)のURIがよく用いられる
+* 書式は、`tag:{DNS名 or メールアドレス},{日付}:{任意の文字列}`
+
+```atom
+<id>tag:example.jp,2010-08-24:entry:1234</id>
+```
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+### タイトルと概要
+* タイトルを表す`<title>`、概要を表す`<summary>`がある
+* type属性 (`text` `html` `xhtml`)を持ち、<br>値によって内容が変化する
+* `<title>`でtypeを省略した場合は、`text`になる
+
+```atom
+<entry xmlns="http://www.w3.org/2005/Atom">
+  <title>Atomについて</title>
+  <summary type="xhtml">
+    <div xmlns="http://www.w3.org/1999/xhtml">
+      <p>このエントリでは、<a href="http://ja.wikipedia.org/wiki/Atom"
+      >Atom</a>について解説します。</p>
+    </div>
+  </summary>
+</entry>
+```
+</script>
+
+<script layout invert type="text/x-markdown">
+### 著者と貢献者
+* 著者を表す`<author>`、貢献者を表す`<contributor>`がある
+* それぞれの要素は、子要素に以下の3つを持つ
+* ・`<name>`要素: 自然言語で記述した名前。必須
+* ・`<uri>`要素: 人に関連付けられたURI。
+* ・`<email>`要素: 人のメールアドレス。
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+### 著者と貢献者 - 例
+
+```atom
+<author>
+  <name>山本陽平</name>
+  <uri>http://yohei.y.blogspot.com</uri>
+  <email>yoheiy@gmail.com</email>
+</author>
+<contributor>
+  <name>稲尾尚徳</name>
+</contributor>
+```
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+### 公開日時と更新日時
+* 公開日時を表す`<published>`、更新日時を表す`<updated>`がある
+
+```atom
+<entry xmlns="http://www.w3.org/2005/Atom">
+  <published>2010-09-20T08:46:23Z</published>
+  <updated>2010-09-20T09:13:33Z</updated>
+</entry>
+```
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+### カテゴリ
+* `<category>`要素は、エントリの属するカテゴリを表現する
+* 属性として、以下の3つを持つ
+* ・`term`: カテゴリ名。必須
+* ・`label`: アプリケーションが表示するためのラベル名
+* ・`scheme`: タグを識別するためのURI
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+### カテゴリ - 例
+必須属性(term)のみ指定した場合
+```atom
+<entry xmlns="http://www.w3.org/2005/Atom">
+  <category term="animals" />
+</entry>
+```
+
+属性を3つ指定した場合
+```atom
+<entry xmlns="http://www.w3.org/2005/Atom">
+  <category term="animals" label="動物" scheme="http://example.jp/tags" />
+</entry>
+```
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+### リンク
+* `<link>`要素で表現する
+* 属性として、以下の6つを持つ
+* ・`href`: リンク先のURI。必須
+* ・`rel`: リンク関係を表現
+* ・`hreflang`: リンク先のリソースの言語タグ
+* ・`type`: リンク先のリソースのメディアタイプ
+* ・`length`: リンク先のリソースのサイズを、バイトで指定
+* ・`title`: リンクら機についての自然言語の説明
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+### リンク - 例
+
+```atom
+<link rel="alternate" hreflang="ja" href="http://blog.example.jp/entry/123.ja.html" />
+```
+
+```atom
+<link rel="enclosure" type="audio/mpen" length="489822" href="http://podcast.example.jp/audio/123.mp3" title="Atomについての講演" />
+```
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+### エントリの内容
+* `<content>`要素で指定する
+* type属性にしたがって、以下のような内容を入れられる
+
+・`text`<br>
+・`html`<br>
+・`xhtml`<br>
+・`XML`<br>
+・`XML以外のテキスト(csvなど)`<br>
+・`テキスト以外の内容`<br>
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+### エントリの内容 - 例
+* textの場合は、プレーンテキストを入れる
+
+```atom
+<entry xmlns="http://www.w3.org/2005/Atom">
+  <content type="text">単純なテキストが入ります。</content>
+</entry>
+```
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+### エントリの内容 - 例
+* htmlの場合は、エスケープ済みHTMLを入れる
+
+```atom
+<entry xmlns="http://www.w3.org/2005/Atom">
+  <content type="html">
+    &lt;p>エスケープしたHTML &lt;br>が入ります。&lt;/p>
+  </content>
+</entry>
+```
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+### エントリの内容 - 例
+* xhtmlの場合は、生のXHTMLを入れる
+
+```atom
+<entry xmlns="http://www.w3.org/2005/Atom">
+  <content type="xhtml">
+    <div xmlns="http://www.w3.org/1999/xhtml">
+      <p>生XHTML <br />が入ります。</p>
+    </div>
+  </content>
+</entry>
+```
+</script>
+
+
+<script layout="code" invert type="text/x-markdown">
+### エントリの内容 - 例
+* `application/xml`, `text/xml`, サブタイプが`+xml`の場合に、XML要素を使える
+
+```atom
+<entry xmlns="http://www.w3.org/2005/Atom">
+  <content type="image/svg+xml">
+    <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="5.5in" height=".5in">
+      <text style="fill:red;" y="15">This is SVG.</text>
+    </svg>
+  </content>
+</entry>
+```
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+### エントリの内容 - 例
+* XML以外のテキスト(csvなど)の場合
+
+```atom
+<entry xmlns="http://www.w3.org/2005/Atom">
+  <content type="text/csv">
+    商品名, 価格, 個数
+    リンゴ, 150, 1
+    ミカン, 300, 5
+  </content>
+</entry>
+```
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+### エントリの内容 - 例
+* テキスト以外の内容の場合は、バイナリデータをBase64エンコードする
+
+```atom
+<entry xmlns="http://www.w3.org/2005/Atom">
+  <content type="image/jpeg">
+    Base64エンコードしたJPEG画像
+  </content>
+</entry>
+```
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+### エントリの内容 - メディアリンクエントリ
+* バイナリデータが巨大な場合は、`src`属性を使って外部リソースを参照する方がいい
+* ・ src属性の値は、バイナリデータのURI
+* ・ type属性で、メディアタイプを指定する
+* src属性で外部リソースを参照しているエントリリソースのことを、「メディアリンクエントリ」
+* メディアリンクエントリが参照している画像リソースのことを、「メディアリソース」
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+### エントリの内容 - メディアリンクエントリ
+
+```atom
+<entry xmlns="http://www.w3.org/2005/Atom">
+  <content type="image/jpeg" src="http://example.jp/image/foo_bar.jpg" />
+</entry>
+```
+</script>
+
 
 
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js"></script>
