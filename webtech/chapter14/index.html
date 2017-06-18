@@ -1,0 +1,139 @@
+<html>
+<head>
+  <link rel="stylesheet" href="./dist/talkie.min.css">
+  <link rel="stylesheet" href="./dist/talkie-default.min.css">
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/monokai_sublime.min.css">
+</head>
+<body>
+
+<script layout type="text/x-markdown">
+### 14.1 JSONとは何か
+</script>
+
+<script layout type="text/x-markdown">
+### JSONとは
+* データ記述言語
+* `JavaScript Object Notation`の略
+* JSの記法でデータを記述できるため、<br>記述のシンプルさがメリット
+</script>
+
+<script layout type="text/x-markdown">
+### 14.2 メディアタイプ
+</script>
+
+<script layout type="text/x-markdown">
+### JSONのメディアタイプ
+* `application/json`
+* charsetは、`UTF-8`にするのが無難
+</script>
+
+<script layout type="text/x-markdown">
+### 14.3 拡張子
+</script>
+
+<script layout type="text/x-markdown">
+### JSONの拡張子
+* `.json`
+</script>
+
+<script layout type="text/x-markdown">
+### 14.4 データ型
+</script>
+
+<script layout type="text/x-markdown">
+### 6つの組み込みデータ型
+* オブジェクト
+* 配列
+* 文字列
+* 数値
+* ブーリアン
+* null
+</script>
+
+<script layout type="text/x-markdown">
+### オブジェクト
+* 「名前」と「値」の集合
+* 名前と値のペアを、オブジェクトの「メンバ」という
+* JSONのメンバの名前は、常に「文字列」
+</script>
+
+<script layout type="text/x-markdown">
+### 配列
+* 順序をもった値の集合
+* 0個以上の値を持てる
+</script>
+<script layout type="text/x-markdown">
+### 文字列
+* 二重引用符(`"`)で囲む
+* どの文字も`\uXXXX`でエスケープできる<br>(`\u`と4桁の16進数で表現したUnicode番号)
+</script>
+
+<script layout type="text/x-markdown">
+### 数値
+* 整数と浮動小数点の両方が含まれる
+* 10進数表記に限られる
+</script>
+<script layout type="text/x-markdown">
+### ブーリアン
+* すべて小文字で書く必要がある<br>(`true`、`false`)
+</script>
+
+<script layout type="text/x-markdown">
+### null
+* `null`と小文字で書く
+</script>
+
+<script layout type="text/x-markdown">
+### 日時
+* 組み込み型では、存在しないデータ型<br>-> 開発者が何らかの規定を用意する必要がある
+* ・ 単純なのは、UNIX時間を数値として表現すること<br>(ただし、タイムゾーンが設定できない)
+* ・ ISO8601フォーマットなどに従うのが良さそう
+</script>
+
+<script layout type="text/x-markdown">
+### リンク
+* URIを文字列値として表現するのが簡単
+* URIは絶対URIにしておくのが無難
+</script>
+
+<script layout type="text/x-markdown">
+### 14.5 JSONPによるクロスドメイン通信
+</script>
+
+<script layout type="text/x-markdown">
+### なぜJSONPが必要なのか
+* Ajaxで用いるXMLHttpRequestは、<br>JSファイルを取得したのと同じサーバーとしか通信できない<br>(セキュリティ上の制限によるもの)
+* 複数ドメインと通信できないのは、大きな制限である<br>(クロスドメイン通信の制限)
+* => これを解決する手法の1つが、JSONP
+</script>
+
+<script layout type="text/x-markdown">
+### `<script>`要素による解決
+* `<script>`要素を用いると、複数サイトからJSを読み込める
+* 歴史的理由によるため、<br>通常はブラウザのセキュリティ制限を受けない
+* e.g. jQueryのCDN
+* JSONPは、この性質を利用する
+</script>
+
+<script layout type="text/x-markdown">
+### コールバック関数を活用するJSONP
+* JSONをクライアントが指定したコールバック関数名でラップして、ドメインが異なるサーバーからデータを取得する
+* 本書で、JSONPとして使っているURL<br>
+[http://zip.ricollab.jp/1120002.json?callback=foo](http://zip.ricollab.jp/1120002.json?callback=foo)
+</script>
+
+<script layout type="text/x-markdown">
+### 14.6 ハイパーメディアフォーマットとしてのJSON
+</script>
+
+<script layout type="text/x-markdown">
+### ハイパーメディアフォーマットとしての側面
+* リンクを表現するメンバをきちんと入れる必要がある
+</script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js"></script>
+<script src="./dist/talkie.min.js"></script>
+<script>Talkie();</script>
+</body>
+</html>
