@@ -1,0 +1,17 @@
+{
+  "query": "112",
+  "totalResults": 101,
+  "itemsPerPage": 10,
+  "result": [{
+    "zipcode": "1120002",
+    "address": "東京都文京区以下に掲載がない場合"
+  },
+  {
+    "zipcode": "1120001",
+    "address": "東京都文京区白山 (2~5丁目)"
+  },
+  {
+    "zipcode": "1120013",
+    "address": "東京都文京区音羽"
+  }]
+}

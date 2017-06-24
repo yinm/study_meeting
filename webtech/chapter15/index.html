@@ -1,0 +1,238 @@
+<html>
+<head>
+  <link rel="stylesheet" href="./dist/talkie.min.css">
+  <link rel="stylesheet" href="./dist/talkie-default.min.css">
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/monokai_sublime.min.css">
+</head>
+<body>
+
+<script layout type="text/x-markdown">
+### 15.1 リソース設計とは何か
+</script>
+
+<script layout type="text/x-markdown">
+### Webサービス・Web APIの外部設計の対象
+* リソースの種類
+* リソースの表現
+* リソースの操作方法
+* リソースとリソースのリンク関係
+</script>
+
+<script layout type="text/x-markdown">
+### 15.2 リソース指向アーキテクチャのアプローチ
+</script>
+
+<script layout type="text/x-markdown">
+### リソース指向アーキテクチャのアプローチとは
+* 1.Webサービスで提供するデータを特定する
+* 2.データをリソースに分ける
+* 3.リソースにURIで名前を付ける
+* 4.クライアントに提供するリソースの表現を設計する
+* 5.リンクとフォームを利用して、リソース同士を結び付ける
+* 6.イベントの標準的なコースを検討する
+* 7.エラーについて検討する
+</script>
+
+<script layout type="text/x-markdown">
+### 15.3 郵便番号検索サービスの設計
+</script>
+
+<script layout type="text/x-markdown">
+* 仕様の確認をする
+</script>
+
+<script layout type="text/x-markdown">
+### 15.4<br> Webサービスで提供するデータを特定する
+</script>
+
+<script layout type="text/x-markdown">
+### 提供するデータの内容を理解する
+* サービスで提供するデータを理解しないと、<br>リソース設計ができない
+</script>
+
+<script layout type="text/x-markdown">
+### 15.5 データをリソースに分ける
+</script>
+
+<script layout type="text/x-markdown">
+### リソース分割で考えること
+* 機能をリソースに落とし込む場合は、<br>機能の結果をリソースとして捉えることが重要
+* クライアントが最初にアクセスする、<br>スタート地点のリソースが必要
+</script>
+
+<script layout type="text/x-markdown">
+### 15.6 リソースにURIで名前を付ける
+</script>
+
+<script layout invert type="text/x-markdown">
+### 郵便番号のリソース
+* この例では、 `-` なしのURIを採用する (e.g. `1120002`)
+
+### 採用理由
+* ・システムの用途が、主にプログラムから向けのWeb API<br>であるため、プログラムから利用しやすい形式が良い
+* ・代理リソースで `-` 付きのリソースも用意することで、<br>人間も使いやすくできる？
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+### 検索結果リソース
+* クライアントからの入力を受け取る場合は、<br>クエリパラメータを使う
+* ・ `/search`は、検索クエリを受け取るリソースのURI
+* ・ `q`は、検索キーワードを表現する、クエリパラメータ名
+* -> クエリパラメータ名は何でも良いが、<br>Googleなどが採用している`q`がデファクトスタンダード
+
+```
+//「小石川」の部分は、実際は %エンコード された文字になる
+http://zip.ricollab.jp/search?q=小石川
+```
+
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+### 検索結果リソース2
+* クエリパラメータが変動する場合は、<br>URI Templates表記を使う
+* URI Templates表記とは、 `{パラメータ名}` のこと
+
+```
+http://zip.ricollab.jp/search?q={query}
+```
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+### 地域リソース
+* 階層構造を持つURIの表現は、 `/` を利用する
+
+```
+http://zip.ricollab.jp/{都道府県名}/{市区町村名}/{町域名}
+```
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+### トップレベルリソース
+* Webサービスのスタート地点になるリソースには、<br>一番ルートになるURIを与える
+
+```
+http://zip.ricollab.jp
+```
+</script>
+
+<script layout type="text/x-markdown">
+### 15.7<br> クライアントに提供する<br>リソースの表現を設計する
+</script>
+
+<script layout type="text/x-markdown">
+### 代表的なリソース表示形式
+* 1つのリソースが複数の表示形式をサポートしていると、<br>使い勝手がいい
+
+|分類 |表示形式
+|:---|:---
+|XML表現 |`XHTML`, `Atom`, `独自XML`
+|軽量フォーマット |`JSON`, `YAML`, `CSV`
+|マルチメディア |画像, 映像, マルチページ画像
+</script>
+
+<script layout type="text/x-markdown">
+### XML表現
+* XMLの利点は、既存のフォーマットに不足があれば、<br>後からタグを足して拡張できること
+* 今回の例では、XHTMLを採用する
+* -> 郵便番号データには、Atomで必須の著者や更新日時がないため
+* -> ブラウザで表示するフォーマットを用意したいため
+</script>
+
+<script layout type="text/x-markdown">
+### 軽量フォーマット表現
+* 今回の例では、JSONを採用する
+* -> JSがメインのクライアントになる可能性が高いため
+* -> クロスドメイン通信としてのJSONPに魅力があったため
+* なお、トップレベルリソースには、JSON表現を用意しない
+* -> 標準的なフォーム言語がないため
+* -> 代替手段として、XHTMLからJSON表現にもリンクできるようにする
+</script>
+
+<script layout type="text/x-markdown">
+### URIで表現を指定する
+* リソース表現は、Acceptヘッダでも指定できるが、<br>URIでも指定できるようにする
+* 検索結果は、クエリパラメータ `type` で、<br>拡張子を指定できるようにする
+* -> URIに拡張子が作るのは不自然 (クエリパラメータを受け取って検索結果を返すリソースのため)
+* -> typeを省略した場合は、XHTMLを返す (デフォルトの挙動)
+</script>
+
+<script layout type="text/x-markdown">
+### 15.8<br> リンクとフォームを利用して<br>リソース同士を結び付ける
+</script>
+
+<script layout type="text/x-markdown">
+### 検索結果リソース に必要なリンク
+* 個々の郵便番号リソースへのリンク
+* -> JSONでは、linkというメンバを追加して表現
+* 検索結果のページャ用のリンク
+* -> JSONでは、nextというメンバを追加して表現
+</script>
+
+<script layout type="text/x-markdown">
+### 地域リソース に必要なリンク
+* 下位の地域リソースへのリンク
+</script>
+
+<script layout type="text/x-markdown">
+### 郵便番号リソース に必要なリンク
+* クライアントが利用しやすいようにURIを入れる<br> (別アプリケーション状態への繊維ができるようにする)
+* -> 地域へのリンク
+* JSONにはリンク表現を入れない
+* -> Ajaxなどのプログラムから利用するのが主な用途であり、<br>データの記述量を減らしたかったため
+</script>
+
+<script layout type="text/x-markdown">
+### トップレベルリソース に必要なリンク
+* 地域リソースへのリンク (地域リソース一覧)
+* 検索結果を生成するフォーム
+* -> 検索内容を入力するフォーム (nameは、`q`)
+* -> 拡張子を選択するradioボタン (nameは、`type`)
+</script>
+
+<script layout type="text/x-markdown">
+### リソース間のリンク関係
+* 図にすると、リンクの全体像を把握しやすくなる
+* ・ 孤立しているリソースの存在
+* ・ 本来リンクすべきリソースが、リンクしていない
+</script>
+
+<script layout type="text/x-markdown">
+### 15.9 イベントの標準的なコースを検討する
+</script>
+
+<script layout type="text/x-markdown">
+### 今回の場合は3つ考えられる
+* 郵便番号を検索するコース
+* 住所から郵便番号を検索するコース
+* 地域リソースの階層をたどりながら郵便番号を選択するコース
+</script>
+
+<script layout type="text/x-markdown">
+### 15.10 エラーについて検討する
+</script>
+
+<script layout type="text/x-markdown">
+### パターンとエラーコード
+* 存在しないURIを指定した
+* -> `404 Not Found`
+* 必須パラメータを指定していない
+* -> `400 Bad Request`
+* サポートしないメソッドを使用した
+* -> `405 Method Not Allowed`
+</script>
+
+<script layout type="text/x-markdown">
+### 15.11 リソース設計のスキル
+</script>
+
+<script layout type="text/x-markdown">
+### 書籍「RESTful Webサービス」に基づいて設計
+* [RESTful Webサービス](https://www.oreilly.co.jp/books/9784873113531/) を読もう！
+</script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js"></script>
+<script src="./dist/talkie.min.js"></script>
+<script>Talkie();</script>
+</body>
+</html>

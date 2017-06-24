@@ -1,0 +1,13 @@
+{
+  "zipcode": "1120002",
+  "address": {
+    "prefecture": "東京都",
+    "city": "文京区",
+    "town": "小石川"
+  },
+  "yomi": {
+    "prefecture": "トウキョウト",
+    "city": "ブンキョウク",
+    "town": "コイシカワ"
+  }
+}
