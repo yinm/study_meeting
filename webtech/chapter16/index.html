@@ -33,12 +33,21 @@
 </script>
 
 <script layout type="text/x-markdown">
-### 16.
+### 16.3 リソースの作成
 </script>
 
 <script layout type="text/x-markdown">
-###
-*
+### ファクトリリソースによる作成
+* ファクトリリソースは、リソースを作成するための特別なリソース
+* POSTで新しいリソースを作成する
+</script>
+
+<script layout type="text/x-markdown">
+### PUTによる作成
+* &#128582; サーバー側の実装が簡単になる(POSTをサポートしないでいいため)
+* &#128582; クライアント側の実装が簡単になる(クライアントが作成と更新を区別しないでいいため)
+* &#128560; クライアントがURI構造を知っていなければならない
+* &#128560; リクエストの見た目では、操作内容の区別がつかなくなる
 </script>
 
 <script layout type="text/x-markdown">
