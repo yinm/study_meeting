@@ -51,12 +51,29 @@
 </script>
 
 <script layout type="text/x-markdown">
-### 16.
+### 16.4 リソースの更新
 </script>
 
 <script layout type="text/x-markdown">
-###
-*
+### バルクアップデート
+* 更新したいリソース全体を、送信する方法
+* &#128582; クライアントの実装が簡単
+* &#128560; 送受信するデータが大きくなる
+</script>
+
+<script layout type="text/x-markdown">
+### パーシャルアップデート
+* 更新したい部分だけを、送信する方法
+* &#128582; 送受信するデータが少なくなる
+* &#128560; GETしたリソースを一部修正して、そのままPUTするという使い方ができない
+</script>
+
+<script layout type="text/x-markdown">
+### 更新できないプロパティを更新しようとした
+* プロパティが更新できないことを明示するために、`400 Bad Request`を返す
+* e.g. 郵便番号
+* サーバー側で自動的に値を更新するプロパティの場合、クライアントのリクエストは無視して`200 OK`を返す
+* e.g. 作成日時、更新日時
 </script>
 
 <script layout type="text/x-markdown">
