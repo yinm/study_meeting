@@ -119,12 +119,27 @@
 </script>
 
 <script layout type="text/x-markdown">
-### 16.
+### 16.7 トランザクション
 </script>
 
 <script layout type="text/x-markdown">
-###
-*
+### トランザクションリソース
+* トランザクションをRestfulで実現するためのリソース
+* -> HTTPの統一インターフェースで実現できない処理がある場合は、新たなリソースを導入して解決するのが定石
+</script>
+
+<script layout type="text/x-markdown">
+### トランザクションを実現する手順
+* 1.トランザクションの開始
+* 2.トランザクションリソースへの処理対象の追加
+* 3.トランザクションの実行
+* 4.トランザクションリソースの削除
+</script>
+
+<script layout type="text/x-markdown">
+### トランザクションリソース以外の解決方法
+* ・ バッチ処理のトランザクション化
+* ・ 上位リソースに対する操作
 </script>
 
 <script layout type="text/x-markdown">
