@@ -88,12 +88,34 @@
 </script>
 
 <script layout type="text/x-markdown">
-### 16.
+### 16.7 バッチ処理
 </script>
 
 <script layout type="text/x-markdown">
-###
-*
+### バッチ処理のリクエスト
+* パフォーマンス問題を回避するために、バッチ処理を行う
+* POSTを使うことで、URIを指定せずに更新を行える
+* PUTを使うと、更新対象のリソースをURIで指定しなければならない
+</script>
+
+<script layout type="text/x-markdown">
+### バッチ処理のレスポンス - エラー対処
+* エラー対処方法は2つある
+* ・ バッチをトランザクション化する
+* ・ リソースごとの処理結果を、クライアントに伝える
+* -> クライアントに伝えるには、さらに2つの方法がある
+</script>
+
+<script layout type="text/x-markdown">
+### 207 Multi-Status - 複数の結果を表現する
+* `207 Multi-Status` は、WebDAVが定義しているステータスコード
+* `<D:status>`要素を使って、バッチ処理の一つ一つに対して、ステータスコードを返す
+</script>
+
+<script layout type="text/x-markdown">
+### 独自の複数ステータスフォーマット
+* `207 Multi-Status` ほど大掛かりにしないでいい場合に採用する
+* `200 OK` と `<D:multistatus>`要素 に相当する独自のXMLやJSONを返す
 </script>
 
 <script layout type="text/x-markdown">
