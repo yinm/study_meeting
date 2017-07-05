@@ -143,6 +143,30 @@
 </script>
 
 <script layout type="text/x-markdown">
+### 16.8 排他制御
+</script>
+
+<script layout type="text/x-markdown">
+### 排他制御の種類
+* ・ 悲観的ロック
+* ・ 楽観的ロック
+</script>
+
+<script layout type="text/x-markdown">
+### 悲観的ロック
+* ユーザーを信頼せず、競合が起きないようにする排他制御
+* 実現方法は2つ
+* ・ WebDAVの`LOCK/UNLOCK`メソッドを使う
+* ・ 独自のロックリースを使う
+</script>
+
+<script layout type="text/x-markdown">
+### 楽観的ロック
+* 基本的にはロックせず、競合が起きた時に対処する排他制御
+* 実現方法は、条件付きPUTと条件付きDELETEを使う
+</script>
+
+<script layout type="text/x-markdown">
 ### 16.
 </script>
 
@@ -150,25 +174,6 @@
 ###
 *
 </script>
-
-<script layout type="text/x-markdown">
-### 16.
-</script>
-
-<script layout type="text/x-markdown">
-###
-*
-</script>
-
-<script layout type="text/x-markdown">
-### 16.
-</script>
-
-<script layout type="text/x-markdown">
-###
-*
-</script>
-
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js"></script>
 <script src="./dist/talkie.min.js"></script>
 <script>Talkie();</script>
