@@ -20,11 +20,21 @@
 </script>
 
 <script layout type="text/x-markdown">
-### 17.
+### 17.2 関係モデルからの導出
 </script>
 
 <script layout type="text/x-markdown">
-###
+### 中心となるテーブルからリソースの導出
+* 中心となっているテーブルの1行を1リソースとする
+* -> 今回の場合は、郵便番号テーブル
+* テーブルの主キーをURIに組み込むと実装が簡単になる
+* -> ただし、今回は郵便番号を採用する
+* ・ クライアントから見た時のURIの可読性が上がる
+* ・ URIが変更されにくい <br>(主キーを採用すると、サーバー側の都合でURIが変わる可能性が上がってしまう)
+</script>
+
+<script layout type="text/x-markdown">
+### 
 *
 </script>
 
