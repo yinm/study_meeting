@@ -179,12 +179,29 @@ X-Content-Type-Options: nosniff
 </script>
 
 <script layout type="text/x-markdown">
-###
+### 1.7 URL (Uniform Resource Locators)
 </script>
 
 <script layout type="text/x-markdown">
-###
-*
+### URLとURI
+* Webシステムにおいては、URLとURIはほぼ同じ意味
+* (URI = URL + URNだが、WebシステムではURNが登場しないため)
+* 公式表記はURIになっているが、実際は混在している
+</script>
+
+<script layout type="text/x-markdown">
+### URLの構造
+* URLの仕様に含まれる全要素の入ったサンプル<br>
+`スキーマ://ユーザ:パスワード@ホスト名:ポート/パス#フラグメント?クエリー`
+* URLの長さ制限は、実質「約2000文字」と考える
+* URLは意味のあるものにした方が、人間もプログラムにも理解しやすいメリットがある
+</script>
+
+<script layout type="text/x-markdown">
+### URLと国際化
+* 国際化ドメイン名を表現するためのエンコーディングルールとして、Punycodeがある
+* 半角英数以外の文字を決まったルールで、半角英数字に置き換える
+* 特徴として、prefixに、`xn--`が入る
 </script>
 
 <script layout type="text/x-markdown">
