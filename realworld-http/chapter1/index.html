@@ -8,16 +8,17 @@
 <body>
 
 <script layout type="text/x-markdown">
+## 1章
 ### HTTP/1.0のシンタックス:
 ### 基本となる4つの要素
 </script>
 
 <script layout type="text/x-markdown">
 ### 4つの基本要素
-* メソッドとパス
-* ヘッダー
-* ボディ
-* ステータスコード
+* ・メソッドとパス
+* ・ヘッダー
+* ・ボディ
+* ・ステータスコード
 </script>
 
 <script layout type="text/x-markdown">
@@ -26,14 +27,15 @@
 
 <script layout type="text/x-markdown">
 ### HTTPとは
-* HTTPは、WebブラウザとWEbサーバーが通信するときの手順とフォーマットをルール化したもの
-* HTTPの仕様策定には様々な組織が関わっている (e.g. IETF, W3C)
+* HTTPは、WebブラウザとWEbサーバーが通信するときの<br>
+手順とフォーマットをルール化したもの
+* HTTPの仕様策定には様々な組織が関わっている<br>
+(e.g. IETF, W3C)
 </script>
 
 <script layout type="text/x-markdown">
 ### テストエコーサーバーの実行
-### sample source
-* [yinm/realworld-http](https://github.com/yinm/realworld-http/blob/master/chapter1/server.go)
+* sample source -> [yinm/realworld-http](https://github.com/yinm/realworld-http/blob/master/chapter1/server.go)
 </script>
 
 <script layout type="text/x-markdown">
@@ -42,9 +44,11 @@
 
 <script layout type="text/x-markdown">
 ### HTTP0.9の特徴
-* Webサイトのページをサーバーに要求、その返事としてWebサイトの内容を受け取る
+* Webサイトのページをサーバーに要求、<br>
+その返事としてWebサイトの内容を受け取る
 * 受け取ったあとは、サーバーとの接続が切れる
-* HTTPの基本となる4つの要素でいうと、ボディの受信・パスだけを実現している
+* HTTPの基本となる4つの要素でいうと、<br>
+ボディの受信・パスだけを実現している
 </script>
 
 <script layout="code" invert type="text/x-markdown">
@@ -77,9 +81,10 @@ User-Agent: curl/7.43.0
 <script layout type="text/x-markdown">
 ### HTTP0.9でできなかったこと
 * 1つのドキュメントを送る機能しかない
-* DLコンテンツのフォーマットをサーバーから伝える手段がなかった
+* DLコンテンツのフォーマットを、<br>
+サーバーから伝える手段がなかった
 * クライアントから、検索以外のリクエストを送信できなかった
-* CRUDの、CUDの部分 (Read以外できなかった)
+* CRUDの、CUDの部分 (= Read以外できなかった)
 * リクエスト・レスポンスが正しかったかの判定
 </script>
 
@@ -88,7 +93,8 @@ User-Agent: curl/7.43.0
 * リクエスト時にメソッドが追加された (`GET`)
 * リクエスト時にHTTPバージョンが追加された (`HTTP/1.0`)
 * ヘッダーが追加された (`Host`, `User-Agent`, `Accept`)
-* レスポンスの先頭にHTTPバージョンと、3桁のステータスコードが含まれるようになった
+* レスポンスの先頭にHTTPバージョンと、<br>
+3桁のステータスコードが含まれるようになった
 * リクエストと同じ形式のヘッダーが含まれるようになった
 </script>
 
@@ -98,21 +104,24 @@ User-Agent: curl/7.43.0
 
 <script layout type="text/x-markdown">
 ### 電子メールから導入したもの
-* ヘッダー (`フィールド名: 値`)
-* ヘッダーと本文の間に、空行が1行入る
-* MIMEタイプ
+* ・ヘッダー (`フィールド名: 値`)
+* ・ヘッダーと本文の間に、空行が1行入る
+* ・MIMEタイプ
 </script>
 
 <script layout type="text/x-markdown">
 ### ヘッダーの特徴
-* 同じヘッダーを複数回送ることもできる (その場合のヘッダーの扱い方は、サーバー側の実装に寄る)
+* 同じヘッダーを複数回送ることもできる<br>
+(その場合のヘッダーの扱い方は、サーバー側の実装に寄る)
 </script>
 
 <script layout type="text/x-markdown">
 ### MIMEタイプ
 * ファイルの種類を区別するための文字列 (RFC1341)
-* MIMEタイプではなく、ファイルの中身を使ってファイルを区別する、<br>
-IEのContent Sniffingはセキュリティホールになる可能性があるため使わない方が良い
+* IEのContent Sniffingは使わない方が良い
+* (Content Sniffingとは、MIMEタイプではなく、<br>
+ファイルの中身を使ってファイルを区別するため、<br>
+セキュリティホールになる可能性がある)
 </script>
 
 <script layout="code" invert type="text/x-markdown">
@@ -126,10 +135,12 @@ X-Content-Type-Options: nosniff
 
 <script layout type="text/x-markdown">
 ### 電子メールとの違い
-* HTTPのリクエストでは、先頭にメソッド + パスの行が追加される
-* HTTPのレスポンスでは、先頭にステータスコードが追加される
+* HTTPのリクエストでは、<br>
+先頭にメソッド + パスの行が追加される
+* HTTPのレスポンスでは、<br>
+先頭にステータスコードが追加される
 
--> HTTPの通信は、高速で電子メールを往復しているようなもの
+-> HTTPの通信は、<br>高速で電子メールを往復しているようなもの
 </script>
 
 <script layout type="text/x-markdown">
@@ -138,26 +149,26 @@ X-Content-Type-Options: nosniff
 
 <script layout type="text/x-markdown">
 ### ニュースグループから導入したもの
-* メソッド
-* ステータスコード
+* ・メソッド
+* ・ステータスコード
 </script>
 
 <script layout type="text/x-markdown">
 ### メソッド
-* `GET`: サーバーに対して、ヘッダーとコンテンツを要求
-* `HEAD`: サーバーに対して、ヘッダーのみを要求
-* `POST`: 新しいドキュメントを投稿
-* `PUT`: すでに存在するURLのドキュメントを更新
-* `DELETE`: 指定されたURLのドキュメントを削除
+* ・`GET`: サーバーに対して、ヘッダーとコンテンツを要求
+* ・`HEAD`: サーバーに対して、ヘッダーのみを要求
+* ・`POST`: 新しいドキュメントを投稿
+* ・`PUT`: すでに存在するURLのドキュメントを更新
+* ・`DELETE`: 指定されたURLのドキュメントを削除
 </script>
 
 <script layout type="text/x-markdown">
 ### ステータスコード
-* `1xx`: 処理中の情報の伝達
-* `2xx`: 成功時のレスポンス
-* `3xx`: サーバーからクライアントへの命令。正常処理の範疇
-* `4xx`: クライアントのリクエストに関するエラー
-* `5xx`: サーバー内部で発生したエラー
+* ・`1xx`: 処理中の情報の伝達
+* ・`2xx`: 成功時のレスポンス
+* ・`3xx`: サーバーからクライアントへの命令。正常処理の範疇
+* ・`4xx`: クライアントのリクエストに関するエラー
+* ・`5xx`: サーバー内部で発生したエラー
 </script>
 
 <script layout type="text/x-markdown">
@@ -166,16 +177,18 @@ X-Content-Type-Options: nosniff
 
 <script layout type="text/x-markdown">
 ### リダイレクトの使い分け
-* `301`/`308`: 恒久的な移動をした時に使う。`301`を使うことが推奨
-* `302`/`307`: 一時的な移動をした時に使う。
-* `303`: ログイン後のページ遷移などで使う
+* ・`301`/`308`: 恒久的な移動をした時に使う(`301`を使うことが推奨)
+* ・`302`/`307`: 一時的な移動をした時に使う
+* ・`303`: ログイン後のページ遷移などで使う
 * refs: [HTTPステータスコード 302, 303, 307を整理する](http://yinm.hatenadiary.jp/entry/2017/03/29/204714)
 </script>
 
 <script layout type="text/x-markdown">
 ### リダイレクトの回数
-* RFC上の制限はない (ただし、無限ループを検知できるようにはしなければならない)
-* Googleのガイドラインでは、5回(できるなら3回)以下にするべきと言われている
+* RFC上の制限はない <br>
+(ただし、無限ループを検知できるようにはする必要がある)
+* Googleのガイドラインでは、<br>
+5回(できるなら3回)以下にするべきと言われている
 </script>
 
 <script layout type="text/x-markdown">
@@ -184,8 +197,8 @@ X-Content-Type-Options: nosniff
 
 <script layout type="text/x-markdown">
 ### URLとURI
-* Webシステムにおいては、URLとURIはほぼ同じ意味
-* (URI = URL + URNだが、WebシステムではURNが登場しないため)
+* Webシステムにおいては、URLとURIはほぼ同じ意味<br>
+(URI = URL + URN)
 * 公式表記はURIになっているが、実際は混在している
 </script>
 
@@ -194,13 +207,16 @@ X-Content-Type-Options: nosniff
 * URLの仕様に含まれる全要素の入ったサンプル<br>
 `スキーマ://ユーザ:パスワード@ホスト名:ポート/パス#フラグメント?クエリー`
 * URLの長さ制限は、実質「約2000文字」と考える
-* URLは意味のあるものにした方が、人間もプログラムにも理解しやすいメリットがある
+* URLは意味のあるものにした方が、<br>
+人間もプログラムにも理解しやすいメリットがある
 </script>
 
 <script layout type="text/x-markdown">
 ### URLと国際化
-* 国際化ドメイン名を表現するためのエンコーディングルールとして、Punycodeがある
-* 半角英数以外の文字を決まったルールで、半角英数字に置き換える
+* 国際化ドメイン名を表現するための<br>
+エンコーディングルールとして、Punycodeがある
+* 半角英数以外の文字を決まったルールで、<br>
+半角英数字に置き換える
 * 特徴として、prefixに、`xn--`が入る
 </script>
 
@@ -221,9 +237,11 @@ X-Content-Type-Options: nosniff
 </script>
 
 <script layout type="text/x-markdown">
-### ボディのセマンティクスを定めていないメソッド
-* GETやDELETEなどは、ボディを含めることが期待されていない
-* これらのメソッドでは、リクエスト処理時にメッセージボディは無視されるべきである
+### ボディのセマンティクスを定めてないメソッド
+* GETやDELETEなどは、<br>
+ボディを含めることが期待されていない
+* これらのメソッドでは、<br>
+リクエスト処理時にメッセージボディは無視されるべきである
 </script>
 
 <script layout type="text/x-markdown">
