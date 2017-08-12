@@ -133,12 +133,31 @@ X-Content-Type-Options: nosniff
 </script>
 
 <script layout type="text/x-markdown">
-###
+### 1.5 HTTPの先祖(2) ニュースグループ
 </script>
 
 <script layout type="text/x-markdown">
-###
-*
+### ニュースグループから導入したもの
+* メソッド
+* ステータスコード
+</script>
+
+<script layout type="text/x-markdown">
+### メソッド
+* `GET`: サーバーに対して、ヘッダーとコンテンツを要求
+* `HEAD`: サーバーに対して、ヘッダーのみを要求
+* `POST`: 新しいドキュメントを投稿
+* `PUT`: すでに存在するURLのドキュメントを更新
+* `DELETE`: 指定されたURLのドキュメントを削除
+</script>
+
+<script layout type="text/x-markdown">
+### ステータスコード
+* `1xx`: 処理中の情報の伝達
+* `2xx`: 成功時のレスポンス
+* `3xx`: サーバーからクライアントへの命令。正常処理の範疇
+* `4xx`: クライアントのリクエストに関するエラー
+* `5xx`: サーバー内部で発生したエラー
 </script>
 
 <script layout type="text/x-markdown">
