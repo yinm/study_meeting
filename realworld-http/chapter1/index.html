@@ -205,25 +205,34 @@ X-Content-Type-Options: nosniff
 </script>
 
 <script layout type="text/x-markdown">
+### 1.8 ボディ
+</script>
+
+<script layout type="text/x-markdown">
+### ボディの形式
+* ヘッダーの後に空行を挟んで、それ以降がすべてボディになる
+* 送信時のデータを格納するフォーマットは2種類ある
+</script>
+
+<script layout type="text/x-markdown">
+### Content-Lengthヘッダ
+* ボディのバイト数が入る
+* (圧縮されている場合は、圧縮前のボディのバイト数が入る)
+</script>
+
+<script layout type="text/x-markdown">
+### ボディのセマンティクスを定めていないメソッド
+* GETやDELETEなどは、ボディを含めることが期待されていない
+* これらのメソッドでは、リクエスト処理時にメッセージボディは無視されるべきである
+</script>
+
+<script layout type="text/x-markdown">
 ###
 </script>
 
 <script layout type="text/x-markdown">
 ###
 *
-</script>
-
-<script layout type="text/x-markdown">
-###
-</script>
-
-<script layout type="text/x-markdown">
-###
-*
-</script>
-
-<script layout type="text/x-markdown">
-###
 </script>
 
 <script layout type="text/x-markdown">
