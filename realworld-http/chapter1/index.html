@@ -31,10 +31,7 @@
 </script>
 
 <script layout type="text/x-markdown">
-### 1.1.1 テストエコーサーバーの実行
-</script>
-
-<script layout type="text/x-markdown">
+### テストエコーサーバーの実行
 ### sample source
 * [yinm/realworld-http](https://github.com/yinm/realworld-http/blob/master/chapter1/server.go)
 </script>
@@ -96,12 +93,43 @@ User-Agent: curl/7.43.0
 </script>
 
 <script layout type="text/x-markdown">
-###
+### 1.4 HTTPの先祖(1) 電子メール
 </script>
 
 <script layout type="text/x-markdown">
-###
-*
+### 電子メールから導入したもの
+* ヘッダー (`フィールド名: 値`)
+* ヘッダーと本文の間に、空行が1行入る
+* MIMEタイプ
+</script>
+
+<script layout type="text/x-markdown">
+### ヘッダーの特徴
+* 同じヘッダーを複数回送ることもできる (その場合のヘッダーの扱い方は、サーバー側の実装に寄る)
+</script>
+
+<script layout type="text/x-markdown">
+### MIMEタイプ
+* ファイルの種類を区別するための文字列 (RFC1341)
+* MIMEタイプではなく、ファイルの中身を使ってファイルを区別する、<br>
+IEのContent Sniffingはセキュリティホールになる可能性があるため使わない方が良い
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+### Content Sniffingを無効化
+
+```http
+# サーバーから、以下のヘッダーを送信する
+X-Content-Type-Options: nosniff
+```
+</script>
+
+<script layout type="text/x-markdown">
+### 電子メールとの違い
+* HTTPのリクエストでは、先頭にメソッド + パスの行が追加される
+* HTTPのレスポンスでは、先頭にステータスコードが追加される
+
+-> HTTPの通信は、高速で電子メールを往復しているようなもの
 </script>
 
 <script layout type="text/x-markdown">
