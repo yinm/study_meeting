@@ -161,12 +161,21 @@ X-Content-Type-Options: nosniff
 </script>
 
 <script layout type="text/x-markdown">
-###
+### 1.6 リダイレクト
 </script>
 
 <script layout type="text/x-markdown">
-###
-*
+### リダイレクトの使い分け
+* `301`/`308`: 恒久的な移動をした時に使う。`301`を使うことが推奨
+* `302`/`307`: 一時的な移動をした時に使う。
+* `303`: ログイン後のページ遷移などで使う
+* refs: [HTTPステータスコード 302, 303, 307を整理する](http://yinm.hatenadiary.jp/entry/2017/03/29/204714)
+</script>
+
+<script layout type="text/x-markdown">
+### リダイレクトの回数
+* RFC上の制限はない (ただし、無限ループを検知できるようにはしなければならない)
+* Googleのガイドラインでは、5回(できるなら3回)以下にするべきと言われている
 </script>
 
 <script layout type="text/x-markdown">
