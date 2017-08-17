@@ -14,8 +14,7 @@
 </script>
 
 <script layout type="text/x-markdown">
-###
-*
+* 基本の4要素を使って、<br>ブラウザの基本機能をどのように実現しているかを見ていく
 </script>
 
 <script layout type="text/x-markdown">
@@ -24,8 +23,52 @@
 </script>
 
 <script layout type="text/x-markdown">
-###
-*
+### ボディの受信
+* HTTP/1.0では、<br>クライアントが指定したコンテンツがそのまま格納されるだけ
+* フォームを使ったPOST送信には2種類ある
+* -> この節では、シンプルな方式を見る<br>(x-www-form-urlencoded)
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+### -dで送信した場合
+
+```sh
+curl --http1.0 -d title="The Art of Community" -d author="Jono Bacon" http://localhost:18888
+```
+
+```http
+POST / HTTP/1.0
+Host: localhost:18888
+Connection: close
+Accept: */*
+Content-Length: 44
+Content-Type: application/x-www-form-urlencoded
+User-Agent: curl/7.43.0
+
+title=The Art of Community&author=Jono Bacon
+```
+
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+### --data-urlencodeで送信した場合
+
+```sh
+curl --http1.0 --data-urlencode title="Head First PHP & MySQL" --data-urlencode author="Lynn Beighley, Michael Morrison" http://localhost:18888
+```
+
+```http
+POST / HTTP/1.0
+Host: localhost:18888
+Connection: close
+Accept: */*
+Content-Length: 85
+Content-Type: application/x-www-form-urlencoded
+User-Agent: curl/7.43.0
+
+title=Head%20First%20PHP%20%26%20MySQL&author=Lynn%20Beighley%2C%20Michael%20Morrison
+```
+
 </script>
 
 <script layout type="text/x-markdown">
