@@ -446,12 +446,26 @@ Header: {
 </script>
 
 <script layout type="text/x-markdown">
-### 2.
+### 2.7 プロキシ
 </script>
 
 <script layout type="text/x-markdown">
-###
-*
+### プロキシとは
+* HTTPなどの通信を中継する仕組み
+* 中継するだけでなく、様々な付加機能が実装されることもある
+* 実現する仕組みとしては、パス名の形式を`UNIX形式` -> `URL形式`にする
+* プロキシに認証をつける場合は、`Proxy-Authenticate`ヘッダーを使う
+* 中継途中のホストIPの記録には、`Forwarded` (`X-Forwarded-For`) ヘッダーを使う
+</script>
+
+<script layout type="text/x-markdown">
+### プロキシとゲートウェイの違い
+* プロキシ:
+* ・ 通信内容を理解する
+* ・ 必要に応じてコンテンツを改変したり、サーバー代わりに応答したりする
+* ゲートウェイ:
+* ・ 通信内容をそのまま転送する (内容の改変も許さない)
+* ・ クライアントからは存在することを気づかれてはならない
 </script>
 
 <script layout type="text/x-markdown">
