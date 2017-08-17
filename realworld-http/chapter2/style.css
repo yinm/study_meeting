@@ -1,4 +1,6 @@
 pre {
   width: 800px;
 }
-
+table {
+  font-size: 0.6em !important;
+}

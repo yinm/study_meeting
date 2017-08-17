@@ -241,12 +241,79 @@ test text
 </script>
 
 <script layout type="text/x-markdown">
-### 2.
+### 2.4 コンテントネゴシエーション
 </script>
 
 <script layout type="text/x-markdown">
-###
-*
+### コンテントネゴシエーションとは
+* 前提として、サーバーとクライアントは別々に開発・運用されているため、両者の期待している形式や設定が常に一致するとは限らない
+* コンテントネゴシエーションは、サーバーとクライアントの通信方法を最適化するための仕組み
+* ネゴシエーションには、ヘッダーを利用する
+</script>
+
+<script layout type="text/x-markdown">
+|リクエストヘッダー |レスポンス |ネゴシエーション対象
+|:--|:--|:--
+|Accept |Content-Type |MIMEタイプ
+|Accept-Language |Content-Language, htmlタグ |表示言語
+|Accept-Charset |Content-Type | 文字のキャラクターセット
+|Accept-Encoding |Content-Encoding |ボディの圧縮
+</script>
+
+<script layout type="text/x-markdown">
+### ファイルの種類の決定
+* 品質係数(`q`)を使って、ファイルの優先度を指定する
+* ・ 数値は、`0` ~ `1`まであり、数値が高い方が優先
+* ・ デフォルト値は、`1.0`
+* お互いに一致しているものがなければ、`406 Not Acceptable`をサーバーが返す
+</script>
+
+<script layout type="text/x-markdown">
+### 表示言語の決定
+* ファイルの種類の決定とほぼ同じ
+* ただし、ヘッダーを使わずにHTML内で指定しているサイトが一般的
+* e.g. `<html lang="ja">`
+</script>
+
+<script layout type="text/x-markdown">
+### キャラクターセットの決定
+* ファイルの種類の決定とほぼ同じ
+* ただし、モダンブラウザではヘッダーを送信していない
+* (おそらく全てのキャラクターセットのエンコーダーを内包しているため、ネゴシエーションの必要がないため)
+* HTML内で指定する方法も可能
+* (HTMLをローカルに保存して表示する場合もあるため、併用されることが多い)
+* e.g. `<meta charset="UTF-8">`
+</script>
+
+<script layout type="text/x-markdown">
+### 圧縮によるメリット
+* 転送速度の向上
+* 通信料金や、モバイル端末の電力消費の削減
+</script>
+
+<script layout type="text/x-markdown">
+### 圧縮方法の決定
+* HTTPヘッダーで指定する
+* クライアントからサーバーへのアップロード時にも圧縮をできるようにする議論が行われている
+* -> 基本は同じ仕組み (同じヘッダーを使用する)
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+### --compressedの使用例
+
+```sh
+curl --http1.0 --compressed http://localhost:18888
+```
+
+```http
+GET / HTTP/1.0
+Host: localhost:18888
+Connection: close
+Accept: */*
+Accept-Encoding: deflate, gzip
+User-Agent: curl/7.43.0
+```
+
 </script>
 
 <script layout type="text/x-markdown">
