@@ -359,12 +359,90 @@ Set-Cookie: lang=en-US; Path=/; Domain=example.com
 </script>
 
 <script layout type="text/x-markdown">
-### 2.
+### 2.6 認証とセッション
 </script>
 
 <script layout type="text/x-markdown">
-###
-*
+### この節で紹介するもの
+* ユーザー名とパスワードを毎回クライアントから送信する方法を2つ
+* 現在よく使われている、クッキーを使ったセッション管理の方法
+</script>
+
+<script layout type="text/x-markdown">
+### BASIC認証とDigest認証
+* BASIC認証は、ユーザー名とパスワードを、base64エンコーディングしてやりとりする
+* base64は可逆変換のため、ユーザー名などをサーバー側で復元して、正しいユーザーかを検証する
+* Digest認証は、BASIC認証より強固な方式 (ハッシュ関数を利用する)
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+### BASIC認証
+
+```sh
+curl --http1.0 --basic -u user:pass http://localhost:18888
+```
+
+```http
+GET / HTTP/1.0
+Host: localhost:18888
+Connection: close
+Accept: */*
+Authorization: Basic dXNlcjpwYXNz
+User-Agent: curl/7.43.0
+```
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+### Digest認証
+
+```sh
+curl --http1.0 --digest -u user:pass http://localhost:18888/digest
+```
+
+```http
+# 2回目
+URL: "/digest"
+Query: url.Values{}
+Proto: "HTTP/1.0"
+Method: "GET"
+Header: {
+  "Accept": []string{
+    "*/*",
+  },
+  "Authorization": []string{
+    "Digest username=\"user\", realm=\"Secret Zone\", nonce=\"TgLc25U2BQA=f510a2780473e18e6587be602c2e67fe2b04afd\", uri=\"/digest\", cnonce=\"ZDM1ZjVkZDgwMDZlZTFkNWNhOGY1NmI0ZjRkMWM2YmI=\", nc=00000001, qop=auth, response=\"700c8ac3c9fbbc07d6d23eb2aef90e72\", algorithm=\"MD5\"",
+  },
+  "User-Agent": []string{
+    "curl/7.43.0",
+  },
+}
+--body--
+```
+</script>
+
+<script layout type="text/x-markdown">
+### BASIC認証・Digest認証が使われなくなった理由
+* 特定のフォルダ以下を見せないという使い方しかできない
+* リクエストごとにユーザー名とパスワードを送信・認証のための計算をする必要がある
+* ログイン画面をカスタマイズできない
+* 明示的なログオフができない
+* ログインした端末が識別できない
+</script>
+
+<script layout type="text/x-markdown">
+### フォーム + クッキーを使った、セッション管理の仕組み
+* 1. フォームでIDとパスワードを送信する (SSL/TLSの利用は必須)
+* 2. サーバー側で認証し、問題なければセッショントークンを発行
+* 3. サーバーは、DBにセッショントークンを保存・クッキーとしてクライアントに返す
+* 4. クライアントは2度目以降のアクセスでは、クッキーを再送することで、ログイン済みであることを伝える
+</script>
+
+<script layout type="text/x-markdown">
+### 署名付きクッキーによるセッションデータの保存
+* 通信が高速化したことで、クッキーを使ったデータ管理の仕組みもよく使われるようになっている
+* 改ざんされないように、クライアントに対して電子署名済みのデータを送る
+* 署名も確認もサーバー側で行うため、クライアントは鍵を持たない
+* サーバー側のメリットは、データ保存の仕組みを用意する必要がないこと
 </script>
 
 <script layout type="text/x-markdown">
