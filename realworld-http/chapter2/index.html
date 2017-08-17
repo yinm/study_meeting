@@ -317,12 +317,45 @@ User-Agent: curl/7.43.0
 </script>
 
 <script layout type="text/x-markdown">
-### 2.
+### 2.5 クッキー
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+### クッキー
+* セットする場合のレスポンスヘッダー
+
+```http
+Set-Cookie: LAST_ACCESS_DATE=Jul/31/2016
+Set-Cookie: LAST_ACCESS_TIME=12:04
+```
+
+* クッキーの情報を伝えるリクエストヘッダー
+
+```http
+Cookie: LAST_ACCESS_DATE=Jul/31/2016
+Cookie: LAST_ACCESS_TIME=12:04
+```
+
 </script>
 
 <script layout type="text/x-markdown">
-###
-*
+### クッキーの問題点
+* ・ 永続性の問題
+* ・ 容量の問題
+* ・ セキュリティの問題
+* -> 消えても問題ない情報だけを入れるのに適している
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+### クッキーに制約を与える
+* 前提として、クッキーを本来必要としないサーバーに送るとセキュリティのリスクが高めてしまう
+* そこで、送信先の制御やクッキーの寿命を設定する属性が存在する
+* 属性はセミコロンで区切って複数指定できる
+
+```http
+Set-Cookie: SID=31d4d9631dsga; Path=/; Secure; HttpOnly
+Set-Cookie: lang=en-US; Path=/; Domain=example.com
+```
 </script>
 
 <script layout type="text/x-markdown">

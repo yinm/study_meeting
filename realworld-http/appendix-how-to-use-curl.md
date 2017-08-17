@@ -30,3 +30,7 @@
 *
 #### `--compressed`
 * 
+#### `-c`, `--cookie-jar`
+* 
+#### `-b`, `cookie`
+* 
