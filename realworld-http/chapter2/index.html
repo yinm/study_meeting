@@ -72,12 +72,162 @@ title=Head%20First%20PHP%20%26%20MySQL&author=Lynn%20Beighley%2C%20Michael%20Mor
 </script>
 
 <script layout type="text/x-markdown">
-### 2.
+### 2.2 フォームを使ったファイルの送信
+### (multipart/form-data)
 </script>
 
 <script layout type="text/x-markdown">
-###
-*
+### multipart/form-data
+* 1度のリクエストで複数のファイルを送信できる
+* ファイルを区切るための、「境界文字列」がヘッダーに必要になる
+* ボディには、`Content-Disposition`という`Content-Type`のようなものが含まれる
+* `x-www-form-urlencoded`との違いとして、項目ごとに追加のメタ情報をタグとして持てる
+* form要素に、`enctype="multipart/form-data`属性を追加することで利用できる
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+### 前節の-dを、-Fに変更した場合
+
+```sh
+curl --http1.0 -F title="The Art of Community" -F author="Jono Bacon" http://localhost:18888
+```
+
+```http
+POST / HTTP/1.0
+Host: localhost:18888
+Connection: close
+Accept: */*
+Content-Length: 265
+Content-Type: multipart/form-data; boundary=------------------------0fd3f4216c00d645
+User-Agent: curl/7.43.0
+
+--------------------------0fd3f4216c00d645
+Content-Disposition: form-data; name="title"
+
+The Art of Community
+--------------------------0fd3f4216c00d645
+Content-Disposition: form-data; name="author"
+
+Jono Bacon
+--------------------------0fd3f4216c00d645--
+```
+
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+### ファイル送信する場合
+
+```sh
+curl --http1.0 -F title="The Art of Community" -F author="Jono Bacon" -F attachment-file=@test.txt http://localhost:18888
+```
+
+```http
+POST / HTTP/1.0
+Host: localhost:18888
+Connection: close
+Accept: */*
+Content-Length: 426
+Content-Type: multipart/form-data; boundary=------------------------045357e05821d90d
+User-Agent: curl/7.43.0
+
+--------------------------045357e05821d90d
+Content-Disposition: form-data; name="title"
+
+The Art of Community
+--------------------------045357e05821d90d
+Content-Disposition: form-data; name="author"
+
+Jono Bacon
+--------------------------045357e05821d90d
+Content-Disposition: form-data; name="attachment-file"; filename="test.txt"
+Content-Type: text/plain
+
+test text
+
+--------------------------045357e05821d90d--
+```
+
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+### ファイルだけ送信
+
+```sh
+curl --http1.0 -F attachment-file=@test.txt http://localhost:18888
+```
+
+```http
+POST / HTTP/1.0
+Host: localhost:18888
+Connection: close
+Accept: */*
+Content-Length: 207
+Content-Type: multipart/form-data; boundary=------------------------41ca5f3472ec97a1
+User-Agent: curl/7.43.0
+
+--------------------------41ca5f3472ec97a1
+Content-Disposition: form-data; name="attachment-file"; filename="test.txt"
+Content-Type: text/plain
+
+test text
+
+--------------------------41ca5f3472ec97a1--
+```
+
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+### ファイルの形式指定
+
+```sh
+curl --http1.0 -F "attachment-file=@test.txt;type=text/html" http://localhost:18888
+```
+
+```http
+POST / HTTP/1.0
+Host: localhost:18888
+Connection: close
+Accept: */*
+Content-Length: 206
+Content-Type: multipart/form-data; boundary=------------------------e06fd88082609e43
+User-Agent: curl/7.43.0
+
+--------------------------e06fd88082609e43
+Content-Disposition: form-data; name="attachment-file"; filename="test.txt"
+Content-Type: text/html
+
+test text
+
+--------------------------e06fd88082609e43--
+```
+
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+### ファイル名を指定
+
+```sh
+curl --http1.0 -F "attachment-file=@test.txt;filename=sample.txt" http://localhost:18888
+```
+
+```http
+POST / HTTP/1.0
+Host: localhost:18888
+Connection: close
+Accept: */*
+Content-Length: 209
+Content-Type: multipart/form-data; boundary=------------------------8cc56c8b57f730d4
+User-Agent: curl/7.43.0
+
+--------------------------8cc56c8b57f730d4
+Content-Disposition: form-data; name="attachment-file"; filename="sample.txt"
+Content-Type: text/plain
+
+test text
+
+--------------------------8cc56c8b57f730d4--
+```
+
 </script>
 
 <script layout type="text/x-markdown">
