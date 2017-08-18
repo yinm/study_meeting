@@ -540,12 +540,15 @@ Header: {
 </script>
 
 <script layout type="text/x-markdown">
-### 2.
+### 2.9 リファラー
 </script>
 
 <script layout type="text/x-markdown">
-###
-*
+### リファラーとは
+* ユーザーがどの経路からWebサイトに到達したかをサーバーが把握するために、クライアントがサーバーに送るヘッダー
+* ブックマークなどからアクセスした場合は、Refererヘッダを送信しないか、`Referer:: about:blank`をつける
+* GETパラメータににプライバシーに関する情報を含めてはならない (Refererによって外部サービスに送信されるため)
+* リファラーポリシーを設定することで、リファラーの送信に制限を加えることができる
 </script>
 
 <script layout type="text/x-markdown">
