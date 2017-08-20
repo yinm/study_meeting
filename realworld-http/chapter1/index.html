@@ -27,7 +27,7 @@
 
 <script layout type="text/x-markdown">
 ### HTTPとは
-* HTTPは、WebブラウザとWEbサーバーが通信するときの<br>
+* HTTPは、WebブラウザとWebサーバーが通信するときの<br>
 手順とフォーマットをルール化したもの
 * HTTPの仕様策定には様々な組織が関わっている<br>
 (e.g. IETF, W3C)
@@ -90,9 +90,9 @@ User-Agent: curl/7.43.0
 
 <script layout type="text/x-markdown">
 ### HTTP1.0でできるようになったこと
-* リクエスト時にメソッドが追加された (`GET`)
+* リクエスト時にメソッドが追加された (`GET`など)
 * リクエスト時にHTTPバージョンが追加された (`HTTP/1.0`)
-* ヘッダーが追加された (`Host`, `User-Agent`, `Accept`)
+* ヘッダーが追加された (`Host`, `User-Agent`, `Accept`など)
 * レスポンスの先頭にHTTPバージョンと、<br>
 3桁のステータスコードが含まれるようになった
 * リクエストと同じ形式のヘッダーが含まれるようになった
@@ -112,7 +112,7 @@ User-Agent: curl/7.43.0
 <script layout type="text/x-markdown">
 ### ヘッダーの特徴
 * 同じヘッダーを複数回送ることもできる<br>
-(その場合のヘッダーの扱い方は、サーバー側の実装に寄る)
+(その場合のヘッダーの扱い方は、サーバー側の実装に依存)
 </script>
 
 <script layout type="text/x-markdown">
