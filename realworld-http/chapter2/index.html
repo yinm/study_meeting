@@ -30,7 +30,7 @@
 </script>
 
 <script layout="code" invert type="text/x-markdown">
-### -dで送信した場合
+-dで送信した場合
 
 ```sh
 curl --http1.0 -d title="The Art of Community" -d author="Jono Bacon" http://localhost:18888
@@ -51,7 +51,7 @@ title=The Art of Community&author=Jono Bacon
 </script>
 
 <script layout="code" invert type="text/x-markdown">
-### --data-urlencodeで送信した場合
+--data-urlencodeで送信した場合
 
 ```sh
 curl --http1.0 --data-urlencode title="Head First PHP & MySQL" --data-urlencode author="Lynn Beighley, Michael Morrison" http://localhost:18888
@@ -86,7 +86,7 @@ title=Head%20First%20PHP%20%26%20MySQL&author=Lynn%20Beighley%2C%20Michael%20Mor
 </script>
 
 <script layout="code" invert type="text/x-markdown">
-### 前節の-dを、-Fに変更した場合
+前節の-dを、-Fに変更した場合
 
 ```sh
 curl --http1.0 -F title="The Art of Community" -F author="Jono Bacon" http://localhost:18888
@@ -115,10 +115,10 @@ Jono Bacon
 </script>
 
 <script layout="code" invert type="text/x-markdown">
-### ファイル送信する場合
+ファイル送信する場合
 
 ```sh
-curl --http1.0 -F title="The Art of Community" -F author="Jono Bacon" -F attachment-file=@test.txt http://localhost:18888
+curl --http1.0 -F title="The Art of Community" -F attachment-file=@test.txt http://localhost:18888
 ```
 
 ```http
@@ -126,31 +126,27 @@ POST / HTTP/1.0
 Host: localhost:18888
 Connection: close
 Accept: */*
-Content-Length: 426
-Content-Type: multipart/form-data; boundary=------------------------045357e05821d90d
+Content-Length: 321
+Content-Type: multipart/form-data; boundary=------------------------a426d5b0b6aa19d2
 User-Agent: curl/7.43.0
 
---------------------------045357e05821d90d
+--------------------------a426d5b0b6aa19d2
 Content-Disposition: form-data; name="title"
 
 The Art of Community
---------------------------045357e05821d90d
-Content-Disposition: form-data; name="author"
-
-Jono Bacon
---------------------------045357e05821d90d
+--------------------------a426d5b0b6aa19d2
 Content-Disposition: form-data; name="attachment-file"; filename="test.txt"
 Content-Type: text/plain
 
 test text
 
---------------------------045357e05821d90d--
+--------------------------a426d5b0b6aa19d2--
 ```
 
 </script>
 
 <script layout="code" invert type="text/x-markdown">
-### ファイルだけ送信
+ファイルだけ送信
 
 ```sh
 curl --http1.0 -F attachment-file=@test.txt http://localhost:18888
@@ -177,7 +173,7 @@ test text
 </script>
 
 <script layout="code" invert type="text/x-markdown">
-### ファイルの形式指定
+ファイルの形式指定
 
 ```sh
 curl --http1.0 -F "attachment-file=@test.txt;type=text/html" http://localhost:18888
@@ -204,7 +200,7 @@ test text
 </script>
 
 <script layout="code" invert type="text/x-markdown">
-### ファイル名を指定
+ファイル名を指定
 
 ```sh
 curl --http1.0 -F "attachment-file=@test.txt;filename=sample.txt" http://localhost:18888
@@ -299,7 +295,7 @@ test text
 </script>
 
 <script layout="code" invert type="text/x-markdown">
-### --compressedの使用例
+--compressedの使用例
 
 ```sh
 curl --http1.0 --compressed http://localhost:18888
@@ -321,7 +317,7 @@ User-Agent: curl/7.43.0
 </script>
 
 <script layout="code" invert type="text/x-markdown">
-### クッキー
+クッキー
 * セットする場合のレスポンスヘッダー
 
 ```http
@@ -372,11 +368,11 @@ Set-Cookie: lang=en-US; Path=/; Domain=example.com
 ### BASIC認証とDigest認証
 * BASIC認証は、ユーザー名とパスワードを、base64エンコーディングしてやりとりする
 * base64は可逆変換のため、ユーザー名などをサーバー側で復元して、正しいユーザーかを検証する
-* Digest認証は、BASIC認証より強固な方式 (ハッシュ関数を利用する)
+* Digest認証は、BASIC認証より強固な方式<br>(ハッシュ関数を利用する)
 </script>
 
 <script layout="code" invert type="text/x-markdown">
-### BASIC認証
+BASIC認証
 
 ```sh
 curl --http1.0 --basic -u user:pass http://localhost:18888
@@ -393,7 +389,7 @@ User-Agent: curl/7.43.0
 </script>
 
 <script layout="code" invert type="text/x-markdown">
-### Digest認証
+Digest認証
 
 ```sh
 curl --http1.0 --digest -u user:pass http://localhost:18888/digest
@@ -421,7 +417,7 @@ Header: {
 </script>
 
 <script layout type="text/x-markdown">
-### BASIC認証・Digest認証が使われなくなった理由
+### BASIC認証・Digest認証が使われない理由
 * 特定のフォルダ以下を見せないという使い方しかできない
 * リクエストごとにユーザー名とパスワードを送信・認証のための計算をする必要がある
 * ログイン画面をカスタマイズできない
@@ -430,15 +426,15 @@ Header: {
 </script>
 
 <script layout type="text/x-markdown">
-### フォーム + クッキーを使った、セッション管理の仕組み
-* 1. フォームでIDとパスワードを送信する (SSL/TLSの利用は必須)
-* 2. サーバー側で認証し、問題なければセッショントークンを発行
-* 3. サーバーは、DBにセッショントークンを保存・クッキーとしてクライアントに返す
-* 4. クライアントは2度目以降のアクセスでは、クッキーを再送することで、ログイン済みであることを伝える
+### フォーム + クッキーを使った、<br>セッション管理の仕組み
+* 1.フォームでIDとパスワードを送信する (SSL/TLSの利用は必須)
+* 2.サーバー側で認証し、問題なければセッショントークンを発行
+* 3.サーバーは、DBにセッショントークンを保存・クッキーとしてクライアントに返す
+* 4.クライアントは2度目以降のアクセスでは、クッキーを再送することで、ログイン済みであることを伝える
 </script>
 
 <script layout type="text/x-markdown">
-### 署名付きクッキーによるセッションデータの保存
+### 署名付きクッキーによる<br>セッションデータの保存
 * 通信が高速化したことで、クッキーを使ったデータ管理の仕組みもよく使われるようになっている
 * 改ざんされないように、クライアントに対して電子署名済みのデータを送る
 * 署名も確認もサーバー側で行うため、クライアントは鍵を持たない
@@ -474,7 +470,7 @@ Header: {
 
 <script layout type="text/x-markdown">
 ### キャッシュとは
-* 内容に変更がなければDLを抑制し、それによってパフォーマンスをあげる仕組みのこと
+* 内容に変更がなければコンテンツのDLを抑制し、それによってパフォーマンスをあげる仕組みのこと
 * GETとHEADメソッド以外は基本的にキャッシュされない
 </script>
 
@@ -546,7 +542,7 @@ Header: {
 <script layout type="text/x-markdown">
 ### リファラーとは
 * ユーザーがどの経路からWebサイトに到達したかをサーバーが把握するために、クライアントがサーバーに送るヘッダー
-* ブックマークなどからアクセスした場合は、Refererヘッダを送信しないか、`Referer:: about:blank`をつける
+* ブックマークなどからアクセスした場合は、Refererヘッダを送信しないか、`Referer: about:blank`をつける
 * GETパラメータににプライバシーに関する情報を含めてはならない (Refererによって外部サービスに送信されるため)
 * リファラーポリシーを設定することで、リファラーの送信に制限を加えることができる
 </script>
@@ -559,12 +555,12 @@ Header: {
 ### robots.txt
 * サーバーのコンテンツ提供者が、クローラーに対してアクセスの許可・不許可を伝えるためのプロトコルが存在する
 * robots.txtは、そのルールを記述するファイルの名前
-* より細かい指定を、HTMLのメタタグにも記述できる (ただし、robots.txtの方が優先される)
+* より細かい指定を、HTMLのメタタグにも記述できる <br>(ただし、robots.txtの方が優先される)
 </script>
 
 <script layout type="text/x-markdown">
 ### サイトマップ
-* ウェブサイトに含まれるペーチ一覧と、そのメタデータを提供するXMLファイル
+* ウェブサイトに含まれるページ一覧と、そのメタデータを提供するXMLファイル
 * クローラーの実装によっては、ページが発見できない場合でもサイトマップによって補完できる
 </script>
 
