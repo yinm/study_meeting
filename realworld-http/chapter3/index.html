@@ -40,12 +40,23 @@
 </script>
 
 <script layout type="text/x-markdown">
-###
+### 3.3 本章で取り上げるレシピ
 </script>
 
 <script layout type="text/x-markdown">
-###
-*
+|レシピ |メソッド |Go言語API
+|:-- |:-- |:--
+|GETによる情報取得 |GET |http.Get
+|クエリー付き情報取得 |GET |http.Get
+|HEADによるヘッダー取得 |HEAD |http.Head
+|x-www-form-urlencodeでフォームの送信 |POST |http.PostForm
+|POSTでファイル送信 |POST |http.Post
+|multipart/form-dataでファイルの送信 |POST |http.PostForm
+|クッキーの送受信 |GET/HEAD/POST |http.Client
+|プロキシ |GET/HEAD/POST |http.Client
+|ファイルシステムへのアクセス |GET/HEAD/POST |http.Client
+|自由なメソッドの送信 |なんでも |http.Request/http.Client
+|ヘッダーの送信 |なんでも |http.Request/http.Client
 </script>
 
 <script layout type="text/x-markdown">
