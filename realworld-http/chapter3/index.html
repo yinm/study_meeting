@@ -64,8 +64,29 @@
 </script>
 
 <script layout type="text/x-markdown">
-* `curl http://localhost:18888` と同等の実装
-* [sample](https://github.com/yinm/realworld-http/tree/master/chapter3/01.simpleget)
+* [以降のcode sample](https://github.com/yinm/realworld-http/tree/master/chapter3/)
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+
+```http
+# curl http://localhost:18888 を実行
+
+GET / HTTP/1.1
+Host: localhost:18888
+Accept: */*
+User-Agent: curl/7.43.0
+```
+
+```http
+# go run chapter3/01.simpleget/main.go を実行
+
+GET / HTTP/1.1
+Host: localhost:18888
+Accept-Encoding: gzip
+User-Agent: Go-http-client/1.1
+```
+
 </script>
 
 <script layout type="text/x-markdown">
