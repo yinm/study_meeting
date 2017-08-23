@@ -70,21 +70,29 @@
 <script layout="code" invert type="text/x-markdown">
 
 ```http
-# curl http://localhost:18888 を実行
+# `curl http://localhost:18888` を実行
 
+# request
 GET / HTTP/1.1
 Host: localhost:18888
 Accept: */*
 User-Agent: curl/7.43.0
+
+# response
+<html><body>hello</body></html>
 ```
 
 ```http
-# go run chapter3/01.simpleget/main.go を実行
+# `go run chapter3/01.simpleget/main.go` を実行
 
+# request
 GET / HTTP/1.1
 Host: localhost:18888
 Accept-Encoding: gzip
 User-Agent: Go-http-client/1.1
+
+# response
+2017/08/24 08:21:28 <html><body>hello</body></html>
 ```
 
 </script>
@@ -105,21 +113,29 @@ User-Agent: Go-http-client/1.1
 <script layout="code" invert type="text/x-markdown">
 
 ```http
-# curl -G --data-urlencode "query=hello world" http://localhost:18888 を実行
+# `curl -G --data-urlencode "query=hello world" http://localhost:18888` を実行
 
+# request
 GET /?query=hello%20world HTTP/1.1
 Host: localhost:18888
 Accept: */*
 User-Agent: curl/7.43.0
+
+# response
+<html><body>hello</body></html>
 ```
 
 ```http
-# go run chapter3/02.queryget/main.go を実行
+# `go run chapter3/02.queryget/main.go` を実行
 
+# request
 GET /?query=hello+world HTTP/1.1
 Host: localhost:18888
 Accept-Encoding: gzip
 User-Agent: Go-http-client/1.1
+
+# response
+2017/08/24 08:24:12 <html><body>hello</body></html>
 ```
 
 </script>
@@ -131,8 +147,15 @@ User-Agent: Go-http-client/1.1
 <script layout="code" invert type="text/x-markdown">
 
 ```http
-# curl --head http://localhost:18888 を実行
+# `curl --head http://localhost:18888` を実行
 
+# request
+HEAD / HTTP/1.1
+Host: localhost:18888
+Accept: */*
+User-Agent: curl/7.43.0
+
+# response
 HTTP/1.1 200 OK
 Date: Wed, 23 Aug 2017 23:20:25 GMT
 Content-Length: 32
@@ -140,8 +163,14 @@ Content-Type: text/html; charset=utf-8
 ```
 
 ```http
-# go run chapter3/03.head/main.go を実行
+# `go run chapter3/03.head/main.go` を実行
 
+# request
+HEAD / HTTP/1.1
+Host: localhost:18888
+User-Agent: Go-http-client/1.1
+
+# response
 2017/08/24 08:16:24 Status: 200 OK
 2017/08/24 08:16:24 Headers: map[Date:[Wed, 23 Aug 2017 23:16:24 GMT] Content-Length:[32] Content-Type:[text/html; charset=utf-8]]
 ```
