@@ -125,12 +125,27 @@ User-Agent: Go-http-client/1.1
 </script>
 
 <script layout type="text/x-markdown">
-###
+### 3.6 HEADメソッドでヘッダーを取得
 </script>
 
-<script layout type="text/x-markdown">
-###
-*
+<script layout="code" invert type="text/x-markdown">
+
+```http
+# curl --head http://localhost:18888 を実行
+
+HTTP/1.1 200 OK
+Date: Wed, 23 Aug 2017 23:20:25 GMT
+Content-Length: 32
+Content-Type: text/html; charset=utf-8
+```
+
+```http
+# go run chapter3/03.head/main.go を実行
+
+2017/08/24 08:16:24 Status: 200 OK
+2017/08/24 08:16:24 Headers: map[Date:[Wed, 23 Aug 2017 23:16:24 GMT] Content-Length:[32] Content-Type:[text/html; charset=utf-8]]
+```
+
 </script>
 
 <script layout type="text/x-markdown">
