@@ -219,25 +219,97 @@ test=value
 </script>
 
 <script layout type="text/x-markdown">
-###
+### 3.8 POSTメソッドで任意のボディを送信
 </script>
 
 <script layout="code" invert type="text/x-markdown">
 
 ```http
-# `` を実行
+# `curl -T test.txt -H "Content-Type: text/plain" http://localhost:18888` を実行
 
 # request
+PUT /test.txt HTTP/1.1
+Host: localhost:18888
+Accept: */*
+Content-Length: 21
+Content-Type: text/plain
+Expect: 100-continue
+User-Agent: curl/7.43.0
+
+test desuyo
+わーい
 
 # response
+<html><body>hello</body></html>
 ```
 
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+
 ```http
-# `` を実行
+# `go run main.go` を実行 (chapter3/05.post-any-body/ にcd後)
 
 # request
+POST / HTTP/1.1
+Host: localhost:18888
+Transfer-Encoding: chunked
+Accept-Encoding: gzip
+Content-Type: text/plain
+User-Agent: Go-http-client/1.1
+
+15
+test desuyo
+わーい
+0
 
 # response
+2017/08/25 06:13:55 Status: 200 OK
+```
+</script>
+
+<script layout type="text/x-markdown">
+### テキストをPOSTする場合
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+
+```http
+# `curl --data "テキスト" -H "Content-Type: text/plain" http://localhost:18888` を実行
+
+# request
+POST / HTTP/1.1
+Host: localhost:18888
+Accept: */*
+Content-Length: 12
+Content-Type: text/plain
+User-Agent: curl/7.43.0
+
+テキスト
+
+# response
+<html><body>hello</body></html>
+```
+
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+
+```http
+# `go run chapter3/06.post-any-body-text/main.go` を実行
+
+# request
+POST / HTTP/1.1
+Host: localhost:18888
+Accept-Encoding: gzip
+Content-Length: 12
+Content-Type: text/plain
+User-Agent: Go-http-client/1.1
+
+テキスト
+
+# response
+2017/08/25 06:25:54 Status: 200 OK
 ```
 </script>
 
