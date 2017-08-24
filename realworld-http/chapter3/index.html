@@ -178,6 +178,116 @@ User-Agent: Go-http-client/1.1
 </script>
 
 <script layout type="text/x-markdown">
+### 3.7 x-www-form-urlencoded形式のPOSTメソッドの送信
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+
+```http
+# `curl -d test=value http://localhost:18888` を実行
+
+# request
+POST / HTTP/1.1
+Host: localhost:18888
+Accept: */*
+Content-Length: 10
+Content-Type: application/x-www-form-urlencoded
+User-Agent: curl/7.43.0
+
+test=value
+
+# response
+<html><body>hello</body></html>
+```
+
+```http
+# `go run chapter3/04.x-www-form-urlencoded/main.go` を実行
+
+# request
+POST / HTTP/1.1
+Host: localhost:18888
+Accept-Encoding: gzip
+Content-Length: 10
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Go-http-client/1.1
+
+test=value
+
+# response
+2017/08/25 05:56:25 Status: 200 OK
+```
+</script>
+
+<script layout type="text/x-markdown">
+###
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+
+```http
+# `` を実行
+
+# request
+
+# response
+```
+
+```http
+# `` を実行
+
+# request
+
+# response
+```
+</script>
+
+<script layout type="text/x-markdown">
+###
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+
+```http
+# `` を実行
+
+# request
+
+# response
+```
+
+```http
+# `` を実行
+
+# request
+
+# response
+```
+</script>
+
+<script layout type="text/x-markdown">
+###
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+
+```http
+# `` を実行
+
+# request
+
+# response
+```
+
+```http
+# `` を実行
+
+# request
+
+# response
+```
+</script>
+
+<script layout type="text/x-markdown">
 ###
 </script>
 
@@ -222,42 +332,24 @@ User-Agent: Go-http-client/1.1
 *
 </script>
 
-<script layout type="text/x-markdown">
-###
-</script>
+<script layout="code" invert type="text/x-markdown">
 
-<script layout type="text/x-markdown">
-###
-*
-</script>
+```http
+# `` を実行
 
-<script layout type="text/x-markdown">
-###
-</script>
+# request
 
-<script layout type="text/x-markdown">
-###
-*
-</script>
+# response
+```
 
-<script layout type="text/x-markdown">
-###
-</script>
+```http
+# `` を実行
 
-<script layout type="text/x-markdown">
-###
-*
-</script>
+# request
 
-<script layout type="text/x-markdown">
-###
+# response
+```
 </script>
-
-<script layout type="text/x-markdown">
-###
-*
-</script>
-
 
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js"></script>
 <script src="./dist/talkie.min.js"></script>
