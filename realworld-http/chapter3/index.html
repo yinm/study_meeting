@@ -413,25 +413,60 @@ JFIFHHLExifMMi&ݠ8Photoshop 3.08BIM8BIM%ُB"
 </script>
 
 <script layout type="text/x-markdown">
-###
+### 3.10 クッキーの送信
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+`go run chapter2/cookie.go` のサーバーで実行
+
+```http
+# `curl -b "VISIT=TRUE" http://localhost:18888` を実行
+
+# request
+GET / HTTP/1.1
+Host: localhost:18888
+Accept: */*
+Cookie: VISIT=TRUE
+User-Agent: curl/7.43.0
+
+# response
+<html><body>2回目以降</body></html>
+```
 </script>
 
 <script layout="code" invert type="text/x-markdown">
 
 ```http
-# `` を実行
+# `go run chapter3/09.send-cookie/main.go` を実行
 
 # request
+GET /cookie HTTP/1.1
+Host: localhost:18888
+Accept-Encoding: gzip
+User-Agent: Go-http-client/1.1
+
+GET /cookie HTTP/1.1
+Host: localhost:18888
+Accept-Encoding: gzip
+Cookie: VISIT=TRUE
+User-Agent: Go-http-client/1.1
 
 # response
-```
+2017/08/28 08:00:07 HTTP/1.1 200 OK
+Content-Length: 36
+Content-Type: text/html; charset=utf-8
+Date: Sun, 27 Aug 2017 23:00:07 GMT
+Set-Cookie: VISIT=TRUE
 
-```http
-# `` を実行
+<html><body>初訪問</body></html>
 
-# request
+2017/08/28 08:00:07 HTTP/1.1 200 OK
+Content-Length: 40
+Content-Type: text/html; charset=utf-8
+Date: Sun, 27 Aug 2017 23:00:07 GMT
+Set-Cookie: VISIT=TRUE
 
-# response
+<html><body>2回目以降</body></html>
 ```
 </script>
 
