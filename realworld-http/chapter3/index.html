@@ -314,26 +314,102 @@ User-Agent: Go-http-client/1.1
 </script>
 
 <script layout type="text/x-markdown">
-###
+### 3.9 multipart/form-data形式でファイルの送信
 </script>
 
 <script layout="code" invert type="text/x-markdown">
 
 ```http
-# `` を実行
+# `curl -F "name=Michael Jackson" -F "thumbnail=@photo.jpg" http://localhost:18888` を実行 (chapter3/07.multipart-form-data/ にcd後)
 
 # request
+POST / HTTP/1.1
+Host: localhost:18888
+Accept: */*
+Content-Length: 72558
+Content-Type: multipart/form-data; boundary=------------------------651235107d46af1c
+Expect: 100-continue
+User-Agent: curl/7.43.0
+
+--------------------------651235107d46af1c
+Content-Disposition: form-data; name="name"
+
+Michael Jackson
+--------------------------651235107d46af1c
+Content-Disposition: form-data; name="thumbnail"; filename="photo.jpg"
+Content-Type: image/jpeg
+
+JFIFHHLExifMMi&ݠ8Photoshop 3.08BIM8BIM%ُB"
+~ 略 ~
 
 # response
+<html><body>hello</body></html>
 ```
+
+</script>
+
+<script layout="code" invert type="text/x-markdown">
 
 ```http
-# `` を実行
+# `go run main.go` を実行 (chapter3/07.multipart-form-data/ にcd後)
 
 # request
+POST / HTTP/1.1
+Host: localhost:18888
+Accept-Encoding: gzip
+Content-Length: 72632
+Content-Type: multipart/form-data; boundary=038499792ef952427d657032f58c98f570e3f2f890bc0d4a5c49d335b56e
+User-Agent: Go-http-client/1.1
+
+--038499792ef952427d657032f58c98f570e3f2f890bc0d4a5c49d335b56e
+Content-Disposition: form-data; name="name"
+
+Michael Jackson
+--038499792ef952427d657032f58c98f570e3f2f890bc0d4a5c49d335b56e
+Content-Disposition: form-data; name="thumbnail"; filename="photo.jpg"
+Content-Type: application/octet-stream
+
+JFIFHHLExifMMi&ݠ8Photoshop 3.08BIM8BIM%ُB"
+~ 略 ~
 
 # response
+2017/08/27 18:55:31 Status: 200 OK
 ```
+
+</script>
+
+<script layout type="text/x-markdown">
+### 3.9.1 送信するファイルに任意のMIMEタイプを設定する
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+
+```http
+# `go run main.go` を実行 (chapter3/08.set-mime-type/ にcd後)
+
+# request
+POST / HTTP/1.1
+Host: localhost:18888
+Accept-Encoding: gzip
+Content-Length: 72618
+Content-Type: multipart/form-data; boundary=87d86e1f3f107ee9171262d7a9bd4c409953ed0a7c6d2c4627e2bf51ba9e
+User-Agent: Go-http-client/1.1
+
+--87d86e1f3f107ee9171262d7a9bd4c409953ed0a7c6d2c4627e2bf51ba9e
+Content-Disposition: form-data; name="name"
+
+Michael Jackson
+--87d86e1f3f107ee9171262d7a9bd4c409953ed0a7c6d2c4627e2bf51ba9e
+Content-Disposition: form-data; name="thumbnail"; filename="photo.jpg"
+Content-Type: image/jpeg
+
+JFIFHHLExifMMi&ݠ8Photoshop 3.08BIM8BIM%ُB"
+~ 略 ~
+
+# response
+2017/08/27 19:13:30 Status: 200 OK
+```
+
 </script>
 
 <script layout type="text/x-markdown">
