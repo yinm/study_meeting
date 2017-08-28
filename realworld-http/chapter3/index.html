@@ -471,7 +471,43 @@ Set-Cookie: VISIT=TRUE
 </script>
 
 <script layout type="text/x-markdown">
-###
+### 3.11 プロキシの利用
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+
+```http
+# `curl -x http://localhost:18888 http://github.com` を実行
+
+# request
+GET http://github.com/ HTTP/1.1
+Accept: */*
+Proxy-Connection: Keep-Alive
+User-Agent: curl/7.43.0
+
+# response
+<html><body>hello</body></html>
+```
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+
+```http
+# `go run chapter3/10.proxy/main.go` を実行
+
+# request
+GET http://github.com/ HTTP/1.1
+Accept-Encoding: gzip
+User-Agent: Go-http-client/1.1
+
+# response
+2017/08/29 08:00:06 HTTP/1.1 200 OK
+Content-Length: 32
+Content-Type: text/html; charset=utf-8
+Date: Mon, 28 Aug 2017 23:00:06 GMT
+
+<html><body>hello</body></html>
+```
 </script>
 
 <script layout type="text/x-markdown">
