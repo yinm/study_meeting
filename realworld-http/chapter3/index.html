@@ -511,35 +511,111 @@ Date: Mon, 28 Aug 2017 23:00:06 GMT
 </script>
 
 <script layout type="text/x-markdown">
-###
-*
+### 3.12 ファイルシステムへのアクセス
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+
+```http
+# `curl file:/path/to/chapter3/11.access-file-system/main.go` を実行
+
+# response
+package main
+
+import (
+        "log"
+        "net/http"
+        "net/http/httputil"
+)
+
+func main() {
+        transport := &http.Transport{}
+        transport.RegisterProtocol("file", http.NewFileTransport(http.Dir(".")))
+        client := http.Client{
+                Transport: transport,
+        }
+
+        resp, err := client.Get("file://./main.go")
+        if err != nil {
+                panic(err)
+        }
+
+        dump, err := httputil.DumpResponse(resp, true)
+        if err != nil {
+                panic(err)
+        }
+        log.Println(string(dump))
+}
+```
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+
+```http
+# `go run main.go` を実行 (chapter3/11.access-file-system/ にcd後)
+
+# request
+2017/08/31 07:59:45 HTTP/1.0 200 OK
+Connection: close
+Accept-Ranges: bytes
+Content-Type: text/plain; charset=utf-8
+Last-Modified: Wed, 30 Aug 2017 22:58:55 GMT
+
+# response
+~ curlと同じ ~
+```
 </script>
 
 <script layout type="text/x-markdown">
 ###
 </script>
 
-<script layout type="text/x-markdown">
-###
-*
+<script layout="code" invert type="text/x-markdown">
+
+```http
+# `` を実行
+
+# request
+
+# response
+```
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+
+```http
+# `` を実行
+
+# request
+
+# response
+```
 </script>
 
 <script layout type="text/x-markdown">
 ###
 </script>
 
-<script layout type="text/x-markdown">
-###
-*
+<script layout="code" invert type="text/x-markdown">
+
+```http
+# `` を実行
+
+# request
+
+# response
+```
 </script>
 
-<script layout type="text/x-markdown">
-###
-</script>
+<script layout="code" invert type="text/x-markdown">
 
-<script layout type="text/x-markdown">
-###
-*
+```http
+# `` を実行
+
+# request
+
+# response
+```
 </script>
 
 <script layout type="text/x-markdown">
