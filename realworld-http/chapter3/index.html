@@ -608,29 +608,37 @@ Date: Wed, 30 Aug 2017 23:12:22 GMT
 </script>
 
 <script layout type="text/x-markdown">
-###
+### 3.14 ヘッダーの送信
 </script>
 
 <script layout="code" invert type="text/x-markdown">
+### `-H ヘッダー` に対応するGoの記述
 
-```http
-# `` を実行
+```go
+request.Header.Add("Header key", "Header value")
 
-# request
-
-# response
+// e.g. Content-Type: image/jpeg の場合
+request.Header.Add("Content-Type", "image/jpeg")
 ```
+
 </script>
 
 <script layout="code" invert type="text/x-markdown">
+### `--basic -u ユーザ名:パスワード` に対応するGoの記述
 
-```http
-# `` を実行
-
-# request
-
-# response
+```go
+request.SetBasicAuth(”ユーザ名", "パスワード")
 ```
+
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+### `-c ファイル` に対応するGoの記述
+
+```go
+request.AddCookie(&http.Cookie{Name: "test", Value: "value"})
+```
+
 </script>
 
 <script layout type="text/x-markdown">
