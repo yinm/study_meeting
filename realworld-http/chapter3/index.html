@@ -14,7 +14,8 @@
 </script>
 
 <script layout type="text/x-markdown">
-* Go言語を使って、HTTPの基本となる4つの要素を自由に送受信するコードの書き方を学ぶ
+* Go言語を使って、<br>
+HTTPの基本となる4つの要素を自由に送受信する<br>コードの書き方を学ぶ
 </script>
 
 <script layout type="text/x-markdown">
@@ -60,7 +61,7 @@
 </script>
 
 <script layout type="text/x-markdown">
-### 3.4 GETメソッドの送信と、ボディ、ステータスコード、ヘッダーの受信
+### 3.4<br> GETメソッドの送信と、<br>ボディ、ステータスコード、ヘッダーの受信
 </script>
 
 <script layout type="text/x-markdown">
@@ -102,8 +103,10 @@ User-Agent: Go-http-client/1.1
 </script>
 
 <script layout type="text/x-markdown">
-* Go言語では、シーケンシャルなデータの入出力を、`io.Reader`, `io.Writer`インターフェースとして抽象化している
-* 詳しい説明は、[こちらのサイトの第2回 ~ 第4回で解説](http://ascii.jp/elem/000/001/235/1235262/)
+* Go言語では、シーケンシャルなデータの入出力を、<br>
+`io.Reader`, `io.Writer`インターフェースとして抽象化している
+* 詳しい説明は、<br>
+[Goならわかるシステムプログラミング(第2回 ~ 第4回)で解説](http://ascii.jp/elem/000/001/235/1235262/)
 </script>
 
 <script layout type="text/x-markdown">
@@ -178,7 +181,7 @@ User-Agent: Go-http-client/1.1
 </script>
 
 <script layout type="text/x-markdown">
-### 3.7 x-www-form-urlencoded形式のPOSTメソッドの送信
+### 3.7<br> x-www-form-urlencoded形式の<br>POSTメソッドの送信
 </script>
 
 <script layout="code" invert type="text/x-markdown">
@@ -379,7 +382,7 @@ JFIFHHLExifMMi&ݠ8Photoshop 3.08BIM8BIM%ُB"
 </script>
 
 <script layout type="text/x-markdown">
-### 3.9.1 送信するファイルに任意のMIMEタイプを設定する
+### 3.9.1<br> 送信するファイルに<br>任意のMIMEタイプを設定する
 </script>
 
 <script layout="code" invert type="text/x-markdown">
@@ -624,7 +627,7 @@ request.Header.Add("Content-Type", "image/jpeg")
 </script>
 
 <script layout="code" invert type="text/x-markdown">
-### `--basic -u ユーザ名:パスワード` に対応するGoの記述
+### `--basic -u ユーザ名:パスワード`<br> に対応するGoの記述
 
 ```go
 request.SetBasicAuth(”ユーザ名", "パスワード")
