@@ -56,11 +56,24 @@
 </script>
 
 <script layout type="text/x-markdown">
-###
+### 4.1.2 パイプライニング
 </script>
 
 <script layout type="text/x-markdown">
-*
+* リクエストが完了する前に次のリクエストを送信し、ネットワークの稼働率を上げる機能
+* Keep-Aliveの利用を前提としている
+* 仕様上は、サーバーはリクエストが来た順でレスポンスを返す
+* しかし、パフォーマンスがあまり上がらないという話もある
+* ・HOL Blockingが発生する
+* ・サーバーやプロキシの影響でうまく動作しない
+* -> デフォルトで使っているブラウザはあまりない
+</script>
+
+<script layout type="text/x-markdown">
+* HTTP/2で、ストリームという新しい仕組みとして生まれ変わった
+* ・HTTP/2では、HTTPS通信が前提になりつつあるので、プロキシの影響を受けない
+* ・HTTP/2では、リクエスト順にレスポンスを返す必要がなくなった
+* -> 詳細は、7章で解説
 </script>
 
 <script layout type="text/x-markdown">
