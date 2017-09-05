@@ -77,11 +77,17 @@
 </script>
 
 <script layout type="text/x-markdown">
-###
+### 4.2 TLS (トランスポート・レイヤー・セキュリティ)
 </script>
 
 <script layout type="text/x-markdown">
-*
+* 通信経路を暗号化する技術 (SSL3.0を元に作成された)
+* TLSの暗号化自体は、様々な形式のデータを双方向に流すことができる (HTTPに依存していない)
+* HTTP/1.1以前とは前方互換性のない仕組みを導入するインフラになっている
+* e.g.) WebSocket, HTTP/2
+* SSLは、RFCで非推奨になっている (= TLSが主流である)
+* ただし、TLSに関連するものの名称に、「SSL」の文字が入っていることがある
+* e.g.) OpenSSL, EV SSL
 </script>
 
 <script layout type="text/x-markdown">
