@@ -39,11 +39,20 @@
 </script>
 
 <script layout type="text/x-markdown">
-###
+### 4.1.1 Keep-Alive
 </script>
 
 <script layout type="text/x-markdown">
-*
+* TCP/IPの通信を効率化する仕組み <br>(連続したリクエストの時に、接続を再利用する)
+* 利用するには、<br>`Connection: Keep-Alive` をヘッダーをリクエストに付与する
+* TLS通信の場合に、特にメリットがある (RTTを減らせるため)
+</script>
+
+<script layout type="text/x-markdown">
+* Keep-Aliveの終了方法には、2種類ある
+* ・`Connection: Close` <br>ヘッダーを追加する (リクエスト or レスポンス)
+* ・タイムアウトする <br>(クライアント or サーバーの持続時間の短い方を採用)
+* 通信が継続している間は、OSのリソースを消費しているため、短い時間で接続を切るのにも意味がある
 </script>
 
 <script layout type="text/x-markdown">
