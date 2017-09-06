@@ -91,11 +91,33 @@
 </script>
 
 <script layout type="text/x-markdown">
-###
+### 4.2.1 ハッシュ関数
 </script>
 
 <script layout type="text/x-markdown">
-*
+* 入力データから、ルールに従ってデータを集約することで、短いデータ(ハッシュ値)を作り出す
+* ハッシュの意味は、「細切れ」
+</script>
+
+<script layout type="text/x-markdown">
+#### 暗号化通信を行う上で便利な、4つの数学的特性がある
+* ・同じアルゴリズムと同じ入力データなら、結果として作られるハッシュ値は同じ
+* ・アルゴリズムが同じなら、ハッシュ値は同じ長さになる
+* ・弱衝突耐性<br>(ハッシュ値から元のデータを類推するのが難しい)
+* ・強衝突耐性<br>(同一ハッシュ値を持つ入力データを見つけるのが難しい)
+</script>
+
+<script layout type="text/x-markdown">
+#### ハッシュ関数の利用用途
+* ・チェックサム, フィンガープリント
+* ・Git log
+</script>
+
+<script layout type="text/x-markdown">
+#### セキュリティの観点
+* ハッシュ値の衝突の起きにくさ = アルゴリズムの良さ
+* 衝突が起こせるため、セキュリティ用途では非推奨になってるハッシュ関数もある
+* e.g.) MD5, SHA-1
 </script>
 
 <script layout type="text/x-markdown">
