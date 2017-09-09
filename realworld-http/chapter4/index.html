@@ -132,11 +132,15 @@
 </script>
 
 <script layout type="text/x-markdown">
-###
+### 4.2.3 鍵交換
 </script>
 
 <script layout type="text/x-markdown">
-*
+* クライアントとサーバー間で鍵を交換する
+* 方法としては、前述の暗号化を使うこともあるし、専用のアルゴリズムを使うこともある
+* 専用のアルゴリズムには、`DH(Diffie Hellman)鍵交換`がある
+* Logjam攻撃を受けないように、DH鍵交換で使用するbit数は大きくする
+* ・512bit以下はまずい [Logjam Attackについてまとめてみた - piyolog](http://d.hatena.ne.jp/Kango/20150521/1432219012)
 </script>
 
 <script layout type="text/x-markdown">
