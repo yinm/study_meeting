@@ -161,10 +161,37 @@
 </script>
 
 <script layout type="text/x-markdown">
-###
+### 4.2.5 TLSの通信手順
 </script>
 
 <script layout type="text/x-markdown">
+#### TLS通信の手順を分類 (3つ)
+* ハンドシェイクプロトコル (通信を確立するステップ)
+* レコードプロトコル (通信時のステップ)
+* SessionTicketを使った、再接続時の高速なハンドシェイク
+</script>
+
+<script layout type="text/x-markdown">
+#### 4.2.5.1 サーバーの信頼性を確認
+* サーバーの信頼性を保証する仕組みを、公開鍵基盤 (Public Key Infrastructure)と呼ばれる
+* 証明書は`X.509`と言うフォーマットで記述されたファイル
+* 証明書の発行者は、認証局(CA: Certificate Authority)と呼ばれる
+* 証明書についている発行者のデジタル署名と、発行者の証明書を取得することで署名を検証できる
+* -> この検証をルート認証局まで繰り返すことで、信頼できるサーバーかを確認する
+</script>
+
+<script layout type="text/x-markdown">
+### 4.2.5.2 鍵交換と通信の開始
+*
+</script>
+
+<script layout type="text/x-markdown">
+### 4.2.5.3 通信
+*
+</script>
+
+<script layout type="text/x-markdown">
+#### 4.2.5.4 通信の高速化
 *
 </script>
 
