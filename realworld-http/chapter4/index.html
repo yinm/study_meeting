@@ -144,11 +144,20 @@
 </script>
 
 <script layout type="text/x-markdown">
-###
+### 4.2.4 共通鍵方式と公開鍵方式を使い分ける理由
 </script>
 
 <script layout type="text/x-markdown">
-*
+#### 鍵ごとの特性
+* 共通鍵: 公開鍵に比べて安全性が下がるが、暗号化・復号化の計算量が少なくて済む
+* 公開鍵: 安全性が高いが、暗号化・復号化の計算量が共通鍵に比べて大きすぎる
+</script>
+
+<script layout type="text/x-markdown">
+#### TLS通信の行われ方
+* 1. 通信毎に一度だけ使われる共通鍵を作成する
+* 2. 公開鍵方式を使って、1.で作成した共通鍵を渡す
+* 3. 以降の通信は、共通鍵方式で行う
 </script>
 
 <script layout type="text/x-markdown">
