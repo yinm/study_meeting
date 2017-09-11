@@ -182,7 +182,10 @@
 
 <script layout type="text/x-markdown">
 ### 4.2.5.2 鍵交換と通信の開始
-*
+* 公開鍵暗号を使う方法と鍵交換専用アルゴリズムを使う方法がある
+* どちらを使うかは、Client Hello, Server Helloのネゴシエーションで決まる
+* 今後主流になるのは、鍵交換専用アルゴリズム(Forward Secrecyが優れているため)
+* ・実際に、現在策定中のTLS1.3では、公開鍵暗号の鍵交換は廃止される
 </script>
 
 <script layout type="text/x-markdown">
