@@ -190,7 +190,11 @@
 
 <script layout type="text/x-markdown">
 ### 4.2.5.3 通信
-*
+* 機密性と完全性(改ざんを防ぐ)ために、暗号化を行う
+* 共通鍵暗号方式のアルゴリズムを使う
+* TLS1.2以前は、通信内容のハッシュ値を共通鍵暗号で暗号化する方式だが、攻撃方法が見つかっている
+* TLS1.3以降は、認証付き暗号(AEAD)に限定される (TLS1.2以前の攻撃方法への対策)
+* [理解してるつもりの SSL/TLS でも、もっと理解したら面白かった話 - けんごのお屋敷](http://tkengo.github.io/blog/2015/12/01/https-details/)
 </script>
 
 <script layout type="text/x-markdown">
