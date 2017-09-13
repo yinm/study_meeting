@@ -200,7 +200,27 @@
 
 <script layout type="text/x-markdown">
 #### 4.2.5.4 通信の高速化
-*
+* 電気信号がサーバーに届いてレスポンスが帰ってくるまでの時間はとても長いので、高速化が図られている
+</script>
+
+<script layout type="text/x-markdown">
+* `Keep-Alive`
+* -> セッションを維持できるため、最初のリクエスト以降の通信では、RTTが1になる
+* `TLS1.2のSession resumption`
+* -> 最初のハンドシェイクで以前使ったセッションIDを送信することで、鍵交換を省略して1RTTでセッション再開できる
+* `TLS1.3の事前共有鍵 (PSK)`
+* -> 0RTTで最初のリクエストから情報送信できるようになる
+</script>
+
+<script layout type="text/x-markdown">
+* `TLS1.3のClient Helloでクライアント側から鍵の交換ができる`
+* -> 鍵交換と秘密鍵暗号が分離されたため、暗号スイートで秘密鍵暗号をネゴシエーションした結果を待つことがなくなったため
+* `QUIC`
+* -> TLSの下のレイヤーをTCPからUDPに置き換えて、再送処理をアプリケーションレイヤーで行う通信方式
+* -> トランスポート層での疎通が、0RTTにできる (UDPはハンドシェイクを行わないため)
+* -> RFC化の提案がされているが、標準化にはまだ時間が掛かる
+* `CPUのアクセラレーション`
+* -> AESを高速化する命令が追加された (by Intel)
 </script>
 
 <script layout type="text/x-markdown">
