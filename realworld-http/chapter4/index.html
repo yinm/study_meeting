@@ -234,11 +234,14 @@
 </script>
 
 <script layout type="text/x-markdown">
-###
+### 4.2.7 暗号スイート (Cipher Suite)
 </script>
 
 <script layout type="text/x-markdown">
-*
+* 前提として、TLSの骨格は、「サーバーを認証し、鍵を交換して通信を行う」
+* 暗号スイートとは、TLSの骨格を実現する際に使用するアルゴリズムの組み合わせのこと
+* `openssl ciphers -v` で確認できる
+* 暗号スイートの中には、後方互換性のために入っているだけで、非推奨のものも多くある
 </script>
 
 <script layout type="text/x-markdown">
