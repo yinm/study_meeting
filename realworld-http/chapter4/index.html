@@ -346,11 +346,14 @@ $ curl -X OPTIONS -v https://pepabo.com/
 </script>
 
 <script layout type="text/x-markdown">
-###
+### 4.4.3 CONNECT
 </script>
 
 <script layout type="text/x-markdown">
-*
+* HTTPのプロトコル上に、他のプロトコルのパケットを流せるようにする
+* プロキシサーバー経由で、ターゲットのサーバーに接続することを目的にしている
+* プロキシはCONNECTメソッドからのどんなプロトコルも通すのではなく、https以外の接続を拒否するの設定などにするのが一般的
+* ・マルウェアがメールを送信する通信経路として使われる危険性があるため
 </script>
 
 <script layout type="text/x-markdown">
