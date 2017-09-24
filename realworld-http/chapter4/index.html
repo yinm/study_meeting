@@ -357,19 +357,29 @@ $ curl -X OPTIONS -v https://pepabo.com/
 </script>
 
 <script layout type="text/x-markdown">
+### 4.5 プロトコルのアップグレード
+</script>
+
+<script layout type="text/x-markdown">
+* アップグレードは、クライアント側・サーバー側のどちらからでも要請できる
+* 3種類のアップグレードができる
+* ・ HTTPからTLSを使った通信 (TLS/1.0 ~ 1.2)
+* ・ HTTPからWebSocketを使った双方向通信 (websocket)
+* ・ HTTPからHTTP/2 (h2c)
+</script>
+
+<script layout type="text/x-markdown">
+* ただし、TLSのアップグレードは、ALPNを使うことが推奨されている
+* -> プロトコルのアップグレードは、ほぼWebSocket専用
+</script>
+
+<script layout type="text/x-markdown">
 ###
 </script>
 
 <script layout type="text/x-markdown">
-*
-</script>
-
-<script layout type="text/x-markdown">
-###
-</script>
-
-<script layout type="text/x-markdown">
-*
+* 
+* 
 </script>
 
 <script layout type="text/x-markdown">
