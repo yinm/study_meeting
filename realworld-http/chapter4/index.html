@@ -287,7 +287,9 @@
 <script layout="code" invert type="text/x-markdown">
 * サーバーが受け取り可能なメソッド一覧を返す
 
-```http
+```sh
+$ curl -X OPTIONS -v https://curl.haxx.se
+
 # 関係しそうな部分だけ抜粋
 
 > OPTIONS / HTTP/2
@@ -304,6 +306,31 @@
 < content-length: 0
 <
 * Connection #0 to host curl.haxx.se left intact
+```
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+* しかし、多くのWebサーバーはOPTIONSメソッドを有効にしていない
+* -> `405 Method Not Allowed` が返ってくる
+
+```sh
+$ curl -X OPTIONS -v https://pepabo.com/
+
+# 関係しそうな部分だけ抜粋
+
+< HTTP/2 405
+< server: nginx
+< date: Sun, 24 Sep 2017 00:05:20 GMT
+< content-type: text/html
+< content-length: 166
+<
+<html>
+<head><title>405 Not Allowed</title></head>
+<body bgcolor="white">
+<center><h1>405 Not Allowed</h1></center>
+<hr><center>nginx</center>
+</body>
+</html>
 ```
 </script>
 
