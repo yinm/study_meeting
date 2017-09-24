@@ -335,11 +335,14 @@ $ curl -X OPTIONS -v https://pepabo.com/
 </script>
 
 <script layout type="text/x-markdown">
-###
+### 4.4.2 TRACE(TRACK)
 </script>
 
 <script layout type="text/x-markdown">
-*
+* TRACEメソッドを受け取ったサーバーは以下のことをすることが、期待される
+* ・ `Content-Type: message/http` を設定する
+* ・ `200 OK`をつけてリクエストヘッダー・ボディをそのまま返す
+* ただし、XSTの脆弱性があるため、使われることがない
 </script>
 
 <script layout type="text/x-markdown">
