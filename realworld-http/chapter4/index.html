@@ -374,28 +374,33 @@ $ curl -X OPTIONS -v https://pepabo.com/
 </script>
 
 <script layout type="text/x-markdown">
-###
+### 4.5.1 クライアント側からアップグレードを要請
 </script>
 
 <script layout type="text/x-markdown">
-* 
-* 
+* `Upgrade`と`Connection`ヘッダーを含むリクエストを送る
+* サーバー側がアップグレード可能かを確認するために、事前に`OPTION`メソッドを送ることもできる
+* -> 対応可能な場合のレスポンスは、 `101 Switching Protocols`
 </script>
 
 <script layout type="text/x-markdown">
-###
+### 4.5.2 サーバー側からのアップグレードを要請
 </script>
 
 <script layout type="text/x-markdown">
-*
+* `426 Upgrade Required`のレスポンスを返す
+* その後、クライアント側から改めてプロトコルの切り替えを要請し、ハンドシェイクが行われる
 </script>
 
 <script layout type="text/x-markdown">
-###
+### 4.5.3 TLSへのアップグレードの問題点
 </script>
 
 <script layout type="text/x-markdown">
-*
+* 中間者攻撃に弱い欠点がある
+* アップグレード自体は他の方法もある
+* ・ リダイレクト(`301`)を使って、`https://`から始まるサイトに誘導する
+* ・ HTTP Strict Transport Security (HSTS)を使って、強制リダイレクトする
 </script>
 
 <script layout type="text/x-markdown">
