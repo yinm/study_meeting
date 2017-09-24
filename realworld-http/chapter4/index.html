@@ -277,19 +277,34 @@
 </script>
 
 <script layout type="text/x-markdown">
-###
+### 4.4 OPTIONS、TRACE、CONNECTメソッドの追加
 </script>
 
 <script layout type="text/x-markdown">
-*
+### 4.4.1 OPTIONS
 </script>
 
-<script layout type="text/x-markdown">
-###
-</script>
+<script layout="code" invert type="text/x-markdown">
+* サーバーが受け取り可能なメソッド一覧を返す
 
-<script layout type="text/x-markdown">
-*
+```http
+# 関係しそうな部分だけ抜粋
+
+> OPTIONS / HTTP/2
+> Host: curl.haxx.se
+> User-Agent: curl/7.55.1
+> Accept: */*
+>
+* Connection state changed (MAX_CONCURRENT_STREAMS updated)!
+< HTTP/2 200
+< date: Sat, 23 Sep 2017 23:57:51 GMT
+< server: Apache
+< allow: POST,OPTIONS,GET,HEAD
+< content-type: text/html
+< content-length: 0
+<
+* Connection #0 to host curl.haxx.se left intact
+```
 </script>
 
 <script layout type="text/x-markdown">
