@@ -408,16 +408,20 @@ $ curl -X OPTIONS -v https://pepabo.com/
 </script>
 
 <script layout type="text/x-markdown">
-* 一台のWebサーバーで、いくつものWebサービスを運用する方法がHTTP/1.1からサポートされた
+* 一台のWebサーバーで、いくつものWebサービスを運用する方法がサポートされた
 * -> リクエストに`Host`ヘッダーを必須にすることで、サーバー側でコンテンツを出し分けできるようになった
 </script>
 
 <script layout type="text/x-markdown">
-###
+### 4.7 チャンク
 </script>
 
 <script layout type="text/x-markdown">
-*
+* データを小分けにして送信する方式(チャンク方式)がサポートされた
+* ・ `Transfer-Encoding: chunked`ヘッダーをつける
+* ・ (この時、`Content-Length`は含めてはいけない)
+* ・ ボディには分割したデータのサイズと、データ本体を送る
+* ・ 最後に`0`を送信すると通信が完了したことを表す
 </script>
 
 <script layout type="text/x-markdown">
