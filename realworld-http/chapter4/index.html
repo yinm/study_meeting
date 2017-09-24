@@ -437,11 +437,14 @@ $ curl -X OPTIONS -v https://pepabo.com/
 </script>
 
 <script layout type="text/x-markdown">
-###
+### 4.8 ボディ送信の確認
 </script>
 
 <script layout type="text/x-markdown">
-*
+* サーバーが受け入れ可能かを確認してから、ボディ本体を送信する、2段階の送信が可能になった
+* ・ `Expect: 100-continue`と、ボディ以外のすべてのヘッダーを送信する
+* ・ サーバーが受け入れ可能なら、`100 Continue`を返すので、ボディ付きで再送する
+* ・ サーバーが受け入れできないなら、`417 Expection Failed`を返す
 </script>
 
 <script layout type="text/x-markdown">
