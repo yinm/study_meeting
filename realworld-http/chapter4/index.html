@@ -425,6 +425,18 @@ $ curl -X OPTIONS -v https://pepabo.com/
 </script>
 
 <script layout type="text/x-markdown">
+### 4.7.1 末尾へのヘッダーの追加
+</script>
+
+<script layout type="text/x-markdown">
+* `Trailer`ヘッダーを使うことで、ボディの後ろにヘッダーを追加することができる
+* ただし、以下の場合には末尾にヘッダーを追加ができない
+* ・ `Transfer-Encoding` (チャンク形式にならないため)
+* ・ `Content-Length` (チャンク形式では使用できないため)
+* ・ `Trailer` (Trailer自身をTrailerヘッダーに加えられないため)
+</script>
+
+<script layout type="text/x-markdown">
 ###
 </script>
 
