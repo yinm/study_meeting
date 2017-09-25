@@ -26,11 +26,14 @@
 </script>
 
 <script layout type="text/x-markdown">
-### 5.
+### 5.1<br>ファイルをダウンロードした後でローカルに保存
 </script>
 
 <script layout type="text/x-markdown">
-*
+* `Content-Disposition: attachment; filename=ファイル名`のようなヘッダーがあると、ファイル保存ダイアログが表示される
+* ▶︎ ファイル名のデフォルトを日本語にする場合は、`*=utf-8'' 日本語ファイル名`を加える
+* `Content-Disposition`ヘッダーも電子メールのRFCから移植された
+* ダウンロード完了ページは、`<meta http-equiv="refresh" content="o;URL=./download_file">` を使って実現している
 </script>
 
 <script layout type="text/x-markdown">
