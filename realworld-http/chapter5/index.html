@@ -201,11 +201,28 @@ xhr.send();
 </script>
 
 <script layout type="text/x-markdown">
-### 5.
+### 5.3.3 XMLHttpRequestのセキュリティ
 </script>
 
 <script layout type="text/x-markdown">
-*
+* XHRのセキュリティ制御は2つある
+* ・ アクセスできる情報の制限
+* ・ 送信制限
+</script>
+
+<script layout type="text/x-markdown">
+* アクセスできる情報の制限として、クッキーの制限がある
+* XSSで、ログインセッションのクッキーを外部サイトに流出させられるリスク
+* -> `httpOnly`属性をクッキーに付与することで、外部に漏れるリスクが減らせる
+</script>
+
+<script layout type="text/x-markdown">
+* 通信制限には、ドメイン・メソッド・ヘッダーの3種類がある
+* ・ 同一生成元ポリシー(Same Origin Policy)による、リクエストを送信できるドメインの制限
+* -> 他のサイトにアクセスしたい場合は、CORSを利用する
+* ・ CONNECT, TRACE, TRACKメソッドを使用すると、SecurityError例外が発生する
+* ・ プロトコルに影響を与えるものや、ブラウザの能力を超えているものなどをヘッダーに利用できない
+* -> ブラウザの能力を超えているものとは、ブラウザが対応していない圧縮形式などのこと
 </script>
 
 <script layout type="text/x-markdown">
