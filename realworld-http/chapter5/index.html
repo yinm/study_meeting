@@ -75,11 +75,45 @@
 </script>
 
 <script layout type="text/x-markdown">
-### 5.
+### 5.3 XMLHttpRequest
 </script>
 
 <script layout type="text/x-markdown">
-*
+* XMLHttpRequest(XHR)は、curl相当の機能をJSから実現するもの
+* ・ `open()`メソッドで、送信先を指定する。非同期処理をするため、第3引数は基本的にtrueにする
+* ・ `send()`メソッドで、送信を開始する
+* ・ `onload`イベントで、レスポンスが返ってきた後の処理を指定する
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+* GETする場合 (`curl -H "MyHeader=HeaderValue" /json`に相当)
+
+```js
+const xhr = new XMLHttpRequest();
+xhr.open('GET', '/json', true);
+xhr.onload = () => {
+  // レスポンスが返ってきた時に呼ばれるメソッド
+  if (xhr.status === 200) {
+    // JSON parseして表示
+    console.log(JSON.parse(xhr.responseText));
+  }
+};
+xhr.setRequestHeader('MyHeader', 'HeaderValue');
+xhr.send();
+```
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+* POSTする場合 (`curl -d '{"message": "hello world"}' /json`に相当)
+
+```js
+const xhr = new XMLHttpRequest();
+xhr.open('POST', '/json', true);
+xhr.onload = () => {
+  // レスポンスが返ってきた時に呼ばれるメソッド
+};
+xhr.send(JSON.stringify({"message": "hello world"}));
+```
 </script>
 
 <script layout type="text/x-markdown">
