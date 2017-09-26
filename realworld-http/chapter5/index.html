@@ -117,11 +117,62 @@ xhr.send(JSON.stringify({"message": "hello world"}));
 </script>
 
 <script layout type="text/x-markdown">
-### 5.
+### 5.3.1 XMLHttpRequestとブラウザのHTTPリクエストの違い
 </script>
 
 <script layout type="text/x-markdown">
-*
+* XHRでは以下の違いがある
+* ・ 送信時にHTMLの画面がフラッシュ(リロード)されない
+* ・ メソッドとして、GETとPOST以外も送信できる
+* ・ プレーンテキスト, JSON, バイナリデータ, XMLなど、様々なフォーマットを送受信できる (responseType)
+* ・ セキュリティのための制約がある
+</script>
+
+<script layout type="text/x-markdown">
+* responseTypeを設定しない場合、以下のレスポンスタイプになる
+* ・ XMLのMIMEタイプ(`text/html`, `application/xml`)であれば、`responseXML`
+* ・ それ以外は、`responseText`
+* MIMEタイプを設定していない場合は、クライアントから指定できる
+* ・ `xhr.overrideMimeType('text/html');`
+* IEでは、`responseType = json`が使えない
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+* 例) レスポンスのフォーマットを、画像(バイナリデータ)にする
+
+```js
+const xhr = new XMLHttpRequest();
+// open処理は省略
+xhr.reponseType = 'blob';
+xhr.onload = (e) => {
+  if (this.status === 200) {
+    const blob = this.response;
+    const img = document.createElement('img');
+    img.onload = (e) => {
+      window.URL.revokeObjectURL(img.src);
+    };
+    img.src = window.URL.createObjectURL(blob);
+    document.body.appendChild(img);
+  }
+};
+xhr.send();
+```
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+* 例) IEで、responseTypeがJSONの場合を対応する
+
+```js
+const xhr = new XMLHttpRequest();
+// open処理は省略
+xhr.onload = (e) => {
+  if (this.status === 200) {
+    const json = JSON.parse(xhr.responseText);
+    console.log(json);
+  }
+};
+xhr.send();
+```
 </script>
 
 <script layout type="text/x-markdown">
