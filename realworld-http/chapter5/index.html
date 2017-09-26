@@ -26,38 +26,52 @@
 </script>
 
 <script layout type="text/x-markdown">
-### 5.1<br>ファイルをダウンロードした後でローカルに保存
+### 5.1 ファイルをダウンロードした後でローカルに保存
 </script>
 
 <script layout type="text/x-markdown">
 * `Content-Disposition: attachment; filename=ファイル名`のようなヘッダーがあると、ファイル保存ダイアログが表示される
-* ▶︎ ファイル名のデフォルトを日本語にする場合は、`*=utf-8'' 日本語ファイル名`を加える
+* ・ ファイル名のデフォルトを日本語にする場合は、`*=utf-8'' 日本語ファイル名`を加える
 * `Content-Disposition`ヘッダーも電子メールのRFCから移植された
 * ダウンロード完了ページは、`<meta http-equiv="refresh" content="o;URL=./download_file">` を使って実現している
 </script>
 
 <script layout type="text/x-markdown">
-### 5.
+### 5.2 ダウンロードの中断、再開
 </script>
 
 <script layout type="text/x-markdown">
-*
+* 通信回線が不安定な場合などのために、ダウンロードを中断・再開できる機能が用意されている
+* サーバーが範囲指定ダウンロードに対応している場合は、`Accept-Ranges`ヘッダーを返す
+* ・ `Accept-Ranges: bytes`: 範囲指定ダウンロードを、バイト単位で受け入れる
+* ・ `Accept-Ranges: none`: 範囲指定ダウンロードを受け入れない
+* また、ダウンロードしたいファイルのEtagヘッダーを受け取って、変更を検知する必要がある
+  * ・ダウンロードの途中でファイル内容が変更されてしまうと、ダウンロードしたファイル片の価値がなくなるため
 </script>
 
 <script layout type="text/x-markdown">
-### 5.
+* リクエストを送る時は、欲しい範囲を`Range`ヘッダーに付与する
+* レスポンスのステータスコードは、以下の2種類がある
+* ・ダウンロードできる場合は、 `206 Partial Content`
+* ・クライアントからの範囲指定が無効の場合は、`416 Range Not Satisfiable`
 </script>
 
 <script layout type="text/x-markdown">
-*
+### 5.2.1 複数範囲のダウンロード
 </script>
 
 <script layout type="text/x-markdown">
-### 5.
+* `Ranges`ヘッダーを使って、複数範囲指定が可能
+* レスポンスには、`Content-Type: multipart/byterangtes`が返ってくる
 </script>
 
 <script layout type="text/x-markdown">
-*
+### 5.2.2 並列ダウンロード
+</script>
+
+<script layout type="text/x-markdown">
+* Rangeヘッダーを用いたHTTPアクセスを複数行うことで、ダウンロード速度をあげる手法
+* ただし、サーバーに負荷がかかるため、あまり推奨されていない
 </script>
 
 <script layout type="text/x-markdown">
