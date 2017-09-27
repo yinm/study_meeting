@@ -259,11 +259,13 @@ xhr.send();
 </script>
 
 <script layout type="text/x-markdown">
-### 5.
+### 5.5 X-Powered-Byヘッダー
 </script>
 
 <script layout type="text/x-markdown">
-*
+* 多くのサーバーがシステム名を返すのに使用していた、独自ヘッダー
+* セキュリティホールを突かれるリスクが上がるので、使用しない方がいい
+* FireFoxは、X-Powered-Byヘッダーを使ってクライアントの挙動を変えていたが、現在は標準化されたヘッダーである、Serverヘッダーを使っている
 </script>
 
 <script layout type="text/x-markdown">
