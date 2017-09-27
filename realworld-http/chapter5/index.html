@@ -303,7 +303,17 @@ xhr.send();
 </script>
 
 <script layout type="text/x-markdown">
-### 5.
+### 5.6.3 JSON-RPC
+</script>
+
+<script layout type="text/x-markdown">
+* XML-RPCのXMLの代わりに、JSONを使ったRPC
+* SOAPに比べて、シンプルにという方針が押し出されている
+* 仕様としては以下ものがある
+* ・ リクエスト時に必要なものは、`Content-Type`, `Content-Length`, `Accept`
+* ・ メソッドにはPOSTを使うが、べき等で安全な処理ならGETも使える
+* ・ バージョン指定のため、`"jsonrpc": "2.0"`が必要
+* ・ リクエストとレスポンスを対応付けるためにidが必要
 </script>
 
 <script layout type="text/x-markdown">
