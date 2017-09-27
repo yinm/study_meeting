@@ -243,14 +243,19 @@ xhr.send();
 * モダンブラウザは、Geolocation APIを用意している
 * ・ スマホなら、GPSや基地局の情報によって、位置を返すことができる
 * ・ GPSのついていないPPCでも、wifiなどによる位置測定によって大まかな位置を返すことができる
+* 位置情報はプライバシーであるため、使用するにはユーザーの許可が必要になる
 </script>
 
 <script layout type="text/x-markdown">
-### 5.
+### 5.4.2 サーバーがクライアントの場所を推測する方法
 </script>
 
 <script layout type="text/x-markdown">
-*
+* GeoIPという、IPアドレスから推測する方法
+* レジストりによってIPアドレスが、どのプロバイダなどに割り当てられているかは管理しているが、正確な位置まではわからない
+* そのため、Gelocationと同様に、地道に集めたデータを元に位置情報を返している
+* ユーザーの許可なしに位置情報が使えるというメリットがある
+* ・Amazon.comにアクセスすると、日本のAmazonへ誘導するバナーが表示されるなど
 </script>
 
 <script layout type="text/x-markdown">
