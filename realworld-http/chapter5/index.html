@@ -279,11 +279,16 @@ xhr.send();
 </script>
 
 <script layout type="text/x-markdown">
-### 5.
+### 5.6.1 XML-RPC
 </script>
 
 <script layout type="text/x-markdown">
-*
+* 最初に規格化されたRPC
+* 仕様としては以下ものがある
+* ・ Content-Lengthを明示する必要がある (チャンク形式はサポートしていない)
+* ・ メソッドは、POSTを使う (GETはキャッシュが残る可能性があるので使用しない)
+* ・ `Content-Type: text/xml`を使用する (引数・返り値ともにXMLであるため)
+* ・ 多少のエラーがあっても`200 OK`を返す
 </script>
 
 <script layout type="text/x-markdown">
