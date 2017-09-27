@@ -317,15 +317,21 @@ xhr.send();
 </script>
 
 <script layout type="text/x-markdown">
-*
+### 5.7 WebDAV
 </script>
 
 <script layout type="text/x-markdown">
-### 5.
+* HTTPを拡張することで分散システムとして使えるようにしたもの
+* Finderなどのファイルマネージャに簡単に接続できる
+* ファイルシステムとして使いやすいように、メソッドが追加されている (e.g. MOVE)
 </script>
 
 <script layout type="text/x-markdown">
-*
+* WebDAVの用語を整理する
+* ・ リソース: ファイルに相当する。HTTPの用語を引き継いで、リソースと呼んでいる
+* ・ コレクション: ディレクトリに相当する
+* ・ プロパティ: リソースやコレクションの属性 (e.g. 作成日時)
+* ・ ロック: 先に宣言した人以外の変更を拒絶する仕組み (複数人の編集を制御する)
 </script>
 
 <script layout type="text/x-markdown">
