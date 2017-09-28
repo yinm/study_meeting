@@ -388,6 +388,44 @@ xhr.send();
 </script>
 
 <script layout type="text/x-markdown">
+### 5.8.3 SAML <br>(Security Assertion Markup Language)
+</script>
+
+<script layout type="text/x-markdown">
+* SAMLはWeb系の技術(HTTP/SOAP)を前提とした、シングルサインオンの仕組み
+* SAMLはOASISで策定されている規格である
+* クッキーを使ってセッションを管理するWebの仕組みに準じており、ドメインをまたいだサービス間でシングルサインオンができる
+* SAMLに対応しているSaaSには、GoogleのG Suiteなどがある
+</script>
+
+<script layout type="text/x-markdown">
+* 実装方法は6つある
+* ・ SAML SOAPバインディング
+* ・ リバースSOAP(PAOS)バインディング
+* ・ HTMLリダイレクトバインディング
+* ・ HTTP POSTバインディング
+* ・ HTTPアーティファクトバインディング
+* ・ SAML URIバインディング
+</script>
+
+<script layout type="text/x-markdown">
+* 仕組みを理解するための登場人物は、以下の3者がいる
+* ・ユーザー: ブラウザを操作している人
+* ・認証プロバイダー(IdP): IDを管理するサービス (Onelogin など)
+* ・サービスプロバイダー(SP): ログインを必要とするサービス (G Suiteなど)
+</script>
+
+<script layout type="text/x-markdown">
+* 仕組みの解説
+* 1.事前に、認証プロバイダー(IdP)にサービスの情報を登録する (メタデータと呼ばれるXMLファイルを使う)
+* 2.サービスプロバイダー(SP)にもIdPの情報を登録する (認証プロバイダーから提供されるXMLを使う)
+* 3.ユーザーがサービスにアクセスすると、ログインしていない場合は、SPがIdPにリダイレクトする
+* 4.ブラウザにはIdPの画面が表示される。そこでログインが成功すると、IdPはSPへログイン情報をPOSTする
+* 5.SPはログイン成功したことがわかるので、ユーザーから最初にリクエストされたページを表示する
+</script>
+
+
+<script layout type="text/x-markdown">
 ### 5.
 </script>
 
