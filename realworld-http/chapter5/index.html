@@ -426,11 +426,27 @@ xhr.send();
 
 
 <script layout type="text/x-markdown">
-### 5.
+### 5.8.4 OpenID
 </script>
 
 <script layout type="text/x-markdown">
-*
+* すでに登録されているWebサービスのユーザー情報を使い、他のサービスにログインできる仕組み
+* 現在は後続のOpenID Connectを利用するサービスが増えており、Open IDは減っている
+</script>
+
+<script layout type="text/x-markdown">
+* 仕組みを理解するための登場人物は、以下の3者がいる
+* ・ OpenIDプロバイダー: ユーザー情報を持つWebサービス。ユーザーはすでにこのサービスのアカウントを所有している (Hatena, Yahoo! JAPAN)
+* ・ リライングパーティ: ユーザーが新たに利用したいWebサービス (ATND)
+* ・ ユーザー入力識別子: OpenIDプロバイダーが提供する、ユーザーごとのURL形式の文字列。
+</script>
+
+<script layout type="text/x-markdown">
+* 仕組みの解説
+* 1.OpenIDプロバイダーのサイトで、ユーザー入力識別子を取得する
+* 2.リライングパーティのサイトを開いて、ログインページからOpenIDを選択し、ユーザー入力識別子を記入する
+* 3.OpenIDプロバイダーのサイトにリダイレクトされ、ログイン許可を求められるので承認する
+* 4.リライングパーティのサイトにリダイレクトされ、サービスが利用可能になる
 </script>
 
 <script layout type="text/x-markdown">
