@@ -495,27 +495,35 @@ xhr.send();
 </script>
 
 <script layout type="text/x-markdown">
-### 5.
+### 5.8.7 OpenID Connect
 </script>
 
 <script layout type="text/x-markdown">
-*
+* OAuth2.0をベースにして、認可だけではなく、認証としても使っても問題ないように拡張したもの
+* サービス提供者(リラインパーティ/クライアント)の実装も難しくないため、デファクトスタンダードになっていくと予想される
+* サービス提供者から見たOAuth2.0との違いは、ユーザープロフィールへのアクセス方法が規格化されたこと
+* OpenID Connectは、アクセストークンとIDトークンを取得するために、2つのエンドポイントと3つのフローを定義している
 </script>
 
 <script layout type="text/x-markdown">
-### 5.
+* 2つのエンドポイント
+* 認可エンドポイント
+* ・クライアントが認可リクエストを送るサービス窓口
+* ・クライアント認証を行うフローの場合は、トークンエンドポイントにアクセスするための認可コードを返す
+* ・認証しないフローの場合は、アクセストークンとIDトークンを返す
+* トークンエンドポイント
+* ・アクセストークンとIDトークンを返す窓口
+* ・クライアントを認証することで、強い権限のトークンを返す
 </script>
 
 <script layout type="text/x-markdown">
-*
-</script>
-
-<script layout type="text/x-markdown">
-### 5.
-</script>
-
-<script layout type="text/x-markdown">
-*
+* 3つのフロー
+* Authorization Code Flow
+* ・OAuthのAuthorization Codeと同じ
+* Implicit Flow
+* ・OAuthのImplicit Grantと同じ
+* Hybrid Flow
+* ・Implicit Flowと似ているが、認可エンドポイントで通信に必要なトークンと、通信で情報を得るための認可コードが得られる
 </script>
 
 <script layout type="text/x-markdown">
