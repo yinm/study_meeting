@@ -298,7 +298,7 @@ xhr.send();
 <script layout type="text/x-markdown">
 * XML-RPCを拡張して作られた規格
 * サービス指向アーキテクチャで大きな役割を果たしていた
-* HTTPの中にミニHTTPを持つような構造になっており、SMTPなどでもメッセージをやりとりできる
+* HTTPの中にミニHTTPを持つような構造になっているため、SMTPなどでもメッセージをやりとりできる
 * XML-RPCに比べて複雑である上、WSDLを手書きするなどの手間が大きい
 </script>
 
@@ -308,7 +308,7 @@ xhr.send();
 
 <script layout type="text/x-markdown">
 * XML-RPCのXMLの代わりに、JSONを使ったRPC
-* SOAPに比べて、シンプルにという方針が押し出されている
+* 「SOAPに比べてシンプルに」という方針が押し出されている
 * 仕様としては以下ものがある
 * ・ リクエスト時に必要なものは、`Content-Type`, `Content-Length`, `Accept`
 * ・ メソッドにはPOSTを使うが、べき等で安全な処理ならGETも使える
@@ -323,7 +323,7 @@ xhr.send();
 <script layout type="text/x-markdown">
 * HTTPを拡張することで分散システムとして使えるようにしたもの
 * Finderなどのファイルマネージャに簡単に接続できる
-* ファイルシステムとして使いやすいように、メソッドが追加されている (e.g. MOVE)
+* ファイルシステムとして使いやすいように、メソッドが追加されている (e.g. MOVE, MKCOL)
 </script>
 
 <script layout type="text/x-markdown">
@@ -339,7 +339,7 @@ xhr.send();
 </script>
 
 <script layout type="text/x-markdown">
-* Webサービスごとにアカウントを作成すると、ユーザー側の管理が大変になる (リスト型攻撃の体操になるなど)
+* Webサービスごとにアカウントを作成すると、ユーザー側の管理が大変になる (リスト型攻撃の対象になるなど)
 * -> セキュリティと利便性を両立するための要件が増大している
 * 外部サービスの提供する認証基盤に相乗りする仕組みがいくつも開発されている
 * -> 開発者はこれらの外部サービスを使うことで、サービスの開発に集中できる
@@ -435,7 +435,7 @@ xhr.send();
 </script>
 
 <script layout type="text/x-markdown">
-* 仕組みを理解するための登場人物は、以下の3者がいる
+* 仕組みを理解するための用語は、以下の3つ
 * ・ OpenIDプロバイダー: ユーザー情報を持つWebサービス。ユーザーはすでにこのサービスのアカウントを所有している (Hatena, Yahoo! JAPAN)
 * ・ リライングパーティ: ユーザーが新たに利用したいWebサービス (ATND)
 * ・ ユーザー入力識別子: OpenIDプロバイダーが提供する、ユーザーごとのURL形式の文字列。
