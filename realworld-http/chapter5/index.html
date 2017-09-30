@@ -461,22 +461,37 @@ xhr.send();
 
 <script layout type="text/x-markdown">
 * OpenIDになぞらえて、用語を説明
-* ・ OpenIDプロバイダーにあたるのが、SNSの提供者
-* ・ リライングパーティにあたるのが、サードパーティアプリ
+* ・ SNSの提供者: OpenIDプロバイダーにあたる
+* ・ サードパーティアプリ: リライングパーティにあたる
 * サードパーティアプリのUI部分は、ガジェットと呼ばれる
 * SNSでは、IFRAMEを使ってガジェットを表示し、ユーザーはサードパーティアプリを利用できる
 </script>
 
 <script layout type="text/x-markdown">
-* 
+### 5.8.6 OAuth
 </script>
 
 <script layout type="text/x-markdown">
-### 5.
+* 認可のためのオープンな仕組みとして開発された
+* 最新版は、OAuth2.0
+* 外部クライアントに何を許可するかは、スコープで決定する
+* 認証よりも大きな影響を及ぼす
 </script>
 
 <script layout type="text/x-markdown">
-*
+* OpenIDになぞらえて、用語を説明
+* ・ 認可サーバー: OpenIDプロバイダーにあたる。ユーザーはこの認可サーバーのアカウントを持っている
+* ・ リソースサーバー: ユーザーが許可した権限で自由にアクセスできる対象。Twitterなどの場合は認可サーバーと同じ
+* ・ クライアント: OpenIDのリライングパーティー。ユーザーがこれから利用しようとしているサービスやアプリのこと
+* OpenIDとは異なり、クライアントは認可サーバーにアプリ情報を登録し、専用のID(client_id と client_secret)を取得する必要がある
+</script>
+
+<script layout type="text/x-markdown">
+* OAuth2.0が提供している4通りのフロー
+* ・ Authorization Code
+* ・ Implicit Grant
+* ・ Resource Owner Password Credentials Grant
+* ・ Client Credentials Grant
 </script>
 
 <script layout type="text/x-markdown">
