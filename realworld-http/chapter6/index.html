@@ -20,11 +20,30 @@
 </script>
 
 <script layout type="text/x-markdown">
-### 6.
+### 6.1 Keep-Alive
 </script>
 
 <script layout type="text/x-markdown">
-*
+* GoのHTTP APIは、デフォルトでKeep-Aliveが有効になっている
+* ただし、クライアントコード側で、必ず`response.Body`を最後まで読み切ってからクローズする必要がある
+* `response.Body`には、エラー以外の場合には何かしら読み切るための処理を入れる必要がある
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+```go
+resp, err := http.Get("http://...")
+if err != nil {
+	// エラー発生
+	panic(err)
+}
+
+// スコープが抜けたところで必ずクローズ
+defer resp.Body.Close()
+
+// ioutil.ReadAllでサーバーレスポンスを最後まで一括で読み切る
+body, err := ioutil.ReadAll(resp.Body)
+```
+
 </script>
 
 <script layout type="text/x-markdown">
