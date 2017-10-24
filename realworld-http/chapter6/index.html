@@ -56,11 +56,15 @@ body, err := ioutil.ReadAll(resp.Body)
 </script>
 
 <script layout type="text/x-markdown">
-### 6.
+### 6.2.1 証明書の作成
 </script>
 
 <script layout type="text/x-markdown">
-*
+### OpenSSLコマンドで、証明書を作成する流れ
+* 1.OpenSSLコマンドを使って、秘密鍵ファイル(`.key`)を作る
+* 2.証明書要求ファイル(`.csr`)を作る
+* 3.証明書要求ファイルに署名して、証明書(`.crt`)ができる
+
 </script>
 
 <script layout type="text/x-markdown">
