@@ -8,3 +8,6 @@ pre {
 table {
   font-size: 0.5em !important;
 }
+strong {
+  color: #f00;
+}
