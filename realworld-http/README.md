@@ -8,4 +8,5 @@
 * [chapter4](https://yinm.github.io/study_meeting/realworld-http/chapter4/)
 * [chapter5](https://yinm.github.io/study_meeting/realworld-http/chapter5/)
 * [chapter6](https://yinm.github.io/study_meeting/realworld-http/chapter6/)
+* [chapter7](https://yinm.github.io/study_meeting/realworld-http/chapter7/)
 
