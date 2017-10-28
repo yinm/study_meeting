@@ -80,12 +80,13 @@ body, err := ioutil.ReadAll(resp.Body)
 </script>
 
 <script layout type="text/x-markdown">
-### 6.3 プロトコルのアップグレード
+### ACMEプロトコル
 </script>
 
 <script layout type="text/x-markdown">
-* プロトコルのアップグレードは、通信途中からHTTP以外の通信を行う方法
-* HTTPの文脈から離れて通信を行うため、直接ソケットの送受信を行うことになる
+* 人手を介さずにドメインを所有していることを確認するためのプロトコル
+* Let's Encryptの無料での認証を支える技術
+* RFC化を目指しており、実現されれば、サーバーが自分で証明書を取得しに行けるようになる
 </script>
 
 <script layout type="text/x-markdown">
