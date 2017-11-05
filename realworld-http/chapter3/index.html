@@ -442,19 +442,13 @@ User-Agent: curl/7.43.0
 ```http
 # `go run chapter3/09.send-cookie/main.go` を実行
 
-# request
+# 1回目のrequest
 GET /cookie HTTP/1.1
 Host: localhost:18888
 Accept-Encoding: gzip
 User-Agent: Go-http-client/1.1
 
-GET /cookie HTTP/1.1
-Host: localhost:18888
-Accept-Encoding: gzip
-Cookie: VISIT=TRUE
-User-Agent: Go-http-client/1.1
-
-# response
+# 1回目のresponse
 2017/08/28 08:00:07 HTTP/1.1 200 OK
 Content-Length: 36
 Content-Type: text/html; charset=utf-8
@@ -463,6 +457,14 @@ Set-Cookie: VISIT=TRUE
 
 <html><body>初訪問</body></html>
 
+# 2回目のrequest
+GET /cookie HTTP/1.1
+Host: localhost:18888
+Accept-Encoding: gzip
+Cookie: VISIT=TRUE
+User-Agent: Go-http-client/1.1
+
+# 2回目のresponse
 2017/08/28 08:00:07 HTTP/1.1 200 OK
 Content-Length: 40
 Content-Type: text/html; charset=utf-8
