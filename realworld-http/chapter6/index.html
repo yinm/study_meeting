@@ -68,7 +68,19 @@ body, err := ioutil.ReadAll(resp.Body)
 * 1.OpenSSLコマンドを使って、秘密鍵ファイル(`.key`)を作る
 * 2.証明書要求ファイル(`.csr`)を作る
 * 3.証明書要求ファイルに署名して、証明書(`.crt`)ができる
+</script>
 
+<script layout type="text/x-markdown">
+### 証明書作成時のメモ
+* openssl.cnfのパス `/usr/local/etc/openssl/openssl.cnf`
+* 参考: [macOSでオレオレ認証局を立てて証明書を発行する | インフラ関係のメモ書き](http://rikuga.me/2017/12/24/oreore-ca-and-ssl-cert/)
+* `:system library:fopen:No such file or directory:bss_file.c`エラーは、openssl.cnfをフルパス指定すればいい
+* 参考: [【トラブル】【Openssl】エラー「system library:fopen:No such file or directory:bss_file.c」が表示される ( ソフトウェア ) - プログラム の個人的なメモ - Yahoo!ブログ](https://blogs.yahoo.co.jp/dk521123/34611006.html)
+</script>
+
+<script layout type="text/x-markdown">
+
+<script layout type="text/x-markdown">
 </script>
 
 <script layout type="text/x-markdown">
