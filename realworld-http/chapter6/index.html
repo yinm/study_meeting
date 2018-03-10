@@ -79,8 +79,27 @@ body, err := ioutil.ReadAll(resp.Body)
 </script>
 
 <script layout type="text/x-markdown">
+### 6.2.2 HTTPサーバと証明書の登録
+</script>
 
 <script layout type="text/x-markdown">
+* curlコマンドで証明書を解決する方法は2つある
+* ・ `--cacert <証明書のパス>`
+* ・ curlが見てる証明書のリストに、証明書を追加する
+</script>
+
+<script layout type="text/x-markdown">
+### curlが見てる証明書のリストに、証明書を追加する
+* ・ `curl --version` で、TLSを実現しているライブラリを確認 (`libcurl`の後ろ)
+* ・ OpenSSLの場合は、`openssl version -d`で、探索ディレクトリを確認。証明書バンドルファイルに追加。
+</script>
+
+<script layout type="text/x-markdown">
+### 6.
+</script>
+
+<script layout type="text/x-markdown">
+*
 </script>
 
 <script layout type="text/x-markdown">
