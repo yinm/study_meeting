@@ -104,11 +104,12 @@ body, err := ioutil.ReadAll(resp.Body)
 </script>
 
 <script layout type="text/x-markdown">
-### 6.
+### 6.2.4 クライアント証明書
 </script>
 
 <script layout type="text/x-markdown">
-*
+* 通常のTLSとは逆に、サーバーがクライアントに証明書を要求し、承認できたら通信を行う
+* Goでは、`http.Server`構造体を使うことで実装できる
 </script>
 
 <script layout type="text/x-markdown">
