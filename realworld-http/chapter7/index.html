@@ -128,11 +128,22 @@
 </script>
 
 <script layout type="text/x-markdown">
-### 7.
+### 7.2.1 Fetch APIの基本
 </script>
 
 <script layout type="text/x-markdown">
-*
+* 処理の基本要素
+* 1 fetch()関数を呼び出す (XHRのようにオブジェクトは作らない)
+* 2 fetch()関数の第2引数は、オプションのオブジェクト (省略可能)
+* 3 .then()関数に、レスポンスが返ってきた後に呼び出されるコールバックを渡す (Promise)
+* 4 .then()に渡すコールバックがさらにPromiseを返す時は、.then()をつなげる (Promiseのメソッドチェーン)
+</script>
+
+<script layout type="text/x-markdown">
+* FetchAPIの最初の.then()の挙動
+* ・ レスポンスヘッダー付近まで読み終わったタイミングで呼び出される (ボディをどの形式で取得するかを決定するため)
+* ・ その後、サーバーからの読み込みを行うために再び.then()を呼び出してDLが完了するのを待つ
+* FetchAPIでは、オプションのデフォルトはセキュリティの厳しい設定が選択されているので、必要に応じて明確に解除する必要がある (セキュリティ向上を重視した設計)
 </script>
 
 <script layout type="text/x-markdown">
