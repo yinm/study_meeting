@@ -31,11 +31,23 @@
 </script>
 
 <script layout type="text/x-markdown">
-### 7.
+### 7.1.1 ストリームによる通信の高速化
 </script>
 
 <script layout type="text/x-markdown">
-*
+* バイナリベースのプロトコルになった
+* 各データは `フレーム` と呼ばれる単位で送受信が行われる
+* 1本のTCP接続の内部にストリームという仮想のTCPソケットを作って通信を行う
+* < TCPと比べての利点 >
+* ・ ID (Stream Identifier)とTCPの通信容量が許す限り、数万接続でも並列化できる
+* ・ 最初からLISTENと同じ状態(IDLE状態)であり、ヘッダーを受け取ると通信可能なOPEN状態になるため、通信が出来るまでのステップが少ない
+</script>
+
+<script layout type="text/x-markdown">
+* 各フレームには9バイトの共通ヘッダーがある
+* < Stream Identifierの特徴 >
+* ・ 同じストリームから受信したデータであることを識別するためのid
+* ・ 奇数はクライアント->サーバー・偶数はサーバー->クライアントの通信に使う。ただし、0は予約されているので使うとエラーになる。
 </script>
 
 <script layout type="text/x-markdown">
