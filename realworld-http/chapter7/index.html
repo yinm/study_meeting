@@ -51,11 +51,12 @@
 </script>
 
 <script layout type="text/x-markdown">
-### 7.
+### 7.1.2 HTTP/2のアプリケーション層
 </script>
 
 <script layout type="text/x-markdown">
-*
+* ヘッダーでは、最初にフレームサイズが入っているので、受信側のTCPソケットのバッファをすばやく空にでき、次のデータを高速にリクエストできる
+* ボディでは、フレーム同士が独立しているので、途中で他のフレームが挟まっても問題ない (重いレスポンスがあっても、他の通信が行える)
 </script>
 
 <script layout type="text/x-markdown">
