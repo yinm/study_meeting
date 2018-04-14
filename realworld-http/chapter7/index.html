@@ -69,11 +69,16 @@
 </script>
 
 <script layout type="text/x-markdown">
-### 7.
+### 7.1.4 サーバープッシュ
 </script>
 
 <script layout type="text/x-markdown">
-*
+* 優先度の高いコンテンツをクライアントからリクエストされる前に送信する仕組み
+* WebSocketなどの双方向通信と異なり、Webページを構成するファイルのDL用に使う
+* 処理の詳細
+* ・ クライアントはリクエストするまで、サーバー母らプッシュされていることを検知できない
+* ・ プッシュされたコンテンツは事前にキャッシュに入る
+* ・ キャッシュ後にクライアントがリクエストをすると、遅延なくDLできたように見える
 </script>
 
 <script layout type="text/x-markdown">
