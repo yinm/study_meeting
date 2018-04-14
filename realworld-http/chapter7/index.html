@@ -93,11 +93,24 @@
 </script>
 
 <script layout type="text/x-markdown">
-### 7.
+### 7.1.6 SPDYとQUIC
 </script>
 
 <script layout type="text/x-markdown">
-*
+* SPDYは、Googleが開発したHTTP代替プロトコルで、HTTP/2の原型になったもの
+* 開発の動機は転送速度の向上 (並列アクセスでのブロッキングが減るため、小さなファイルをたくさん転送する場合に高速化が期待できる)
+* TCPソケット上のアプリケーション層に実装された
+</script>
+
+<script layout type="text/x-markdown">
+* QUICは、UDPソケット上に用意されたプロトコル。Googleが開発している
+* 開発の動機はSPDYよりさらなる高速化 (TCPのハンドシェイクなどのコストを削減する)
+* また、HTTP/2と協調動作することで、TCPとHTTP/2の重複処理を簡略化する (フローコントロールなど)
+* すでにChromeでは組み込まれており、Googleのサービスの半分のリクエストがQUICで行われている
+</script>
+
+<script layout type="text/x-markdown">
+* [GoogleのQUICプロトコル：TCPからUDPへWebを移行する | POSTD](https://postd.cc/googles-quic-protocol-moving-web-tcp-udp/)
 </script>
 
 <script layout type="text/x-markdown">
