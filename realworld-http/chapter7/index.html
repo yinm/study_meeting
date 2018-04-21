@@ -236,11 +236,31 @@
 </script>
 
 <script layout type="text/x-markdown">
-### 7.
+### 7.4.3 接続
 </script>
 
 <script layout type="text/x-markdown">
-*
+* WebSocketは、HTTPとして通信を開始し、プロトコルのアップグレードを行うことで接続する
+* 次のスライドで、リクエスト・レスポンスでポイントとなるヘッダーを確認する
+</script>
+
+<script layout type="text/x-markdown">
+### クライアント側のリクエスト
+</script>
+
+<script layout type="text/x-markdown">
+* `Sec-WebSocket-Key`: ランダムに選ばれた16バイトの値をBASE64エンコードした文字列
+* `Sec-WebSocket-Versions`: 現時点では、13に固定
+* `Sec-WebSocket-Protocol`: WebSocketはソケット通信の機能のみを提供するので、その中でアプリケーションが使う通信形式を決めるために使う(コンテントネゴシエーションのようなもの)
+</script>
+
+<script layout type="text/x-markdown">
+### サーバー側のレスポンス
+</script>
+
+<script layout type="text/x-markdown">
+* `Sec-WebSocket-Accept`: Sec-WebSocket-Keyを決まったルールで変換した文字列。クライアントとサーバーの通信確立を検証するために使う
+* `Sec-WebScoket-Protocol`: クライアントから指定されたサブプロトコルから選択して返す。クライアントは自分がリクエストしたもの以外が返されたら、通信を拒否しなければならない
 </script>
 
 <script layout type="text/x-markdown">
