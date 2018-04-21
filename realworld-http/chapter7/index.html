@@ -206,11 +206,13 @@
 </script>
 
 <script layout type="text/x-markdown">
-### 7.
+### 7.4.1 WebSocketはステートフル
 </script>
 
 <script layout type="text/x-markdown">
-*
+* WebSocketはメモリ上にデータを持った状態で通信するケースが多い
+* (e.g.) チャットなら、ルームのような単位でコネクションを管理する
+* -> 再接続する場合には同じサーバーに繋ぐ必要があるため、WebSocket対応のLBを使うか、LBを使わないなどの対応が必要になる
 </script>
 
 <script layout type="text/x-markdown">
