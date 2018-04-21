@@ -216,11 +216,23 @@
 </script>
 
 <script layout type="text/x-markdown">
-### 7.
+### 7.4.2 JavaScriptのクライアントAPI
 </script>
 
 <script layout type="text/x-markdown">
-*
+* WebSocketはTCPソケットに近い機能を提供するAPIなので、JSのAPIも近い形態になってる
+* 通信はサーバーが受診を待ち受けている状態で、必ずクライアントから接続する
+* JSで接続を確立するには、次の2つのことをする
+* 1 WebSocketクラスのコンストラクタに接続先のURLを指定する
+* 2 send()メソッドでデータを送信する
+* 送受信に使えるデータは、文字列・Blob・ArrayBufferなど
+</script>
+
+<script layout type="text/x-markdown">
+* 接続後に、クライアントが行う操作は次の3つ
+* ・ `send([データ])`: データを送信
+* ・ `onmessage`: サーバーから送られてきたデータを受信
+* ・ `close([コード [, 理由]])`: ソケットを切断
 </script>
 
 <script layout type="text/x-markdown">
