@@ -167,11 +167,32 @@
 </script>
 
 <script layout type="text/x-markdown">
-### 7.
+### 7.3 Server-Sent Events
 </script>
 
 <script layout type="text/x-markdown">
-*
+* HTML5の機能のひとつ
+* CometのロングポーリングとChunkedレスポンスの組み合わせで、クライアントの1度のリクエストに対して、サーバーから複数のイベント送信を実現している
+* HTTP/1.1のChunked形式を使っているが、HTTPの上に`イベントストリーム`と呼ばれる別のテキストプロトコルを乗せている。MIMEタイプは`text/event-stream`
+</script>
+
+<script layout type="text/x-markdown">
+### イベントストリームの説明 (text/event-stream)
+</script>
+
+<script layout type="text/x-markdown">
+* テキストエンコーディングは、UTF-8
+* 4種類のタグがあり、`タグ: value`の形で表現し、空白行でデータが区切られる
+* valueはテキストであればなんでもよい (BASE64エンコードすれば、バイナリも扱える)
+</script>
+
+<script layout type="text/x-markdown">
+### イベントストリームの説明 (JS)
+</script>
+
+<script layout type="text/x-markdown">
+* EventSourceクラスを使って、Server-Sent Eventsにアクセスする
+* -> このクラスは、イベントストリームのパースや、接続が切れた時の再接続を行ってくれる
 </script>
 
 <script layout type="text/x-markdown">
