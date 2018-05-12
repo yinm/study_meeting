@@ -294,6 +294,51 @@
 </script>
 
 <script layout type="text/x-markdown">
+### 7.5.1.1 シンプルなビデオ通話システム
+</script>
+
+<script layout type="text/x-markdown">
+### 満たす必要がある機能要件
+* 接続では、ブラウザが他のブラウザに直接繋がるわけではなく、Webサービスが起点になる
+* UDPをメインで使う
+* ・TCPと異なり、再送処理・通信料制御などを自前で実装する必要がある
+* ・通信経路の暗号化に関しては、`DTLS`(UDP用のTLS)が使える
+</script>
+
+<script layout type="text/x-markdown">
+* 動画と音声をお互いのシステムで利用できるコーデックを使って圧縮する必要がある
+* ・動画は、`H.264`が利用できる (MPEG4やBlu-Rayでも使われる規格)
+* ・音声は、`Opus`が利用できる (Skypeが利用していた規格)
+* 送信するビットレートを制御しなければならない
+* ・ネットワーク帯域が広い時はより鮮明な動画と音声を提供する
+* ・狭い時は適切なビットレートを選択する
+</script>
+
+<script layout type="text/x-markdown">
+### 7.
+</script>
+
+<script layout type="text/x-markdown">
+*
+</script>
+
+<script layout type="text/x-markdown">
+### 7.
+</script>
+
+<script layout type="text/x-markdown">
+*
+</script>
+
+<script layout type="text/x-markdown">
+### 7.
+</script>
+
+<script layout type="text/x-markdown">
+*
+</script>
+
+<script layout type="text/x-markdown">
 ### 7.
 </script>
 
