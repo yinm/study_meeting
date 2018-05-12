@@ -376,27 +376,35 @@
 </script>
 
 <script layout type="text/x-markdown">
-### 7.
+### 7.5.2 WebRTCのユースケース(2)
 </script>
 
 <script layout type="text/x-markdown">
-*
+### 7.5.2.1 カスタマーセンター
 </script>
 
 <script layout type="text/x-markdown">
-### 7.
+* サービスを行っているWebサーバーとセッションを確立して通話する(ブラウザ対ブラウザではない)
 </script>
 
 <script layout type="text/x-markdown">
-*
+### 7.5.2.2 IP電話端末
 </script>
 
 <script layout type="text/x-markdown">
-### 7.
+* 実際の電話網との接続はサーバーが行うが、ユーザーはブラウザでそのサービスを利用する
+* 自動応答装置でよくある、「~に関するお問い合わせには1を押してください」に応答するため、Webサービス上からDTMF信号を発信できる必要がある
 </script>
 
 <script layout type="text/x-markdown">
-*
+### 7.5.2.3 中央サーバーを使ったビデオ会議システム
+</script>
+
+<script layout type="text/x-markdown">
+* P2Pに比べ、各ブラウザの通信先が減るのでセッション数を減らすことができる
+* 音声はサーバーでミックスされて、ひとつの音声ソースとして配信される
+* 動画はSimulcast(サイマルキャスト)という、複数の品質で映像を配信する仕組みで配信される
+* ・ 詳しくは、https://gist.github.com/voluntas/088bc3cc62094730647b
 </script>
 
 <script layout type="text/x-markdown">
