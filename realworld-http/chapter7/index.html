@@ -469,11 +469,15 @@
 </script>
 
 <script layout type="text/x-markdown">
-### 7.
+### 7.5.5.1 navigator.mediaDevices.getUserMedia()
 </script>
 
 <script layout type="text/x-markdown">
-*
+* ウェブカメラやオーディオデバイスの設定と取得を行うブラウザAPI
+* 取得されたものは、ストリームという名前で呼ばれる
+* WebRTCとセットで使うことを考慮して作られたAPIだが、単体でも使える(e.g. `<video>`タグ上にカメラの映像を表示)
+* 音声はWeb Audio APIを使うことで高度な制御やモニタリングが行える (e.g. ミキシング)
+* Audio Workerを利用することで、音声信号をJSで分析することもできる (e.g. 喋っている人の検知)
 </script>
 
 <script layout type="text/x-markdown">
