@@ -441,11 +441,23 @@
 </script>
 
 <script layout type="text/x-markdown">
-### 7.
+### 7.5.4.2 ICE (Interactive Connectivity Establishment)
 </script>
 
 <script layout type="text/x-markdown">
-*
+* NATを超えてP2P通信の接続を確立する手法
+* STUNとTURNのどちらかのサーバーを利用する
+* STUNが行うことは2つある
+* ・ローカルコンピューターがパケットを送りつける先になる (通信経路の確保)
+* ・リクエストがあったグローバルのIPとポートを、NAT内のコンピューターに返送する(外部から通信可能なアドレスとポートの取得)
+* STUNが通信できなかった場合、TCPなどにフォールバックするが、その時にTURNが通信の中継を行う (WebSocketに似た通信形態になる)
+</script>
+
+<script layout type="text/x-markdown">
+* STUNはNATを越えるためには基本的に必要になる
+* TURNはなくてもいいが、あると接続の成功率が上がる
+* SDPに記載するIPアドレスを取得するには、STUNやTRUNが必要になる
+* ICEのプロセスの内部でSDPが使われている
 </script>
 
 <script layout type="text/x-markdown">
