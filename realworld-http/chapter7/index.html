@@ -572,11 +572,13 @@
 </script>
 
 <script layout type="text/x-markdown">
-### 7.
+### 7.6.2 アプリケーションサーバーがプッシュサービスにメッセージを投稿
 </script>
 
 <script layout type="text/x-markdown">
-*
+* レスポンスには種類がある
+* ・リクエストに、`Prefer: respond-async`ヘッダーを付与していた場合は、クライアントの通知が成功してからレスポンスを返すようになる。そのため、ステータスが202 Acceptedになる
+* ・上記のヘッダーを付与していない場合は、201 createdが返ってくる
 </script>
 
 <script layout type="text/x-markdown">
