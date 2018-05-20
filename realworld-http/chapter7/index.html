@@ -513,11 +513,14 @@
 </script>
 
 <script layout type="text/x-markdown">
-### 7.
+### 7.5.6.1 SCTP (Stream Control Transmission Protocol)
 </script>
 
 <script layout type="text/x-markdown">
-*
+* DTLS上でSCTPを使っている
+* データ通信のユースケースは音声・動画に比べてケースが増えるため、UDP側によせるか、TCP側によせるかを設定できるようになっている
+* UDP側のe.g. ゲームのステータスでUDPの1パケットに収まるもの (順序保証が不要)
+* TCP側のe.g. ファイル送信 (データの一部が欠けたり、順序が入れ替わるとファイルとして用をなさないため)
 </script>
 
 <script layout type="text/x-markdown">
