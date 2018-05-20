@@ -481,11 +481,13 @@
 </script>
 
 <script layout type="text/x-markdown">
-### 7.
+### 7.5.5.2 DTLS
 </script>
 
 <script layout type="text/x-markdown">
-*
+* WebRTCのデータ通信には、メディアチャンネルとデータチャンネルの2つがあり、どちらもDTLS上の通信になっている
+* DTLSは`D: データグラム`(= `UDP`)のTLSで、RFC4347で定義されている
+* UDP特性がWebRTCには重要である (e.g. 再送処理が発生しない)
 </script>
 
 <script layout type="text/x-markdown">
