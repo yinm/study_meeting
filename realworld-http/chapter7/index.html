@@ -491,11 +491,14 @@
 </script>
 
 <script layout type="text/x-markdown">
-### 7.
+### 7.5.5.3 WebRTCメディアチャンネル
 </script>
 
 <script layout type="text/x-markdown">
-*
+* DTLS上でSRTP(Secure Real-time Transport Protocol)を使っている
+* 音声や動画のストリーミングで情報が改ざんされるのは問題なので、RTPは順序の整列機能だけをUDPに追加する
+* 再送処理はストリーイングでは負荷が大きいので保証しない。そのため、音飛びやコマ落ちとして処理される
+* RTCPeerConnectionの接続が確立した時点で、メディアチャンネルの通信の準備はできている
 </script>
 
 <script layout type="text/x-markdown">
