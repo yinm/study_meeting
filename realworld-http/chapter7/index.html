@@ -593,11 +593,38 @@
 </script>
 
 <script layout type="text/x-markdown">
-### 7.
+### 7.6.4 緊急度の設定
 </script>
 
 <script layout type="text/x-markdown">
-*
+* `Urgency`ヘッダーをリクエスト時に付与すると、不要なメッセージをフィルタリングできる
+<table>
+<tr>
+  <th>緊急度</th>
+  <th>デバイス状態</th>
+  <th>用途</th>
+</tr>
+<tr>
+  <td>very-low</td>
+  <td>電源が繋がっていて、WiFi接続あり</td>
+  <td>広告</td>
+</tr>
+<tr>
+  <td>low</td>
+  <td>電源が繋がっているか、WiFi接続あり</td>
+  <td>話題の更新</td>
+</tr>
+<tr>
+  <td>normal</td>
+  <td>電源が繋がっておらず、WiFi接続もない</td>
+  <td>チャットやカレンダーのメッセージ</td>
+</tr>
+<tr>
+  <td>high</td>
+  <td>バッテリー残量が少ない</td>
+  <td>電話の着信、時間厳守の通知</td>
+</tr>
+</table>
 </script>
 
 <script layout type="text/x-markdown">
