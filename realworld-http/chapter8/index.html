@@ -19,11 +19,45 @@
 </script>
 
 <script layout type="text/x-markdown">
+### 8.1 レスポンシブデザイン
+</script>
+
+<script layout type="text/x-markdown">
+* 様々なユースケースで適切な表現を実現可能にするのがレスポンシブデザイン
+* 前提として理解すること
+* ・現在のスマートフォンはフルHD(1980 x 1080)を超えているものがたくさんある
+* ・実際の端末の解像度を、`物理解像度`と呼ぶ (e.g. iPhone4なら、640 x 960)
+* ・ブラウザの論理解像度(論理上のスクリーンサイズ)を<br>`CSSピクセル`と呼ぶ (e.g. iPhone4なら、 320 x 480)
+* ・論理解像度と物理解像度の比率を、`デバイスピクセルレシオ`と呼ぶ (e.g. iPhone4なら、2)
+* わかりやすかった説明: [「えーと、画像は全部2倍で作ればOKなんだよね？」を卒業しよう | un-Tech](http://un-tech.jp/display-resolution/)
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+* 論理スクリーンサイズは、CSSやJSで取得できる
+* サイト側がコンテンツのサイズを制御する(ブラウザに制御させない)ために、以下のmetaタグをヘッダーに入れる必要がある
+
+```html
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+```
+
+</script>
+
+<script layout="code" invert type="text/x-markdown">
+* 論理スクリーンサイズは、CSSやJSで取得できる
+* 他に対応が必要なものとして、画像のジャギーへの対応がある
+* -> `srcset`属性を使うことで、ブラウザが適切なファイルを選択できるようになる
+
+```html
+<img src="photo.png" srcset="photo@2x.png 2x, photo@3x.png 3x">
+```
+
+</script>
+
+<script layout type="text/x-markdown">
 ### 8.
 </script>
 
 <script layout type="text/x-markdown">
-### 
 * 
 </script>
 
@@ -32,7 +66,6 @@
 </script>
 
 <script layout type="text/x-markdown">
-### 
 * 
 </script>
 
@@ -41,7 +74,6 @@
 </script>
 
 <script layout type="text/x-markdown">
-### 
 * 
 </script>
 
@@ -50,7 +82,6 @@
 </script>
 
 <script layout type="text/x-markdown">
-### 
 * 
 </script>
 
@@ -59,7 +90,6 @@
 </script>
 
 <script layout type="text/x-markdown">
-### 
 * 
 </script>
 
@@ -68,7 +98,6 @@
 </script>
 
 <script layout type="text/x-markdown">
-### 
 * 
 </script>
 
@@ -77,7 +106,6 @@
 </script>
 
 <script layout type="text/x-markdown">
-### 
 * 
 </script>
 
@@ -86,7 +114,6 @@
 </script>
 
 <script layout type="text/x-markdown">
-### 
 * 
 </script>
 
@@ -95,7 +122,6 @@
 </script>
 
 <script layout type="text/x-markdown">
-### 
 * 
 </script>
 
@@ -104,7 +130,6 @@
 </script>
 
 <script layout type="text/x-markdown">
-### 
 * 
 </script>
 
@@ -113,7 +138,6 @@
 </script>
 
 <script layout type="text/x-markdown">
-### 
 * 
 </script>
 
@@ -122,18 +146,9 @@
 </script>
 
 <script layout type="text/x-markdown">
-### 
 * 
 </script>
 
-<script layout type="text/x-markdown">
-### 8.
-</script>
-
-<script layout type="text/x-markdown">
-### 
-* 
-</script>
 
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js"></script>
 <script src="./dist/talkie.min.js"></script>
