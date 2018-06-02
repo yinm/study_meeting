@@ -203,11 +203,15 @@
 </script>
 
 <script layout type="text/x-markdown">
-### 8.
+### 8.5.2 マスターの.m3u8ファイル
 </script>
 
 <script layout type="text/x-markdown">
-* 
+* `.m3u8`ファイルはファイル情報を含むテキストファイル
+* UTF-8のプレイリスト(`m3u`)である
+* `.m3u8`が他の`.m3u8`ファイルを参照することもある
+* クライアントはまず最初に書かれたインデックスを使用する
+* そのあとは回線の余裕を見て、使用するインデックスを切り替える
 </script>
 
 <script layout type="text/x-markdown">
