@@ -128,11 +128,33 @@
 </script>
 
 <script layout type="text/x-markdown">
-### 8.
+### 8.3 オープングラフプロトコル
 </script>
 
 <script layout type="text/x-markdown">
-* 
+* ソーシャルネットワークで使われるメタデータで、Facebookが開発した
+* オープングラフプロトコルが実装されているサイトのURLをSNSなどに貼り付けると、記事の一部が引用され、画像も表示される
+* セマンティックウェブの子孫にあたる(RDFa, link-rel canonicalなどにインスパイアされたものであるため)
+</script>
+
+<script layout type="text/x-markdown">
+### link-rel canonicalとは
+* 正規化した(トラッキングタグなどがない綺麗な)URL
+* これを使うことで、検索エンジンのインデックス内での重複コンテンツ問題を解消できる
+</script>
+
+<script layout type="text/x-markdown">
+### オープングラフプロトコルを使うには
+* 1) `<html xmlns:og="http://ogp.me/ns#"> の名前空間を宣言する
+* 2) SNS向けの情報をメタタグとして記述する (`og:title:`など。記述必須の項目がある)
+* 同一の項目に複数指定(配列化)することもできる
+</script>
+
+<script layout type="text/x-markdown">
+### 類似の機能
+* Twitterカード (`twitter:` で始まる属性を記述する)
+* ただし、こちらはtiwtterカードに必要な項目がない場合は、OGPの属性を代わりに参照するので、両方の属性を記述する必要はない
+* Google+は、JSON-LDやマイクロデータを利用して実現している
 </script>
 
 <script layout type="text/x-markdown">
