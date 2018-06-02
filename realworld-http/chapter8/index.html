@@ -236,11 +236,22 @@
 </script>
 
 <script layout type="text/x-markdown">
-### 8.
+### 8.5.5 HLSのメリットとデメリット
 </script>
 
 <script layout type="text/x-markdown">
-* 
+### メリット
+* HTTPを利用していること (通常のウェブと同じ機器で使える。サーバーで必要な設定は、`MIMEタイプ`と`TTL`)
+* ただし、キャッシュには気をつける必要がある (ライブ配信の場合に代替インデックスをキャッシュしてしまうと、クライアントに新しい動画を知らせることができないため)
+</script>
+
+<script layout type="text/x-markdown">
+### デメリット
+* サポートされない環境が多い
+* 実体はプログレッシブダウンロード(チャンクごとにDLが完了しないと再生できない)方式であるため、遅延(30秒ほど)が発生してしまう
+* 半年ごとに内容改定がある
+* 動画フォーマットが固定されている
+* DRMに制約がある
 </script>
 
 <script layout type="text/x-markdown">
