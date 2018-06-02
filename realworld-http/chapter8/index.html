@@ -158,11 +158,28 @@
 </script>
 
 <script layout type="text/x-markdown">
-### 8.
+### 8.4 AMP (Accelerated Mobile Pages)
 </script>
 
 <script layout type="text/x-markdown">
-* 
+* モバイルの高速化のための仕組み
+* AMPマークがつくため、ユーザーが高速表示が可能なページを選択しやすくなる
+* 必要な情報(JSON-LD)が設定されたページであれば、カルーセル形式で記事のダイジェストと一緒にリスト表示される(ページの流入を増加できる可能性)
+* ただし、どのページでも高速化するわけではない (静的なページは効果があるが、動的なページでは効果が期待できない)
+</script>
+
+<script layout type="text/x-markdown">
+### AMPを利用するには
+* AMPの作法に従って、モバイル専用の軽量なページを作る
+* JSは自由に使ええない(指定されたカスタムタグを使う必要がある・Ajaxで後からコンテンツを取得できない)
+</script>
+
+<script layout type="text/x-markdown">
+### Ampの高速化を実現する4つの技術
+* ページの構成を固定化することでページの高速化
+* ページの構成が固定化されているためCDN対応がしやすい
+* コンテンツをCDN側に引き取ることで、JSファイルをキャッシュに載せやすくなった
+* コンテンツをサーバー側に引き取る時に、タグの書き換えによる高速化 (仕様外)
 </script>
 
 <script layout type="text/x-markdown">
