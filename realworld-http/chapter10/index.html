@@ -57,11 +57,12 @@
 </script>
 
 <script layout type="text/x-markdown">
-### 10.
+### 10.3.1 漏洩を防ぐためのクッキーの設定
 </script>
 
 <script layout type="text/x-markdown">
-*
+* `httpOnly` 属性を付与して、JSからアクセスできないようにする
+* XSSの攻撃者はJSを使うため、httpOnly属性によってセッショントークン漏洩の危険を減らすことができる
 </script>
 
 <script layout type="text/x-markdown">
