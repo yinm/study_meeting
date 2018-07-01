@@ -66,11 +66,14 @@
 </script>
 
 <script layout type="text/x-markdown">
-### 10.
+### 10.3.2 X-XSS-Protectionヘッダー
 </script>
 
 <script layout type="text/x-markdown">
-*
+* HTMLのインラインでスクリプトタグを使っているケースなど、明らかに怪しいパターンを検出する
+* ただし、単なるパターンマッチのため、偽陽性(問題がないのに、問題とされてしまう)となる可能性がある
+* `X-`の非公式ヘッダーだが、IE, Chrome, Safariなどで対応 (FirefoxはCSPで対応すればいいというスタンスのため非対応)
+* 設定例 `X-XSS-Protection: 1; mode=block`
 </script>
 
 <script layout type="text/x-markdown">
