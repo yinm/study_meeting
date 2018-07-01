@@ -88,14 +88,16 @@
 * ・ リソース以外のCSP設定
 * ・ 一括でセキュリティを向上させるディレクティブ
 * 段階的に移行するための機構として、チェックは行うが動作は継続する、 `Content-Security-Policy-Report-Only`ヘッダーがある
+</script>使い
+
+<script layout type="text/x-markdown">
+### 10.3.4 Content-Security-PolicyとJavaScript製テンプレートエンジン
 </script>
 
 <script layout type="text/x-markdown">
-### 10.
-</script>
-
-<script layout type="text/x-markdown">
-*
+* クライアントサイドのHTMLのテンプレートはCSPの設定によっては使用できない
+* e.g. 実行時に`new Function`を使って関数を動的生成するため、unsafe-evalを許可してないと動かない
+* JSのテンプレートエンジンではこれを回避するために、プリコンパイルを前提にしたバージョンがある場合もあるので、用途に合わせて使い分ける
 </script>
 
 <script layout type="text/x-markdown">
