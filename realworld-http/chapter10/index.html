@@ -169,11 +169,18 @@
 </script>
 
 <script layout type="text/x-markdown">
-### 10.
+### 10.5.1 古のセッション管理とセッション固定化攻撃
 </script>
 
 <script layout type="text/x-markdown">
-*
+* クライアントが持つ固有のIDを使う方法がよく使われた(e.g. フィーチャーフォンの個体識別番号, iOSのUDID)
+* -> 他のサービスと合わせることで個人情報が取得できてしまう
+* -> UAやヘッダーに端末識別情報が書かれており詐称が簡単だが、ユーザーが変更することはできない
+</script>
+
+<script layout type="text/x-markdown">
+* 古いフィーチャーフォンではクッキーが使えないため、URLにセッションを埋め込む方法が使われた
+* このセッションがログイン前後で変化しない場合に、セッション固定化攻撃が成立する
 </script>
 
 <script layout type="text/x-markdown">
