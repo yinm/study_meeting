@@ -148,11 +148,14 @@
 </script>
 
 <script layout type="text/x-markdown">
-### 10.
+### 10.4.2 HTTP公開鍵ピンニング
 </script>
 
 <script layout type="text/x-markdown">
-*
+* デジタル署名のための公開鍵を使って、証明書を検証する
+* 仕組み
+* 1.初回アクセスで公開鍵のリストを送付してもらい手元に残しておく(pinning)
+* 2.2回目以降のアクセス時に、手元に残しておいた公開鍵とサーバーから送付されてきた公開鍵を比較することで証明書が改ざんされていないことを検証する
 </script>
 
 <script layout type="text/x-markdown">
