@@ -184,11 +184,14 @@
 </script>
 
 <script layout type="text/x-markdown">
-### 10.
+### 10.5.2 クッキーインジェクション
 </script>
 
 <script layout type="text/x-markdown">
-*
+* HTTPSで秘匿化されたドメインのクッキーに対して、以下のような攻撃をすること
+* ・HTTPではないサブドメインからクッキーを上書き
+* ・よりURLの詳細なクッキーでを設定して、本来のドメインクッキーを無効化し、セッション固定化攻撃の踏み台にする
+* 対策として、ChromeとFirefoxではサブドメインからの再設定の禁止や同一ドメインでもsecure付きのクッキーはHTTPから上書きできないようにしている
 </script>
 
 <script layout type="text/x-markdown">
