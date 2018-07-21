@@ -88,7 +88,7 @@
 * ・ リソース以外のCSP設定
 * ・ 一括でセキュリティを向上させるディレクティブ
 * 段階的に移行するための機構として、チェックは行うが動作は継続する、 `Content-Security-Policy-Report-Only`ヘッダーがある
-</script>使い
+</script>
 
 <script layout type="text/x-markdown">
 ### 10.3.4 Content-Security-PolicyとJavaScript製テンプレートエンジン
@@ -113,11 +113,16 @@
 </script>
 
 <script layout type="text/x-markdown">
-### 10.
+### 10.3.6 クロスオリジンリソースシェアリング(CORS)
 </script>
 
 <script layout type="text/x-markdown">
-*
+* APIサーバーを守るためのセキュリティ機構で、オリジンをまたいでリソースを共有する作法のこと (リソース共有とは、XHRやFetch APIによるアクセスのこと)
+* CSPの`content-src:`でも制御できるが、CORSは外部サービスのアクセス制限を厳しく行うものである
+* リクエストした条件やサーバーのレスポンスによって通信の可否が判定される
+* 判定のフローは大きく2つに分かれる
+* ・simple cross-origin request
+* ・actual request (preflightを行う)
 </script>
 
 <script layout type="text/x-markdown">
