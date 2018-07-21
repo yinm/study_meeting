@@ -101,11 +101,15 @@
 </script>
 
 <script layout type="text/x-markdown">
-### 10.
+### 10.3.5 Mixed Content
 </script>
 
 <script layout type="text/x-markdown">
-*
+* Webのコンテンツの中に、HTTPのコンテンツが混じること
+* 解決策
+* ・すべてをHTTPSにする
+* ・CSPの`upgrade-insecure-requests`ディレクティブを使う (`http://　`のコンテンツを `https://`から始まるURLとして取得する)
+* ・CSPの`block-all-mixed-content`ディレクティブを使う (Mixed Contentをエラーにしてしまう)
 </script>
 
 <script layout type="text/x-markdown">
