@@ -130,15 +130,21 @@
 </script>
 
 <script layout type="text/x-markdown">
-*
+*  プロキシサーバーが通信を中継するときに通信内容を抜き取ることで情報が漏洩・改ざんが行われる問題
+* 防止策はHTTPS(TLS)を利用する
+* ただし、TLSが守るのは通信経路だけなので、サーバー・ブラウザに対する攻撃は別途防ぐ必要がある
+* また、TLSを使っていても中間者がもつ証明書が承認されてしまうとHTTPS通信の秘密を破ることができてしまう(e.g. WoSignが起こした問題)
 </script>
 
 <script layout type="text/x-markdown">
-### 10.
+### 10.4.1 HSTS (HTTP Strict Transport Security)
 </script>
 
 <script layout type="text/x-markdown">
-*
+* サーバー側から接続するときはHTTPSで接続してほしいことを伝達する仕組み
+* `Strict-Transport-Security`ヘッダーを使う
+* 欠点として、初回接続はHTTP通信なのでMITMができうる
+* 欠点の対策として、`preload`ディレクティブを使う方法がある
 </script>
 
 <script layout type="text/x-markdown">
