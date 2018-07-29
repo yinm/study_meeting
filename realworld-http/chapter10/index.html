@@ -239,11 +239,12 @@
 </script>
 
 <script layout type="text/x-markdown">
-### 10.
+### 10.7.1 X-Frame-Optionsヘッダー
 </script>
 
 <script layout type="text/x-markdown">
-*
+* 前提として、CSRFの対策は取れない (IFRAMEの内側に表示されるだけで、サイトから見ると通常の操作と同じものであるため)
+* 悪用されるのを防ぎたい正規のサイトが`X-Frame-Options`ヘッダーを送信することで、ページがIFRAME内で利用されることを防ぐ
 </script>
 
 <script layout type="text/x-markdown">
