@@ -204,11 +204,16 @@
 </script>
 
 <script layout type="text/x-markdown">
-### 10.
+### 10.6.1 CSRF対策トークン
 </script>
 
 <script layout type="text/x-markdown">
-*
+* HTTPのステートレス性に制限を与える方法がよく使われる
+* 具体的な方法
+* 1.フォームで`<input type="hidden">`にランダムに生成したトークンを埋め込む
+* 2.リクエストを受け取るサーバー側で、1で生成したトークンが含まれていないリクエストを拒否する
+* Web Application Frameworkには、トークンの生成・検証をしてくれるミドルウェアが同梱されているはずなので、それを利用すればいい
+* なお、セッショントークンなどの秘匿情報をCSRF対策のトークンとして使ってはいけない (input要素のため、JSからアクセスできてしまう)
 </script>
 
 <script layout type="text/x-markdown">
