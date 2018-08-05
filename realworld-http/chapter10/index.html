@@ -271,7 +271,30 @@
 </script>
 
 <script layout type="text/x-markdown">
--
+- 計測方法には大きく2つある
+- ・クッキーベースの方式: ユーザーに対して固有のIDを付与するため、クリックから3ヶ月以上のコンバージョン成果まで取得できる
+- ・FingerPrint方式: ブラウザのバージョンやIPアドレスなどを使ってユーザーをカテゴライズする。クッキーと違って、完全にユーザーを特定できないが、端末側に何も設定しないでも計測ができるメリットがある
+- ウェブ広告はセキュリティとのせめぎ合い
+- ・ユーザーが訪問したウェブサイトの履歴情報は個人情報になるため
+- ・ユーザー情報を取得できる方法はブラウザベンダーによってどんどん防がれていく
+- ・モバイルアプリでも同様の現象が起きている (Appleは基本的にプライバシーに厳しい方針を取っている)
+</script>
+
+<script layout type="text/x-markdown">
+### 10.10.1 サードパーティクッキー
+</script>
+
+<script layout type="text/x-markdown">
+- ブラウザがアクセスしたサービスが、そのサービス内でのみ有効なクッキーを書き込むことを、`ファーストパーティクッキー`という
+- 広告などの用途で、外部サービスから読み込まれてしまうクッキーを埋め込み、サイトを跨いだ行動追跡を可能にするクッキーのことを、`サードパーティクッキー`という
+- サードパーティクッキーを埋め込む方法はいくつかある (e.g. `<img>`タグで参照された画像を返すときに`Set-Cookie`ヘッダーを含める)
+</script>
+
+<script layout type="text/x-markdown">
+- サードパーティクッキーはユーザーが認識していないところでトラッキングされてしまうというプライバシー上の問題がある
+- それを防ぐために、ブラウザ側で対策ができるようになっている
+- ・Safariではクッキーに関するデフォルト設定で、サードパーティクッキーを拒絶するようになっている
+- 他のブラウザでもクッキーの取り扱いを変更可能
 </script>
 
 <script layout type="text/x-markdown">
@@ -313,15 +336,6 @@
 <script layout type="text/x-markdown">
 -
 </script>
-
-<script layout type="text/x-markdown">
-### 10.
-</script>
-
-<script layout type="text/x-markdown">
--
-</script>
-
 
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js"></script>
 <script src="./dist/talkie.min.js"></script>
