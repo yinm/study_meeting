@@ -305,15 +305,18 @@
 - サーバーにアクセスしてIDを取得し、クッキー以外のブラウザのストレージに保存することで、クッキーと同等の機能を実現する手法
 - クッキーを制限しても防げず、削除しようにも期待通り削除できないなどプライバシー上の問題がある
 - `Zombie Cookie`と呼ばれている。[Zombie cookie - Wikipedia](https://en.wikipedia.org/wiki/Zombie_cookie)
-- [ユーザーによる消去不能なスマホのターゲティング広告用ゾンビクッキーの利用が停止される模様 - GIGAZINE](https://gigazine.net/news/20150119-turn-zombie-cookie-killed/)
+- アメリカのニュース。[ユーザーによる消去不能なスマホのターゲティング広告用ゾンビクッキーの利用が停止される模様 - GIGAZINE](https://gigazine.net/news/20150119-turn-zombie-cookie-killed/)
 </script>
 
 <script layout type="text/x-markdown">
-### 10.
+### 10.10.3 Google Analytics
 </script>
 
 <script layout type="text/x-markdown">
--
+- 広告以外でユーザーを特定するケースとして、訪問ログを取得するGoogle Analytics(GA)がある
+- GAは設定されたドメイン内部でのユーザーの動きさえ取れればよいところが、ウェブ広告とは異なる
+- ファーストパーティクッキーなので、GAにアクセスした時はユーザーを特定するIDはGoogleに送信されない
+- Googleが提供するJSコードで、`document.cookie`を使ってユーザーを特定するIDを取得し、擬似サードパーティクッキーとしてGoogleのサーバーに送信される
 </script>
 
 <script layout type="text/x-markdown">
