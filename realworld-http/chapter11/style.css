@@ -1,0 +1,13 @@
+h4 {
+  font-size: 2em;
+}
+pre {
+  width: 800px;
+  font-size: 1em !important;
+}
+table {
+  font-size: 0.5em !important;
+}
+strong {
+  color: #f00;
+}
