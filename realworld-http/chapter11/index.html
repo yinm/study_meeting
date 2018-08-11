@@ -41,11 +41,16 @@
 </script>
 
 <script layout type="text/x-markdown">
-### 11.
+### 11.1.2 Web APIとトランザクション
 </script>
 
 <script layout type="text/x-markdown">
-- 
+- アトミック(な操作) = ある操作を行なうときに他者がその操作に割り込めないこと
+- HTTPで複数のリクエストをアトミックに実行することはできない
+- また、HTTP/2の場合は、リクエストの順序とレスポンスの順序が同一になる保証もなくなる
+- API設計の理想は、トランザクションが必要な単位でアトミックなAPIを提供し、APIの1コールで完結するのがよい
+- ただし、LSUDsのように不特定多数の利用者がいる場合は、粒度の細かいAPIを提供する必要が生じる場合もある
+- 上記のトレードオフの中で、最適な設計を考える必要がある
 </script>
 
 <script layout type="text/x-markdown">
