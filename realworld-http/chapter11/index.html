@@ -60,14 +60,17 @@
 <script layout type="text/x-markdown">
 - HEATEOS(Hypermedia As The Engine Of Application Stat)は、RESTの一部であるインターフェースの一般化を仕様化したもの
 - リソース間の関連情報やリソースの操作のリンクをレスポンスに含めて、リソースの自己記述力を向上させる
+- 完全なHATEOSが実現できると、クライアントはトップページを見れば、そこからデータや操作を表すリンクのリストを得ることができる (そのAPIに関する前提知識がなくても、APIを利用できる)
 </script>
 
 <script layout type="text/x-markdown">
-### 11.
+### 11.1.4 RESTfulとREST-ish
 </script>
 
 <script layout type="text/x-markdown">
-- 
+- RESTの原則に準拠しているものをRESTfulといい、REST風なものをREST-ishという
+- RESTの文脈では、バージョンやフォーマットはAcceptヘッダーに入れて、HTTPと同様のネゴシエーションを行うのが良いとされている
+- そのため、バージョンをパスに入れた設計は、RESTの原則から外れている (REST-ishになる)
 </script>
 
 <script layout type="text/x-markdown">
