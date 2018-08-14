@@ -165,11 +165,14 @@
 </script>
 
 <script layout type="text/x-markdown">
-### 11.
+### 11.5 実際のREST APIを見てみる (PAY.jpの例)
 </script>
 
 <script layout type="text/x-markdown">
-- 
+- Web APIの利用には認証が必要なことが多い (サーバーの稼働は維持費がかかるため)
+- 認証方法は、アクセストークンを使った形式が多い (アクセストークン自体の渡し方はサービスによって異なる)
+- アクセストークンを使った形式は、ID/PASSを使う方法に比べて、漏洩した時のダメージを小さくできる (トークンが漏洩しても、そのトークンを無効化すれば被害を抑えられるため)
+- [PAY.JP API リファレンス](https://pay.jp/docs/api/#customer-%E9%A1%A7%E5%AE%A2)
 </script>
 
 <script layout type="text/x-markdown">
