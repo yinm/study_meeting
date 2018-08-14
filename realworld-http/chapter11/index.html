@@ -145,11 +145,13 @@
 </script>
 
 <script layout type="text/x-markdown">
-### 11.
+### 11.3.5 500番台(サーバーエラー)
 </script>
 
 <script layout type="text/x-markdown">
-- 
+- サーバーに起因するエラーのステータスを表す
+- クライアントのリクエストには問題がないため、サービスを受けるにはサーバーのエラーが解決するのを待つしかない
+- `502 Bad Gateway`: サービスに至るまでの間のゲートウェイやプロキシが要求を拒否した場合に返す。AWSのELBが対象サーバーとのコミュニケーションに失敗した(レスポンスを解釈できなかった)時にも返される
 </script>
 
 <script layout type="text/x-markdown">
