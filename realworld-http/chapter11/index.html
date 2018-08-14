@@ -98,11 +98,16 @@
 </script>
 
 <script layout type="text/x-markdown">
-### 11.
+### 11.3.1 100番台 (情報)
 </script>
 
 <script layout type="text/x-markdown">
-- 
+- 成功や失敗が決定する以前のステータスを表す
+- 100, 101共にボディを含まない
+- `100 Continue`: サーバーに送信する前に、ヘッダーだけを送信して許可を求めてきたクライアントに対して、受理したことをサーバーから伝える
+- `101 Switching Protocols`: クライアントが依頼したHTTP以外のプロトコルへの変更をサーバーが受理した時に返される
+- `103 Early Hints`: HTTP/2のサーバープッシュのためのヒント情報を返される
+- ・[RFC 8297 - An HTTP Status Code for Indicating Hints](https://tools.ietf.org/html/rfc8297)
 </script>
 
 <script layout type="text/x-markdown">
