@@ -74,11 +74,17 @@
 </script>
 
 <script layout type="text/x-markdown">
-### 11.
+### 11.2 メソッド
 </script>
 
 <script layout type="text/x-markdown">
-- 
+- REST APIを利用する時にはサービスが指定するメソッドを使う
+- 基本的に利用するのは7種類で、その中でもよく使うのは、`GET`, `POST`, `PUT`, `DELETE`
+- `OPTIONS`はCORSのprefligh requestで利用する
+- メソッドの分類には、安全・べき等の2つの指標がある
+- ・安全は、実行してもリソースを変更しないもの (`GET`, `HEAD`, `OPTIONS`が該当)
+- ・べき等は、リソースは変更するが、何度実行しても結果が変わらない (安全のメソッド, `PUT`, `DELETE`が該当)
+- POSTでリクエストするが、実際にはPUT, DELETEなどで処理することを、オーバーロードPOSTと呼ぶ
 </script>
 
 <script layout type="text/x-markdown">
