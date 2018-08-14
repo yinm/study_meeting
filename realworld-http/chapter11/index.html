@@ -132,11 +132,16 @@
 </script>
 
 <script layout type="text/x-markdown">
-### 11.
+### 11.3.4 400番台(クライアントエラー)
 </script>
 
 <script layout type="text/x-markdown">
-- 
+- クライアントに起因するエラーのステータスを表す
+- `400 Bad Request`: 他の具体的なエラーに当てはまらない場合・エラーの詳細を隠したい場合に使う
+- エラーの詳細をJSON形式で返す共通のボキャブラリとして、`application/problem+json`というContent-Typeも定義されている
+- APIの性質に合わせて、エラーレスポンスを返す必要がある
+- ・利用者がエラー内容を理解できるように、適切なステータスコードを使うのが基本
+- ・エラーメッセージなどからAPIの仕様を推測されると困る場合は、あえて`400 Bad Request`のみを返すようにする
 </script>
 
 <script layout type="text/x-markdown">
