@@ -88,11 +88,13 @@
 </script>
 
 <script layout type="text/x-markdown">
-### 11.
+### 11.3 ステータスコード
 </script>
 
 <script layout type="text/x-markdown">
-- 
+- HTTPの文脈と同じだが、リクエストエラー・サーバーの状況を表す情報源になるため、APIではより重要視される
+- ステータスコードによってボディの有無が判定されるサービス・クライアントがあるので、利用時には注意すること
+- e.g. Goのクライアントライブラリも、ステータスコードによってボディの有無を判定している
 </script>
 
 <script layout type="text/x-markdown">
